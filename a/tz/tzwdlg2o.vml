@@ -389,9 +389,9 @@ ControlRelinkDelete( VIEW    vDialog     BASED ON LOD TZWDLGSO,
             END
          END
 
- //         IF vControl.CtrlMapView EXISTS
- //            RelinkInstanceToInstance( vControl, "CtrlMapView",
- //                                      vDialog, "ViewObjRef" )
+ //      IF vControl.CtrlMapView EXISTS
+ //         RelinkInstanceToInstance( vControl, "CtrlMapView",
+ //                                   vDialog, "ViewObjRef" )
 
          IF vControl.CtrlMapLOD_Attribute EXISTS
             SET CURSOR FIRST vLastLOD.LOD_Attribute WITHIN vLastLOD.LOD WHERE
@@ -417,9 +417,17 @@ ControlRelinkDelete( VIEW    vDialog     BASED ON LOD TZWDLGSO,
                   EXCLUDE vControl.CtrlMapLOD_Attribute
                   INCLUDE vControl.CtrlMapLOD_Attribute FROM vLastLOD.LOD_Attribute
                ELSE
-                  szMsg = "Deleting Control Mapping for:|   " + szWindowReportName +
+                  szMsg = "DKS2 Deleting Control Mapping for:|   " + szWindowReportName +
                           "|   Control: " + vControl.Control.Tag +
-                          "| because of missing Attribute: " + vControl.CtrlMapER_Attribute.Name
+                          "|   because of missing Attribute: " + vControl.CtrlMapER_Attribute.Name +
+                          "|   in LOD: " + vControl.CtrlMapView.Name
+                  IF vControl.CtrlMapLOD_Entity EXISTS
+                     szMsg = szMsg + "|   in Entity: " + vControl.CtrlMapLOD_Entity.Name
+                  ELSE
+                  IF vControl.CtrlMapRelatedEntity EXISTS
+                     szMsg = szMsg + "|   in Entity: " + vControl.CtrlMapRelatedEntity.Name
+                  END
+                  END
                   SysReadZeidonIni( -1, "[Workstation]", "ContinueParseGen", szContinueParseGen )
                   IF szContinueParseGen = "N"
                      TraceLineS( szMsg, "" )
@@ -442,14 +450,10 @@ ControlRelinkDelete( VIEW    vDialog     BASED ON LOD TZWDLGSO,
                END
             ELSE
                // Relink or Re-Include CtrlMapLOD_Attribute, & subordinates & Context
-               //RelinkInstanceToInstance( vControl, "CtrlMapLOD_Attribute",
-               //                          vLastLOD, "LOD_Attribute" )
-               //RelinkInstanceToInstance( vControl, "CtrlMapRelatedEntity",
-               //                          vLastLOD, "LOD_Entity" )
-               //RelinkInstanceToInstance( vControl, "CtrlMapER_Attribute",
-               //                          vLastLOD, "ER_Attribute" )
-               //RelinkInstanceToInstance( vControl, "CtrlMapER_Domain",
-               //                          vLastLOD, "Domain" )
+               //RelinkInstanceToInstance( vControl, "CtrlMapLOD_Attribute", vLastLOD, "LOD_Attribute" )
+               //RelinkInstanceToInstance( vControl, "CtrlMapRelatedEntity", vLastLOD, "LOD_Entity" )
+               //RelinkInstanceToInstance( vControl, "CtrlMapER_Attribute", vLastLOD, "ER_Attribute" )
+               //RelinkInstanceToInstance( vControl, "CtrlMapER_Domain", vLastLOD, "Domain" )
 
                // If ER_Attribute or ER_Domain don't match on ZKey,
                // reinclude the LOD_Attribute entity.
@@ -531,7 +535,8 @@ ControlRelinkDelete( VIEW    vDialog     BASED ON LOD TZWDLGSO,
                ELSE
                   szMsg = "Deleting Control Mapping for:|   " + szWindowReportName +
                           "|   Control: " + vControl.Control.Tag +
-                          "| because of missing Entity: " + vControl.CtrlMapLOD_Entity.Name
+                          "| because of missing Entity: " + vControl.CtrlMapLOD_Entity.Name +
+                          "|   in LOD: " + vControl.CtrlMapView.Name
                   SysReadZeidonIni( -1, "[Workstation]", "ContinueParseGen", szContinueParseGen )
                   IF szContinueParseGen = "N"
                      TraceLineS( szMsg, "" )

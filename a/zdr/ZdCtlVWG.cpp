@@ -2588,11 +2588,10 @@ ZWebGrid::LoadMapping( zVIEW vDialog )
    }
 
    // process all CtrlCtrls
-   if ( CheckExistenceOfEntity( vDialog,
-                                pszCtrlCtrl ) > zCURSOR_UNCHANGED )
+   if ( CheckExistenceOfEntity( vDialog, pszCtrlCtrl ) > zCURSOR_UNCHANGED )
    {
       zBOOL bFirstMapping = TRUE;
-      SetViewToSubobject (   vDialog,   pszCtrlCtrl );
+      SetViewToSubobject( vDialog, pszCtrlCtrl );
       ZWebGridCol *pCol = 0;
       zKZWDLGXO_Ctrl_DEF CtrlDef;
       int k = 0;
@@ -2613,7 +2612,7 @@ ZWebGrid::LoadMapping( zVIEW vDialog )
                if ( pCol )
                {
                   // handle column type specific stuff such as type e.g. Domain / auto include
-                  LPGRIDCOLCOMBOBOX pComboBox = ( LPGRIDCOLCOMBOBOX ) pCol;
+                  LPGRIDCOLCOMBOBOX pComboBox = (LPGRIDCOLCOMBOBOX) pCol;
                }
 
                break;
@@ -2623,14 +2622,13 @@ ZWebGrid::LoadMapping( zVIEW vDialog )
                if ( pCol )
                {
                   // handle column type specific stuff such a checked & unchecked values
-                  LPGRIDCOLCHECKBOX pCheckBox = ( LPGRIDCOLCHECKBOX ) pCol;
+                  LPGRIDCOLCHECKBOX pCheckBox = (LPGRIDCOLCHECKBOX) pCol;
                   zCPCHAR pszCheckedValue, pszUncheckedValue;
 
                   pszCheckedValue = (zPCHAR) CtrlDef.CtrlBOI;
                   pszUncheckedValue = pszCheckedValue + zstrlen( pszCheckedValue ) + 1;
 
-                  pCheckBox->SetCheckboxTranslationValues( pszCheckedValue,
-                                                           pszUncheckedValue );
+                  pCheckBox->SetCheckboxTranslationValues( pszCheckedValue, pszUncheckedValue );
                }
 
                break;
@@ -2644,10 +2642,10 @@ ZWebGrid::LoadMapping( zVIEW vDialog )
                if ( pCol )
                {
                   // handle column type specific stuff such a checked & unchecked values
-                  LPGRIDCOlRADIOGROUP pGroup = ( LPGRIDCOlRADIOGROUP ) pCol;
+                  LPGRIDCOlRADIOGROUP pGroup = (LPGRIDCOlRADIOGROUP) pCol;
                   if ( CheckExistenceOfEntity( vDialog, pszCtrlCtrl ) > zCURSOR_UNCHANGED )
                   {
-                     SetViewToSubobject (   vDialog,   pszCtrlCtrl );
+                     SetViewToSubobject( vDialog, pszCtrlCtrl );
                      LPGRIDCOLRADIOBUTTON pRB = 0;
                      zKZWDLGXO_Ctrl_DEF CtrlDefRB;
 

@@ -162,7 +162,6 @@ BuildSideNavSectionJ( VIEW vDialog,
          szWriteBuffer = "<%"
          WL_QC( vDialogMenu, lFile, szWriteBuffer, "^", 0 )
          szOptionTag = vDialogMenu.Option.Tag
-         szOptionTag = vDialogMenu.Option.Tag
          szWriteBuffer = "   csrRC = vKZXMLPGO.cursor( ^DisableMenuOption^ ).setFirst( ^MenuOptionName^, ^" + szOptionTag + "^ );"
          WL_QC( vDialogMenu, lFile, szWriteBuffer, "^", 0 )
          szWriteBuffer = "   if ( !csrRC.isSet( ) )"
@@ -172,8 +171,8 @@ BuildSideNavSectionJ( VIEW vDialog,
          szWriteBuffer = "%>"
          WL_QC( vDialogMenu, lFile, szWriteBuffer, "^", 0 )
 
-         szWriteBuffer = "       <li><a href=^#^ " + szClass + " onclick=^" + szActionName + "( )^>" + szNavigationTitle + "</a></li>"
-         szWriteBuffer = "       <li id=^" + szMenuName + "^ name=^" + szMenuName + "^" + szClass + "><a href=^#^ " + szClass2 + " onclick=^" + szActionName + "()^>" + szNavigationTitle + "</a></li>"
+      // szWriteBuffer = "       <li><a href=^#^ " + szClass + " onclick=^" + szActionName + "( )^>" + szNavigationTitle + "</a></li>"
+         szWriteBuffer = "       <li id=^sm" + szOptionTag + "^ name=^sm" + szOptionTag + "^" + szClass + "><a href=^#^ " + szClass2 + " onclick=^" + szActionName + "()^>" + szNavigationTitle + "</a></li>"
          WL_QC( vDialogMenu, lFile, szWriteBuffer, "^", 0 )
 
          szWriteBuffer = "<%"

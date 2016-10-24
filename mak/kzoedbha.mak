@@ -1,13 +1,60 @@
 # CHANGE LOG
+#
+# 2001.03.27  DKS
+#     Added correct path for kzhgenky.def file.
+#
+# 2001.02.07  RG
+#     Set variable blddbh so we can use zdctl.lib in file
+#     commw32.hnm
+# 2001.01.11  RG
+#     build *.pdb-files everytime
+# 1998.08.21  DGC
+#     Added dummy dbhandler (kzhsqlxx.???)
+#
+# 1998.08.26  DGC
+#     Added Win32 SqlBase dbhandler for TMV.
+#
+# 1998.10.15  DGC
+#     Removed references to win95.
+#
+# 1998.10.16  DGC
+#     Changed reference of ODBC library.
+#
+# 1998.11.10  DGC
+#     Added kzhsqlga.obj to make of kzhsqldb.dll
+#
+# 1998.11.23  DGC
+#     Fixed problem introduced in ODBC make.
 
+blddbh = y
 !INCLUDE \$(KZV)\MAK\KZVERS.HNM
 !INCLUDE \$(KZV)\MAK\KZCOMMON.HNM
+blddbh =
 kz_srca = $(kz_basea)\oe
 
 !if "$(cl)"=="cl"
+!if "$(BUILDOS)"=="win"
+dllspec = -FPc $(CL)
+exespec = -FPc $(CL)
+!else
 dllspec = $(CL)
 exespec = $(CL)
 !endif
+!endif
+
+!if "$(BUILDOS)"=="win"
+TARGETS = $(kz_bin)\kzhdbvaa.dll \
+          $(kz_bin)\kzhdbvab.dll \
+          $(kz_obj)\kzhsqlga.obj \
+          $(kz_bin)\kzhsqlsa.dll \
+          $(kz_bin)\kzhsqlsb.dll \
+          $(kz_bin)\kzhsqlmb.dll \
+          $(kz_bin)\kzhsqllb.dll \
+          $(kz_bin)\kzhsqlba.dll \
+          $(kz_bin)\kzhsqlbb.dll \
+          $(kz_bin)\kzhsqldb.dll \
+          $(kz_bin)\kzhgenky.dll
+!else
 
 TARGETS = $(kz_obj)\kzhsqlga.obj \
           $(kz_bin)\kzhgenky.dll
@@ -49,9 +96,56 @@ TARGETS = $(TARGETS) $(kz_bin)\kzhsqlmb.dll $(kz_bin)\kzhsqllb.dll
 TARGETS = $(TARGETS) $(kz_bin)\kzhsqlxx.dll
 !endif
 
+!endif
+
 DLLFLAG = $(DLLFLAG) -DQUINSOFT
 
 ALL : $(TARGETS)
+
+#============================================================================
+#================= kzhdbvaa.dll =============================================
+#============================================================================
+
+$(kz_obj)\kzhdbvaa.obj : {$(kz_src_concat)}kzhdbvaa.c \
+                         {$(kz_inc_concat)}kzoemeaa.h
+   qspawn $(kz_srca)\$(@B).err $(cl) @<<
+$(cl) $(DLLFLAG) /Fd$(kz_basew)\bin\kzhdbvaa.pdb
+-I\$(KZV)\w\incz\rdm321
+$(kz_base)\a\oe\kzhdbvaa.c
+<<
+
+$(kz_bin)\kzhdbvaa.dll : $(kz_obj)\kzhdbvaa.obj \
+                         $(kz_src)\kzhdbvaa.def \
+                         \$(KZV)\w\libr\zdrapp.lib
+   $(linker) @<<
+$(kz_obj)\kzhdbvaa.obj +
+$(linkopt)
+$(kz_bin)\kzhdbvaa.dll
+/PDB:$(kz_bin)\kzhdbvaa.pdb
+kzhdbvaa.map
+$(linkdlls) kzoengaa zdrapp \$(KZV)\w\libz\rdm321\vista
+$(kz_src)\kzhdbvaa.def
+<<
+
+$(kz_obj)\kzhdbvab.obj : {$(kz_src_concat)}kzhdbvab.c \
+                         {$(kz_inc_concat)}kzoemeaa.h
+   qspawn $(kz_base)\a\oe\kzhdbvab.err $(cl) @<<
+$(DLLFLAG) /Fd$(kz_basew)\bin\kzhdbvab.pdb
+-I\$(KZV)\a\tz
+$(kz_base)\a\oe\kzhdbvab.c
+<<
+
+$(kz_bin)\kzhdbvab.dll : $(kz_obj)\kzhdbvab.obj \
+                         $(kz_src)\kzhdbvab.def
+   qspawn $(kz_base)\a\oe\kzhdbvab.ler $(linker) @<<
+$(kz_obj)\kzhdbvab.obj +
+$(linkopt)
+$(kz_bin)\kzhdbvab.dll
+/PDB:$(kz_bin)\kzhdbvab.pdb
+kzhdbvab.map
+$(linkdlls) kzoengaa zdrapp
+$(kz_src)\kzhdbvab.def
+<<
 
 #============================================================================
 #================= kzhsqlga.obj =============================================

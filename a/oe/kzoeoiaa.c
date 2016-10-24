@@ -17,8 +17,319 @@
 //  ENVIRONMENT: ANY
 //
 
+/*
+CHANGE LOG
+
+2003.02.10  DGC
+   Loading DBHandler function first tries a "default" name that doesn't include
+   the dbhandler name.  Same with Genkey handler.
+
+2003.01.27  DGC
+   Made change to GenerateQualFromEntityList( ) per Don's request. Using
+   "*root*" to qualify the target entity.
+
+2002.10.20  DGC
+   Added GenerateQualFromEntityList( ).
+
+2002.07.24  DGC
+   Fixed a bug reported by Don.  When loading compressed OIs, the code was not
+   correctly retrieving the attrib flags from the compressed stream.
+
+2002.05.15  DGC
+   Fixed error reported by Jeff that occurred when writing an OI to a
+   compressed text stream.  Null integer attributes were being sent as 0.
+
+2002.03.28  HH
+   R56268, improve error handling genkey creation failed.
+
+2002.02.22  HH
+   Reduced the stacksize used by view arrays by malloc from heap.
+   This was done because VSE CICS crashed at Tonbeller site.
+
+2002.01.10  HH
+   fix for the attribute flags problem on BIG ENDIAN CPU's.
+
+2001.12.06  DGC
+   Fixed bug reported by Phil.  Commit of cluster with an unchanged OI caused
+   problems.
+
+2001.11.13  HH
+   Handle database deadlock by redoing the ACTIVATE.
+
+2001.08.30  DGC  10b
+   Fixed a crash found by Matt.  When printing the View OD names for a
+   warning message, we weren't printing the OD name correctly
+
+2001.08.01  DGC  10b
+   Added zOCE_STATE_MULTIPLE to activate contraints.
+
+2001.05.18  DGC
+   Made change to pessimistic locking semaphore--don't create/delete a
+   semaphore if a ViewOD doesn't have locking specified for it.
+
+2001.05.18  DGC
+   Improved a diagnostic message.
+
+2001.05.07  PAS
+   Make sure that all committed OIs that use zENCODE_BLOBS and/or
+   zNO_NULL_STRING_TERM have the ReleaseCUrrent value.
+
+2001.05.06  BL   Repository
+   Improve handling of view clusters.
+
+2001.05.05  BL   Repository
+   change increment zCLUSTER_VIEW_COUNT form 500 to 2000
+
+2001.05.02  HH
+   Improve handling of view clusters.
+
+2001.04.25  DGC  Z10
+   Fixed bug reported by Jeff.  We were creating an extra coorespondence
+   table if an entity was flagged as created and included.
+
+2001.04.20  DGC
+   Added flag to fnValidViewAttrib( ) to allow hidden attributes.
+
+2001.04.09  PAS
+   Make sure that all committed OIs to files have at least the
+   ReleaseCompat value.
+
+2001.03.27  PAS
+   Enhanced commit and activation of objects to/from files so that the files
+   contain no binary characters.  The storage of string data with CRLF
+   characters is changed to eliminate the trailing null terminator.  Blobs
+   can now be stored encoded via the UUENCODE/UUDECODE 'standard'.
+
+2001.04.06  DGC  10b
+   Added code for entity instance tags.
+
+2001.01.23  DGC  10b
+   Fixed bug R53910 - During activate check to make sure the LOD has physical
+   information.
+
+2001.01.22  DGC  10b
+   Fixed but R54414.  We now never sort dates using a context.  We always
+   sort them using the internal value.
+
+2001.01.16 US Z2000
+   fnDropViewOI( ): removed the if clause that a drop is not done if it
+   is a server or in the shutdown phase. Result of this if was a
+   steadily increasing memory, that killed even a zeidon on a workstation
+   the reason for this if clause was the very slow free of the zeidon
+   memory mamagement, but this has been changed and is fast now
+   So you can't see any measurable performance differences.
+
+2000.12.05  DGC  10b
+   Fixed bug R54297...sorting problem.  We should only sort dates using
+   strcmp if we are retrieving the date with a context.
+
+2000.12.01  DGC  10b
+   Fix for important bug reported by Frank H.  When an entity was being
+   excluded it was being flagged as updated.
+
+2000.11.13  RG  Z2000
+   Fixed again OrderEntityForView (no return without fnOperationReturn)
+
+2000.11.09  RG/BL
+   Fixed function OrderEntityForView
+
+2000.11.01  DGC
+   Fixed a bug in pessimistic locking reported by Don.  Creating the locking
+   semaphore didn't check to make sure we were setting the lock twice when
+   the cluster had two OI's with the same LOD.
+
+2000.10.09  DGC
+   Made change to use fnSetUpdateIndicator( ).
+
+2000.10.09  DGC
+   Added the ability to use contexts when sorting attributes.
+
+2000.07.27  HH
+   When an OI is loaded from file, compare attribute names case insensitive.
+
+2000.07.24  DGC  Z10
+   Made change to write attribs with derived functions IF they are
+   persistent.
+
+2000.07.24  DGC  Z10
+   Sorting an OI with AutoSeq=Y was not setting the update flag for the OI.
+
+2000.07.18  DGC  Z10
+   Fixed bug reported by Phil/Jeff--if a root entity is included from another
+   OI core should just ignore the Insert dbhandler call.
+
+2000.07.12  DGC  Z10
+   Added a new message passed to DBHandler...DBH_Object | DBH_NewObject.
+
+2000.07.12  DGC  Z10
+   Fixed problem with committing included relationships. Included relationships
+   were not being committed if the entity was also created.
+
+2000.06.30  DGC  Z10
+   Removed validity checking when linking Duplicate Instances during an
+   activate.  We used to make sure one of the EI's was flagged as Full Perist
+   but now we don't have to because XOD build generates a cross-product of
+   all the attributes for each of the entities flagged as Dup Instance.
+
+2000.06.21  DGC  Z10
+   Removed caching logic from activate.  It could be re-added so that the
+   dbhandler can call it.
+
+2000.06.19  DGC  Z10
+   Fixed bug reported by HH.  fnWriteOI_ToTextStream was not correctly writing
+   link cards if the linked EI was hidden.
+
+2000.05.04  DGC  Z10
+   Made changes to allow DBHandler to order an OI instead of Activate.
+
+2000.05.04  DGC  Z10
+   Change signature of LoadEntity( ).
+
+2000.05.03  RG  Z2000
+   Fixed OrderEntityForView( ): if several attributes have been separated
+   by ',' we got an errormessage 'Invalid Attribute Name for LOD...'
+   We have to check ',' in the attribute list
+
+2000.04.24  DGC 10b
+   Made change to commit logic.  If an entity was created in OI 'A' and
+   included into OI 'B' and then B was committed, the create flag in A is
+   turned off.  When A is committed the relationship between the created
+   entity and it's parent is not created because the created entity has no
+   incremental flag set.
+
+   Now, when an entity is created on the DB, all linked entities that have
+   the created flag on will have their included flag set on.
+
+2000.03.03  DGC 10b
+   Fixed bug TB1082.  OrderEntityForView( ) was ignoring the order attributes
+   after the first one.
+
+2000.03.03  DGC
+   CreateViewCluster( ) creates a cluster that can hold 500 views.
+
+2000.03.03  DGC
+   Added code to fix bug that kept Duplicate Relationship entities from
+   being spawned after an activate.
+
+2000.02.25  DGC 10b
+    Made fix to ActivateOI_FromOI_ForTask( ) that allows user to create OI from a
+    system object.
+
+2000.01.31  RG Z2000
+    LOCALOPERATION --> LOCALOPER because of compiler error
+
+2000.01.19  HH Z10
+   In fnDropViewOI the link chain is cleared, even if the task is beeing
+   shut down. This is done, because an object might have external links
+   to another object in the main task.
+
+2000.01.06  DGC  10a/10b
+   First 2000 bugfix!  The code in CommitMultipleOIs( ) checks the OIs after
+   the commit is done to see if there are any EI's that still have the created
+   flag set and if it does it shows a message because there shouldn't be
+   any EI's with the created flag set after a commit.  But it *is* ok if the
+   entity is also flagged as deleted.  Added code to set if EI is deleted also.
+
+2000.01.04  BL Z10 Repository
+   Modified Operation fnInitializeGenKeys: No Error message when Entity has
+   duplicate Instance
+
+1999.11.29  DGC
+   Added code to fnAllocDataspace( ) to help find leaks.
+
+   Fixed bug in CommitObjectInstance( )...crashed when lpView == 0.
+
+1999.11.27  DGC ALL
+   Fixed bug in sorting--we were calling derived operations even if the
+   entity was null.  We now check to make sure an entity exists before calling
+    the derived oper.
+
+1999.10.27  HH  ALL
+   merged from 9J: to improve performance of sorting decimals,
+   fnCompareEIAttrs is called with a new parameter, LPTASK.
+
+1999.10.13  DGC  10a  TB772
+   Fixed bug in ActivateOI_FromOI_ForTask( ). Activating with zSINGLE from an OI that
+   had multiple roots activated multiple roots.  Core wasn't setting the
+   hPrevTwin pointer correctly.
+
+1999.10.08  DGC
+   Modified fnCommitPreLoops to not turn off the hidden flag for dead
+   attributes before call the db handler.
+
+1999.09.24  DGC  10a
+   Removed a check for the lpTask->bDebug flag when dropping an OI. This was
+   causing us to perform unnecessary logic that took a long time.
+
+1999.08.20  DGC  10a
+   Fixed some bugs...implemented zWRITE_KEYS_ONLY so we could write only
+   key attributes to a text stream.
+
+1999.06.23  DGC  10a
+   Fixed problem reported by FH.  fnOrderEntityForView( ) was passing the
+   wrong lpViewEntity to the derived attribute functions.
+
+   Started fixing commit problems with linked entity instances.  New logic
+   uses bDBH... EI flags.
+
+   Lot's of stuff with genkeys and FKs.  We generate genkeys and copy FK's
+   at the very beginning of a cluster.
+
+1999.06.01  DGC  10a
+   Added ability to use bubble sort when sorting entities.
+   Turn off attribute changed flags after commit.
+   Fixed bug where integer FK were no correctly set to NULL.
+
+1999.05.20  DGC  10a
+   Changed sorting to use quicksort instead of a bubble sort.
+
+   Added check for szER_Date for compressed OIs.  As part of this I removed
+   the ability to write binary text streams.
+
+1999.01.08  DGC
+   Changed tracing of caching information to trace only when DBHandler trace
+   level is at least 1.
+
+1999.01.11  DGC
+   Fixed problem reported by Frank where entities weren't being loaded when
+   the activate limit was reached.
+
+1999.01.20  DGC
+   Attempted to fix Frank H's problem (TB390).
+
+1999.02.12  DGC
+   Started adding (and removing) stuff for attribute flags.
+
+   Changed displaying of SysDiagnosticMessage( ) to show for entities that
+   are *NOT* derived.
+
+1999.03.04  DGC
+   Moved some traces around.
+
+1999.03.11  DGC
+   Fixed pessimistic locking problems that occurred when using networking.
+   Removed locking error message.
+
+1999.03.15  DGC
+   Don't execute commit constraints if we are only dropping pessimistic locks.
+
+1999.03.16   DGC
+   Changed logic to use lpViewEntity->lEREntTok as an ID instead of casting
+   lpViewEntity (the pointer value) to a long.  I'm trying to stop using
+   pointers as long integer values (for possible conversion to AS400).
+
+1999.04.07   DGC  10a
+   Fixed bug that I found--ActivateOI crashed if activate is with locking but
+   activate fails for some reason.
+
+1999.04.19   DGC  10a
+   Fixed bug that I found--if an entity contains *only* an AUTOSEQ attribute
+   a data stick (hRecord) doesn't get created for the entity.  The AUTOSEQ
+   logic at commit-time didn't handle this.  Now it does.
+
+*/
+
 #include "kzoephdr.h"
-#include "hashmap.h"
 #include <stdio.h>
 #include <stdarg.h>
 #define  Dbg 0
@@ -27,8 +338,8 @@
 #pragma optimize( "", off )
 #endif
 
-// Used to indicate that linked EIs are specified via the EI tag.
-#define zLINKED_WITH_TAGS       0x02000000L
+// Comment this out to keep from using attribute flags.
+#define zATTRIBFLAGS       0x02000000L
 
 // DGC 2-14-96
 // Strings that contain special chars (chars with ASCII values < space [0x20] )
@@ -6632,24 +6943,6 @@ fnPutDataToFile( zVIEW   lpTaskView,
       return( SysWriteLine( lpTaskView, lpFileData->hFile, cpcBuffer ) );
 }
 
-
-/**
- * If the tag for the EI is not set, set it.
- *
- * The tag is a semi-random string that can be expected to be unique for the EI across
- * the OI.  Some day this could generate a UUID instead to make it unique across all
- * EI's ever created but this is fast and easy.
- */
-zSHORT
-fnSetEntityInstanceTag( LPENTITYINSTANCE lpEntityInstance )
-{
-   if ( lpEntityInstance->szTag[0] != 0 )
-      return( 0 );
-
-   sprintf_s( lpEntityInstance->szTag, zsizeof( lpEntityInstance->szTag), "%lx.%lx", SysGetEpochTime(), (unsigned long) lpEntityInstance );
-   return 0;
-}
-
 /*
 =fnWriteOI_ToTextStream
 
@@ -6686,14 +6979,6 @@ fnWriteOI_ToTextStream( zVIEW          lpView,
    zSHORT               nLevel;
    zLONG                k;
    zSHORT               nRC = zCALL_ERROR;
-
-   // dgc 2016-08-21
-   // The new format is to use a hashmap to read linked instances instead of the
-   // old-style link cards.  At some point we can get rid of this and always use
-   // the new style but for now we'll leave the ability to write the link cards.
-   zBOOL               bUseHashmap = TRUE;
-   if ( lControl & zUSE_OLD_LINK_CARDS )
-      bUseHashmap = FALSE;
 
    lpViewCsr = zGETPTR( lpView->hViewCsr );
    lpViewOI  = zGETPTR( lpViewCsr->hViewOI );
@@ -6790,6 +7075,44 @@ fnWriteOI_ToTextStream( zVIEW          lpView,
       bEntityIsCompressed = lControl & zCOMPRESSED &&
                             lpViewEntity->ulMaxLth < zENTITY_BUFFER_SIZE;
 
+#if 0
+      // DGC 02/25/98
+      // Following code is called and may be (?) needed.
+      if ( bIncremental &&
+           lpEntityInstance->u.nInd.bExcluded &&
+           lpEntityInstance->u.nInd.bDeleted &&
+           lpEntityInstance->u.nInd.bCreated == FALSE &&
+           lpEntityInstance->u.nInd.bIncluded == FALSE &&
+           lpEntityInstance->u.nInd.bRelOwner &&
+           lpViewEntity->bDelete == FALSE &&
+           lpViewEntity->bExclude )
+      {
+         LPENTITYINSTANCE lpDupInstance;
+         LPVIEWENTITY     lpDupViewEntity;
+
+         lpDupInstance = lpEntityInstance;
+         for ( ; ; )
+         {
+            lpDupInstance = fnFindDuplicateRelationship( lpDupInstance, 1, 0 );
+            if ( lpDupInstance == 0 || lpDupInstance == lpEntityInstance )
+               break;
+
+            lpDupViewEntity = zGETPTR( lpDupInstance->hViewEntity );
+            if ( lpDupInstance->u.nInd.bDeleted &&
+                 lpDupViewEntity->bDerivedPath == FALSE &&
+                 lpDupViewEntity->bDelete )
+            {
+               lpEntityInstance->u.nInd.bExcluded = FALSE;
+               break;
+            }
+            else
+            {
+               lpDupInstance->u.nInd.bRelOwner = FALSE;
+            }
+         }
+      }
+#endif
+
       // Look to see if the current instance should be written out.  If
       // not we'll skip it and go on to the next one.  All non-hidden
       // instances get written so we'll look for that first.
@@ -6863,6 +7186,31 @@ fnWriteOI_ToTextStream( zVIEW          lpView,
       if ( (*lpfnStreamFunc)( lpView, lpvData, szWorkString, 0, zTYPE_STRING ) )
          goto EndOfFunction;
 
+      // If user wants entity tags, write it.
+      if ( lControl & zENTITY_TAGS )
+      {
+         if ( lControl & zCOMPRESSED )
+            sprintf_s( szWorkString, zsizeof( szWorkString ), "mETAG %lx", (zLONG) lpEntityInstance );
+         else
+            sprintf_s( szWorkString, zsizeof( szWorkString ), "mETAG %lx", (zLONG) lpEntityInstance );
+
+         if ( (*lpfnStreamFunc)( lpView, lpvData, szWorkString, 0, zTYPE_STRING ) )
+            goto EndOfFunction;
+      }
+      else
+      if ( lpEntityInstance->lTag )
+      {
+         // If the tag for the current entity instance is non-zero, then we'll
+         // write it.
+         if ( lControl & zCOMPRESSED )
+            sprintf_s( szWorkString, zsizeof( szWorkString ), "mETAG %lx", lpEntityInstance->lTag );
+         else
+            sprintf_s( szWorkString, zsizeof( szWorkString ), "mETAG %lx", lpEntityInstance->lTag );
+
+         if ( (*lpfnStreamFunc)( lpView, lpvData, szWorkString, 0, zTYPE_STRING ) )
+            goto EndOfFunction;
+      }
+
       if ( lControl & zENTITY_KEYS )
       {
          if ( lControl & zCOMPRESSED )
@@ -6880,38 +7228,13 @@ fnWriteOI_ToTextStream( zVIEW          lpView,
       lpViewAttrib = zGETPTR( lpViewEntity->hFirstOD_Attrib );
       if ( lpEntityInstance->u.nInd.bWritten )
       {
-         LPENTITYINSTANCE lpLinked;
          lLastLinkedInstance = lpEntityInstance->lHierCount;
-
 
          if ( lpEntityInstance->u.nInd.bHidden == FALSE &&
               lpEntityInstance->hNonPersistRecord == FALSE )
          {
             bEntityIsCompressed = FALSE; // Make sure we don't write anything
             lpViewAttrib = 0;
-         }
-
-         if ( bUseHashmap )
-         {
-		     // If we get here then lpEntityInstance should always have a next linked.
-		     // Write the tag of the record owner so we can relink when we activate
-		     // this stream.
-
-		     // Find the record owner.
-		     for ( lpLinked = zGETPTR( lpEntityInstance->hNextLinked );
-		           lpLinked != lpEntityInstance;
-		           lpLinked = zGETPTR( lpLinked->hNextLinked ) )
-		     {
-		        if ( lpLinked->hViewOI == lpEntityInstance->hViewOI &&
-		             lpLinked->u.nInd.bRecordOwner )
-		        {
-		           break;
-		        }
-		     }
-
-		     sprintf_s( szWorkString, zsizeof( szWorkString ), "mLINKED %s", lpLinked->szTag );
-		     if ( (*lpfnStreamFunc)( lpView, lpvData, szWorkString, 0, zTYPE_STRING ) )
-		        goto EndOfFunction;
          }
       }
 
@@ -6926,10 +7249,6 @@ fnWriteOI_ToTextStream( zVIEW          lpView,
          // link lines written (e.g. "i38,102") for it.
          lpEntityInstance->u.nInd.bRecordOwner = TRUE;
 
-         // We need a tag so this EI can be linked with others.  If it doesn't
-         // have one, set it.
-         fnSetEntityInstanceTag( lpEntityInstance );
-
          for ( lpLinked = zGETPTR( lpEntityInstance->hNextLinked );
                lpLinked != lpEntityInstance;
                lpLinked = zGETPTR( lpLinked->hNextLinked ) )
@@ -6937,36 +7256,8 @@ fnWriteOI_ToTextStream( zVIEW          lpView,
             // For a little insurance we'll only set the flags for EIs in
             // the same OI.
             if ( lpLinked->hViewOI == lpEntityInstance->hViewOI )
-            {
-               if ( lpLinked->u.nInd.bRecordOwner )
-                  TraceLineS("Here", "here");
-
                lpLinked->u.nInd.bWritten = TRUE;
-            }
          }
-      }
-
-      // If user wants entity tags set it (if it hasn't been already)
-      if ( lControl & zENTITY_TAGS )
-         fnSetEntityInstanceTag( lpEntityInstance );
-
-      // Write the tag if it's set.
-      if ( *lpEntityInstance->szTag != 0 )
-      {
-         sprintf_s( szWorkString, zsizeof( szWorkString ), "mETAG %s", lpEntityInstance->szTag );
-         if ( (*lpfnStreamFunc)( lpView, lpvData, szWorkString, 0, zTYPE_STRING ) )
-            goto EndOfFunction;
-      }
-
-      // If this is the record owner then write a flag indicating it.  Do this *after*
-      // writing the tag.
-      if ( bUseHashmap && lpEntityInstance->u.nInd.bRecordOwner )
-      {
-         // Write a meta flag to indicate that this EI is the record owner.  When
-         // we read the OI (as part of ActivateOI_FromStream) we'll know to keep
-         // track of it.
-         if ( (*lpfnStreamFunc)( lpView, lpvData, "mRO Y", 0, zTYPE_STRING ) )
-            goto EndOfFunction;
       }
 
       lpEntityInstance->u.nInd.bWritten = TRUE;
@@ -7349,7 +7640,7 @@ fnWriteOI_ToTextStream( zVIEW          lpView,
 
    // If any intra-object linked instances were found, create
    // link records now.
-   if ( !bUseHashmap && lLastLinkedInstance > -1 )
+   if ( lLastLinkedInstance > -1 )
    {
       LPENTITYINSTANCE lpSourceEntityInstance;
 
@@ -7680,15 +7971,13 @@ SfWriteOI_ToStream( zVIEW          lpView,
    zPCHAR               pchLine;
    zPCHAR               pchFileNmp;
    zCHAR                szFileHeader[ sizeof( FileHeaderRecord ) ];
+   zCHAR                szDateTime[ 20 ];
    zCHAR                szTemp[ 50 ];
    zLONG                lTickCount;
    zBOOL                bOptimistic;
    zBOOL                bIncremental;
 // zSHORT               k;
    zSHORT               nRC;
-   zBOOL                bUseHashmap = TRUE;
-   if ( lControl & zUSE_OLD_LINK_CARDS )
-      bUseHashmap = FALSE;
 
    if ( AnchorBlock->TraceFlags.bOI_Times )
       lTickCount = SysGetTickCount( );
@@ -7745,8 +8034,11 @@ SfWriteOI_ToStream( zVIEW          lpView,
    // We store information now as bit-flags.
    FileHeader.chTypeIndicator[ 0 ] = szlNewPortableHeader[ 0 ];
 
-   // Indicate that linked instances are specified using the EI tag.
-   FileHeader.chTypeIndicator[ 1 ] = bUseHashmap ? '2' : '1';
+   // DGC 1999.05.07
+   // Used to be binary indicator.  Now it determines if the ER date is store
+   // with with a compressed OI.  This flag can be re-used for something else
+   // when all customers are using post-9j core.
+   FileHeader.chTypeIndicator[ 1 ] = '1'; // This release always store date.
 
    if ( bIncremental )
       FileHeader.chTypeIndicator[ 2 ] = '1';
@@ -7763,8 +8055,16 @@ SfWriteOI_ToStream( zVIEW          lpView,
    else
       FileHeader.chTypeIndicator[ 4 ] = '0';
 
+#ifdef USE_ATTRIBFLAGS
+   // Using attribute flags logic.
+   if ( bIncremental )
+      FileHeader.chTypeIndicator[ 5 ] = '1';
+   else
+      FileHeader.chTypeIndicator[ 5 ] = '0';
+#else
    // Reserved for later use...
    FileHeader.chTypeIndicator[ 5 ] = '-';
+#endif
 
    strcpy_s( FileHeader.szZeidon, zsizeof( FileHeader.szZeidon ), szlmZeidon );
 
@@ -7790,6 +8090,8 @@ SfWriteOI_ToStream( zVIEW          lpView,
 
    SysTranslateString( FileHeader.szFileName, 'U' );
    strcpy_s( FileHeader.szObjectType, zsizeof( FileHeader.szObjectType ), lpViewOD->szName );
+   SysGetDateTime( szDateTime, zsizeof( szDateTime ) );
+   fnDateTimeFormat( szDateTime, FileHeader.szDate, zsizeof( FileHeader.szDate ), FileHeader.szTime, zsizeof( FileHeader.szTime ) );
 
    // Even if this is not a MetaOI, we should force the release level for
    // all files to be at the minimal level of the software.
@@ -10390,13 +10692,6 @@ fnActivateOI_FromTextStream( zVIEW          lpView,
    // The following should only be used for cursor processing.
    zLONG             lInstanceCount = 0;
 
-   zBOOL             useOldStyleRelink = ( *plControl & zLINKED_WITH_TAGS ) == 0;
-
-   // Keep a map of record owners that will be used to relink EIs.
-   // Key = lpEntityInstance->szTag, value = lpEntityInstance
-   map_t pRecordOwners = NULL;
-   pRecordOwners = hashmap_new();
-
    bIgnoreEntityErrors = (*plControl & zIGNORE_ENTITY_ERRORS) ? 1 : 0;
    bIgnoreAttribErrors = (*plControl & zIGNORE_ATTRIB_ERRORS) ? 1 : 0;
 
@@ -10419,33 +10714,25 @@ fnActivateOI_FromTextStream( zVIEW          lpView,
                                       &pchLine, 0, 0 )) == 1 )
    {
       lLineCount++;
-
-      // DGC 2016-07-21
-      // If we're doing old-style link cards (e.g. lines beginning with 'i')
-      // then allocate the relink buffer.
-      // New style is to use tags and the hashmap.  We can get rid of the old
-      // style code when we're sure it's no longer used.
-      if ( useOldStyleRelink )
+      if ( pRelinkBufferPtr == pRelinkBufferEnd )
       {
-         if ( pRelinkBufferPtr == pRelinkBufferEnd )
+         k = lEntityCnt / 160000;  // moved up from 16000 dks/don 2007.01.04
+
+         // If we've loaded 160000 * 10 entities then bomb.
+         if ( k >= 10 )
          {
-            k = lEntityCnt / 160000;  // moved up from 16000 dks/don 2007.01.04
-
-            // If we've loaded 160000 * 10 entities then bomb.
-            if ( k >= 10 )
-            {
-               // if the relink entity pointer is at the end of the
-               // space allocated, issue an error
-               //  "KZOEE090 - Maximum number of entities in portable file exceeded "
-               (*lpfnStreamFunc)( lpView, lpvData, 0, 0, 90 );
-               nRC = zCALL_ERROR;
-               break;
-            }
-
-            pRelinkBufferTable[ k ] = SysMalloc( 640000L );
-            pRelinkBufferEnd = pRelinkBufferTable[ k ] + 640000 / 4;  // Space for 160000 entities ... moved up from 16000 dks/don 2007.01.04
-            pRelinkBufferPtr = pRelinkBufferTable[ k ];
+            // if the relink entity pointer is at the end of the
+            // space allocated, issue an error
+            //  "KZOEE090 - Maximum number of entities in portable file exceeded "
+            (*lpfnStreamFunc)( lpView, lpvData, 0, 0, 90 );
+            nRC = zCALL_ERROR;
+            break;
          }
+
+         pRelinkBufferTable[ k ] = SysMalloc( 640000L );
+         pRelinkBufferEnd = pRelinkBufferTable[ k ] + 640000 / 4;  // Space for 160000 entities ... moved up from 16000 dks/don 2007.01.04
+         pRelinkBufferPtr = pRelinkBufferTable[ k ];
+
       }
 
       if ( nErrorEntityLvl )
@@ -10461,12 +10748,8 @@ fnActivateOI_FromTextStream( zVIEW          lpView,
             if ( nLevel > nErrorEntityLvl )
                pchLine[ 0 ] = ' ';
 
-            if ( useOldStyleRelink )
-            {
-               *pRelinkBufferPtr = 0;
-               pRelinkBufferPtr++;
-            }
-
+            *pRelinkBufferPtr = 0;
+            pRelinkBufferPtr++;
             lEntityCnt++;
          }
          else
@@ -10489,43 +10772,10 @@ fnActivateOI_FromTextStream( zVIEW          lpView,
 
             case 'E':
                if ( zstrcmp( szWorkString, "ETAG" ) == 0 )
-                  strcpy_s( lpEntityInstance->szTag, zsizeof( lpEntityInstance->szTag ), pchLine );
+                  lpEntityInstance->lTag = zxtol( pchLine );
                else
                if ( zstrcmp( szWorkString, "EKEY" ) == 0 )
                   lpEntityInstance->ulKey = (zULONG) zxtol( pchLine );
-
-               break;
-
-            case 'L':
-               if ( zstrcmp( szWorkString, "LINKED" ) == 0 )
-               {
-                  LPENTITYINSTANCE lpEI = zGETPTR( lpViewEntityCsr->hEntityInstance );
-                  LPENTITYINSTANCE lpRecordOwner = NULL;
-                  LPVIEWENTITY lpOwnerViewEntity;
-
-                  hashmap_get( pRecordOwners, pchLine, (void**)(&lpRecordOwner) );
-                  lpOwnerViewEntity = zGETPTR( lpRecordOwner->hViewEntity );
-
-                  if ( lpOwnerViewEntity->lEREntTok != lpViewEntity->lEREntTok )
-                  {
-                     FileDataRecord  *pActFileData = (FileDataRecord *) lpvData;
-                     if ( bMsgBox )
-                     {
-                        bMsgBox = FALSE;
-                        SysMessageBox( lpView, szlOE_SystemError, "ER Tokens don't match for linked entities!", 1 );
-                     }
-                  }
-                  else
-                  {
-                     lpEI->hPersistRecord = lpRecordOwner->hPersistRecord;
-                     if ( lpRecordOwner->hNextLinked )
-                        lpEI->hNextLinked = lpRecordOwner->hNextLinked;
-                     else
-                        lpEI->hNextLinked = zGETHNDL( lpRecordOwner );
-
-                     lpRecordOwner->hNextLinked = zGETHNDL( lpEI );
-                  }
-               }
 
                break;
 
@@ -10545,13 +10795,6 @@ fnActivateOI_FromTextStream( zVIEW          lpView,
                   if ( uFlags & zOI_READONLY )
                      lpView->bReadOnly = TRUE;
                }
-
-               break;
-
-            case 'R':
-               // Is this EI the record owner of linked instances?
-               if ( zstrcmp( szWorkString, "RO" ) == 0 )
-                  hashmap_put( pRecordOwners, lpEntityInstance->szTag, lpEntityInstance );
 
                break;
          }
@@ -10781,13 +11024,8 @@ fnActivateOI_FromTextStream( zVIEW          lpView,
 
             // Set lpEntityInstance to instance just created.
             lpEntityInstance = zGETPTR( lpViewEntityCsr->hEntityInstance );
+            *pRelinkBufferPtr = (zLONG) lpEntityInstance;
             lEntityCnt++;
-
-            if ( useOldStyleRelink )
-            {
-               *pRelinkBufferPtr = (zLONG) lpEntityInstance;
-               pRelinkBufferPtr++;
-            }
 
 #if 0  // debugging
             if ( nFlag )
@@ -10812,17 +11050,14 @@ fnActivateOI_FromTextStream( zVIEW          lpView,
                }
             }
 #endif
+            pRelinkBufferPtr++;
             lpEntityInstance->u.nInd.bCreated = TRUE;
             lpEntityInstance->u.nInd.bPrevVersion = FALSE;
          }
          else
          {
-            if ( useOldStyleRelink )
-            {
-               *pRelinkBufferPtr = 0;
-               pRelinkBufferPtr++;
-            }
-
+            *pRelinkBufferPtr = 0;
+            pRelinkBufferPtr++;
             lEntityCnt++;
 
             // If we're ignoring errors then set the error code back to 0
@@ -10923,7 +11158,8 @@ fnActivateOI_FromTextStream( zVIEW          lpView,
                }
 
                // Now set the attribute flags.
-               if ( (*plControl & zINCREMENTAL) )
+               if ( (*plControl & zINCREMENTAL) &&
+                    (*plControl & zATTRIBFLAGS) )
                {
                   lpAttribFlags = fnGetAttribFlagsPtr( lpEntityInstance,
                                                        lpViewAttrib );
@@ -10979,7 +11215,16 @@ fnActivateOI_FromTextStream( zVIEW          lpView,
          }
          else
          {
+            // If flags aren't specified then they are assumed 0 *unless* this
+            // OI wasn't stored with attrib flags (this means it was stored
+            // with a pre-10a version).  In this case we have to assume that
+            // every attribute has been changed.
             AttribFlags.u.uFlags = 0; // Turn off all flags.
+            if ( (*plControl & zATTRIBFLAGS ) == 0 )
+            {
+               // No attrib flags--turn on 'changed' bit.
+               AttribFlags.u.bFlags.bUpdated = TRUE;
+            }
          }
 
          if ( *plControl & zCOMPRESSED )
@@ -11470,13 +11715,8 @@ fnActivateOI_FromTextStream( zVIEW          lpView,
 
    } // while ( (nEOF = (*lpfnStreamFunc)( ... )) == 1 )
 
-   if ( useOldStyleRelink )
-   {
-      for ( lEntityCnt = 0; pRelinkBufferTable[ lEntityCnt ]; lEntityCnt++ )
-         SysFree( pRelinkBufferTable[ lEntityCnt ] );
-   }
-
-   hashmap_free( pRecordOwners );
+   for ( lEntityCnt = 0; pRelinkBufferTable[ lEntityCnt ]; lEntityCnt++ )
+      SysFree( pRelinkBufferTable[ lEntityCnt ] );
 
    if ( nEOF == zCALL_ERROR )
       nRC = zCALL_ERROR;
@@ -11709,10 +11949,6 @@ z1000-Zeidon    ACCOUNT  TZWDLGSO 04/18/07   09:18:42 1.0a2
          lpViewOI->szRelease[ 8 ] = 0;
       }
 
-      // If first flag is '2', then we're indicating linked EI's with EI tags.
-      if ( pchLine[ 1 ] == '2' )
-         lControl |= zLINKED_WITH_TAGS;
-
       if ( pchLine[ 2 ] == '1' )
          lControl |= zINCREMENTAL;
       else
@@ -11726,7 +11962,17 @@ z1000-Zeidon    ACCOUNT  TZWDLGSO 04/18/07   09:18:42 1.0a2
       if ( pchLine[ 4 ] == '1' )
          bContainsOptimisticOIs = TRUE;
 
-      if ( lControl & zINCREMENTAL )
+      // Attrib flags have been written if the 5th flag is set or if the OI is
+      // written in incremental/compressed form.
+      if ( pchLine[ 5 ] == '1' ||
+           ((lControl & zCOMPRESSED) && (lControl & zINCREMENTAL)) )
+      {
+         lControl |= zATTRIBFLAGS;
+      }
+
+      // This used to be the binary flag.  For now it tells us whether the
+      // ER_Date is stored with the LOD.
+      if ( pchLine[ 1 ] == '1' && (lControl & zINCREMENTAL) != 0 )
       {
          // Get the ER date.
          (*lpfnStreamFunc)( lpView, lpvData, &pchLine, 0, 0 );

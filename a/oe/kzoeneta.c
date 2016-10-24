@@ -2992,7 +2992,7 @@ fnMergeViews( zVIEW vNew, zVIEW vOld )
       // instance.  If they are not the same then something happened:
       // o  A commit object operation on the server created or deleted an
       //    entity.
-      if ( zstrcmp( lpOld->szTag,  lpNew->szTag ) != 0 )
+      if ( (zLONG) lpOld != lpNew->lTag )
       {
          zLONG lSomethingNeedsToBeDoneHere;
 
@@ -3000,14 +3000,14 @@ fnMergeViews( zVIEW vNew, zVIEW vOld )
          // For now we'll just assume that lpOld wasn't sent to the server...so skip it.
 
          // NOTE: We can determine if the lpNew entity was created on the server by checking the value
-         // of lpNew->szTag.  If it is 0 then the entity was created on the server.
+         // of lpNew->lTag.  If it is 0 then the entity was created on the server.
 
          lpViewEntity = zGETPTR( lpOld->hViewEntity );
          TraceLineS( "(merge) Tags don't match! Old entity = ", lpViewEntity->szName );
          lpViewEntity = zGETPTR( lpNew->hViewEntity );
          TraceLineS( "(merge) Tags don't match! New entity = ", lpViewEntity->szName );
-         TraceLineS( "(merge) lpOld->szTag = ", lpOld->szTag );
-         TraceLineS( "(merge) lpNew->szTag = ", lpNew->szTag );
+         TraceLineX( "(merge) lpOld       = ", (zLONG) lpOld );
+         TraceLineX( "(merge) lpNew->lTag = ", lpNew->lTag );
 
          continue;
       }
@@ -3059,7 +3059,7 @@ fnMergeViews( zVIEW vNew, zVIEW vOld )
       // created on the server.  We should merge them in.
       lpViewEntity = zGETPTR( lpNew->hViewEntity );
       TraceLineS( "(merge) Extra New entity! = ", lpViewEntity->szName );
-      TraceLineS( "(merge) lpNew->szTag = ", lpNew->szTag );
+      TraceLineX( "(merge) lpNew->lTag = ", lpNew->lTag );
    }
 
    // Now loop through again but just copy the EI flags.
@@ -3085,7 +3085,7 @@ fnMergeViews( zVIEW vNew, zVIEW vOld )
       //    dead.
       // o  A commit object operation on the server created or deleted an
       //    entity.
-      if ( zstrcmp( lpOld->szTag, lpNew->szTag ) != 0 )
+      if ( (zLONG) lpOld != lpNew->lTag )
          continue;
 
       // If we get here then the tag for the new entity matches the pointer

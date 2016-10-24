@@ -2040,8 +2040,7 @@ fnRecursProcessControls( zVIEW vSubtask, zVIEW vDialog, zVIEW vWindowList )
       SetMatchingAttributesByName( vDialog, "CtrlMap",
                                    vWindowList, "CtrlMap",
                                    zSET_NULL | zSET_NOTNULL );
-   }  while ( SetCursorNextEntity( vWindowList, "CtrlMap", 0 ) ==
-                                                               zCURSOR_SET );
+   }  while ( SetCursorNextEntity( vWindowList, "CtrlMap", 0 ) == zCURSOR_SET );
 
    // NOTE, Once we start including E/R information and domain information
    // under the mapping entity, we must do INCLUDES here for those
@@ -2062,8 +2061,7 @@ fnRecursProcessControls( zVIEW vSubtask, zVIEW vDialog, zVIEW vWindowList )
                                       vWindowList, "EventAct",
                                       zSET_NULL | zSET_NOTNULL );
       }
-   }  while ( SetCursorNextEntity( vWindowList, "Event", 0 ) ==
-                                                               zCURSOR_SET );
+   }  while ( SetCursorNextEntity( vWindowList, "Event", 0 ) == zCURSOR_SET );
 
    // Copy DIL_Msg from source to target
 // Commented out by Don C 2/11/93
@@ -2074,8 +2072,7 @@ fnRecursProcessControls( zVIEW vSubtask, zVIEW vDialog, zVIEW vWindowList )
 //    SetMatchingAttributesByName( vDialog, "CtrlDIL_Msg",
 //                                 vWindowList, "CtrlDIL_Msg",
 //                                 zSET_NULL | zSET_NOTNULL );
-// }  while ( SetCursorNextEntity( vWindowList, "CtrlDIL_Msg", 0 ) ==
-//                                                           zCURSOR_SET );
+// }  while ( SetCursorNextEntity( vWindowList, "CtrlDIL_Msg", 0 ) == zCURSOR_SET );
 
    // Recursively call ourself for all sub-controls
    if ( SetCursorFirstEntity( vWindowList, "CtrlCtrl", 0 ) == zCURSOR_SET )
@@ -2085,8 +2082,7 @@ fnRecursProcessControls( zVIEW vSubtask, zVIEW vDialog, zVIEW vWindowList )
       do
       {
          fnRecursProcessControls( vSubtask, vDialog, vWindowList );
-      }  while ( SetCursorNextEntity( vWindowList, "Control", 0 ) ==
-                                                               zCURSOR_SET );
+      }  while ( SetCursorNextEntity( vWindowList, "Control", 0 ) == zCURSOR_SET );
       ResetViewFromSubobject( vWindowList );
       ResetViewFromSubobject( vDialog );
    }

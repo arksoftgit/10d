@@ -100,20 +100,26 @@ oTZWDLGSO_ControlRelinkDelete( zVIEW     vDialog,
    zLONG     lTempInteger_7; 
    zCHAR     szTempString_7[ 33 ]; 
    zCHAR     szTempString_8[ 33 ]; 
+   zCHAR     szTempString_9[ 33 ]; 
    zSHORT    lTempInteger_8; 
+   zCHAR     szTempString_10[ 33 ]; 
    zSHORT    lTempInteger_9; 
+   zCHAR     szTempString_11[ 33 ]; 
    zSHORT    lTempInteger_10; 
    zSHORT    lTempInteger_11; 
    zSHORT    lTempInteger_12; 
-   zLONG     lTempInteger_13; 
-   zLONG     lTempInteger_14; 
-   zCHAR     szTempString_9[ 33 ]; 
-   zCHAR     szTempString_10[ 33 ]; 
-   zCHAR     szTempString_11[ 33 ]; 
-   zSHORT    lTempInteger_15; 
+   zSHORT    lTempInteger_13; 
+   zSHORT    lTempInteger_14; 
+   zLONG     lTempInteger_15; 
    zLONG     lTempInteger_16; 
    zCHAR     szTempString_12[ 33 ]; 
    zCHAR     szTempString_13[ 33 ]; 
+   zCHAR     szTempString_14[ 33 ]; 
+   zSHORT    lTempInteger_17; 
+   zLONG     lTempInteger_18; 
+   zCHAR     szTempString_15[ 33 ]; 
+   zCHAR     szTempString_16[ 33 ]; 
+   zCHAR     szTempString_17[ 33 ]; 
 
 
    //://  Get View to Presentation Environment.
@@ -378,9 +384,9 @@ oTZWDLGSO_ControlRelinkDelete( zVIEW     vDialog,
 
          //:END
 
-         //://         IF vControl.CtrlMapView EXISTS
-         //://            RelinkInstanceToInstance( vControl, "CtrlMapView",
-         //://                                      vDialog, "ViewObjRef" )
+         //://      IF vControl.CtrlMapView EXISTS
+         //://         RelinkInstanceToInstance( vControl, "CtrlMapView",
+         //://                                   vDialog, "ViewObjRef" )
 
          //:IF vControl.CtrlMapLOD_Attribute EXISTS
          lTempInteger_6 = CheckExistenceOfEntity( vControl, "CtrlMapLOD_Attribute" );
@@ -441,17 +447,47 @@ oTZWDLGSO_ControlRelinkDelete( zVIEW     vDialog,
                } 
                else
                { 
-                  //:szMsg = "Deleting Control Mapping for:|   " + szWindowReportName +
+                  //:szMsg = "DKS2 Deleting Control Mapping for:|   " + szWindowReportName +
                   //:        "|   Control: " + vControl.Control.Tag +
-                  //:        "| because of missing Attribute: " + vControl.CtrlMapER_Attribute.Name
-                  ZeidonStringCopy( szMsg, 1, 0, "Deleting Control Mapping for:\n  ", 1, 0, 256 );
+                  //:        "|   because of missing Attribute: " + vControl.CtrlMapER_Attribute.Name +
+                  //:        "|   in LOD: " + vControl.CtrlMapView.Name
+                  ZeidonStringCopy( szMsg, 1, 0, "DKS2 Deleting Control Mapping for:\n  ", 1, 0, 256 );
                   ZeidonStringConcat( szMsg, 1, 0, szWindowReportName, 1, 0, 256 );
                   ZeidonStringConcat( szMsg, 1, 0, "\n  Control: ", 1, 0, 256 );
                   GetVariableFromAttribute( szTempString_7, 0, 'S', 33, vControl, "Control", "Tag", "", 0 );
                   ZeidonStringConcat( szMsg, 1, 0, szTempString_7, 1, 0, 256 );
-                  ZeidonStringConcat( szMsg, 1, 0, "\nbecause of missing Attribute: ", 1, 0, 256 );
+                  ZeidonStringConcat( szMsg, 1, 0, "\n  because of missing Attribute: ", 1, 0, 256 );
                   GetVariableFromAttribute( szTempString_8, 0, 'S', 33, vControl, "CtrlMapER_Attribute", "Name", "", 0 );
                   ZeidonStringConcat( szMsg, 1, 0, szTempString_8, 1, 0, 256 );
+                  ZeidonStringConcat( szMsg, 1, 0, "\n  in LOD: ", 1, 0, 256 );
+                  GetVariableFromAttribute( szTempString_9, 0, 'S', 33, vControl, "CtrlMapView", "Name", "", 0 );
+                  ZeidonStringConcat( szMsg, 1, 0, szTempString_9, 1, 0, 256 );
+                  //:IF vControl.CtrlMapLOD_Entity EXISTS
+                  lTempInteger_8 = CheckExistenceOfEntity( vControl, "CtrlMapLOD_Entity" );
+                  if ( lTempInteger_8 == 0 )
+                  { 
+                     //:szMsg = szMsg + "|   in Entity: " + vControl.CtrlMapLOD_Entity.Name
+                     ZeidonStringConcat( szMsg, 1, 0, "\n  in Entity: ", 1, 0, 256 );
+                     GetVariableFromAttribute( szTempString_10, 0, 'S', 33, vControl, "CtrlMapLOD_Entity", "Name", "", 0 );
+                     ZeidonStringConcat( szMsg, 1, 0, szTempString_10, 1, 0, 256 );
+                     //:ELSE
+                  } 
+                  else
+                  { 
+                     //:IF vControl.CtrlMapRelatedEntity EXISTS
+                     lTempInteger_9 = CheckExistenceOfEntity( vControl, "CtrlMapRelatedEntity" );
+                     if ( lTempInteger_9 == 0 )
+                     { 
+                        //:szMsg = szMsg + "|   in Entity: " + vControl.CtrlMapRelatedEntity.Name
+                        ZeidonStringConcat( szMsg, 1, 0, "\n  in Entity: ", 1, 0, 256 );
+                        GetVariableFromAttribute( szTempString_11, 0, 'S', 33, vControl, "CtrlMapRelatedEntity", "Name", "", 0 );
+                        ZeidonStringConcat( szMsg, 1, 0, szTempString_11, 1, 0, 256 );
+                     } 
+
+                     //:END
+                  } 
+
+                  //:END
                   //:SysReadZeidonIni( -1, "[Workstation]", "ContinueParseGen", szContinueParseGen )
                   SysReadZeidonIni( -1, "[Workstation]", "ContinueParseGen", szContinueParseGen, zsizeof( szContinueParseGen ) );
                   //:IF szContinueParseGen = "N"
@@ -470,8 +506,8 @@ oTZWDLGSO_ControlRelinkDelete( zVIEW     vDialog,
 
                   //:END
                   //:IF vControl.CtrlMapLOD_Attribute EXISTS
-                  lTempInteger_8 = CheckExistenceOfEntity( vControl, "CtrlMapLOD_Attribute" );
-                  if ( lTempInteger_8 == 0 )
+                  lTempInteger_10 = CheckExistenceOfEntity( vControl, "CtrlMapLOD_Attribute" );
+                  if ( lTempInteger_10 == 0 )
                   { 
                      //:EXCLUDE vControl.CtrlMapLOD_Attribute
                      RESULT = ExcludeEntity( vControl, "CtrlMapLOD_Attribute", zREPOS_AFTER );
@@ -479,8 +515,8 @@ oTZWDLGSO_ControlRelinkDelete( zVIEW     vDialog,
 
                   //:END
                   //:IF vControl.CtrlMapLOD_Entity EXISTS
-                  lTempInteger_9 = CheckExistenceOfEntity( vControl, "CtrlMapLOD_Entity" );
-                  if ( lTempInteger_9 == 0 )
+                  lTempInteger_11 = CheckExistenceOfEntity( vControl, "CtrlMapLOD_Entity" );
+                  if ( lTempInteger_11 == 0 )
                   { 
                      //:EXCLUDE vControl.CtrlMapLOD_Entity
                      RESULT = ExcludeEntity( vControl, "CtrlMapLOD_Entity", zREPOS_AFTER );
@@ -488,8 +524,8 @@ oTZWDLGSO_ControlRelinkDelete( zVIEW     vDialog,
 
                   //:END
                   //:IF vControl.CtrlMapContext EXISTS
-                  lTempInteger_10 = CheckExistenceOfEntity( vControl, "CtrlMapContext" );
-                  if ( lTempInteger_10 == 0 )
+                  lTempInteger_12 = CheckExistenceOfEntity( vControl, "CtrlMapContext" );
+                  if ( lTempInteger_12 == 0 )
                   { 
                      //:EXCLUDE vControl.CtrlMapContext
                      RESULT = ExcludeEntity( vControl, "CtrlMapContext", zREPOS_AFTER );
@@ -497,8 +533,8 @@ oTZWDLGSO_ControlRelinkDelete( zVIEW     vDialog,
 
                   //:END
                   //:IF vControl.CtrlMapView EXISTS
-                  lTempInteger_11 = CheckExistenceOfEntity( vControl, "CtrlMapView" );
-                  if ( lTempInteger_11 == 0 )
+                  lTempInteger_13 = CheckExistenceOfEntity( vControl, "CtrlMapView" );
+                  if ( lTempInteger_13 == 0 )
                   { 
                      //:EXCLUDE vControl.CtrlMapView
                      RESULT = ExcludeEntity( vControl, "CtrlMapView", zREPOS_AFTER );
@@ -513,14 +549,10 @@ oTZWDLGSO_ControlRelinkDelete( zVIEW     vDialog,
             else
             { 
                //:// Relink or Re-Include CtrlMapLOD_Attribute, & subordinates & Context
-               //://RelinkInstanceToInstance( vControl, "CtrlMapLOD_Attribute",
-               //://                          vLastLOD, "LOD_Attribute" )
-               //://RelinkInstanceToInstance( vControl, "CtrlMapRelatedEntity",
-               //://                          vLastLOD, "LOD_Entity" )
-               //://RelinkInstanceToInstance( vControl, "CtrlMapER_Attribute",
-               //://                          vLastLOD, "ER_Attribute" )
-               //://RelinkInstanceToInstance( vControl, "CtrlMapER_Domain",
-               //://                          vLastLOD, "Domain" )
+               //://RelinkInstanceToInstance( vControl, "CtrlMapLOD_Attribute", vLastLOD, "LOD_Attribute" )
+               //://RelinkInstanceToInstance( vControl, "CtrlMapRelatedEntity", vLastLOD, "LOD_Entity" )
+               //://RelinkInstanceToInstance( vControl, "CtrlMapER_Attribute", vLastLOD, "ER_Attribute" )
+               //://RelinkInstanceToInstance( vControl, "CtrlMapER_Domain", vLastLOD, "Domain" )
 
                //:// If ER_Attribute or ER_Domain don't match on ZKey,
                //:// reinclude the LOD_Attribute entity.
@@ -538,23 +570,23 @@ oTZWDLGSO_ControlRelinkDelete( zVIEW     vDialog,
                //:END
 
                //:IF vControl.CtrlMapContext EXISTS
-               lTempInteger_12 = CheckExistenceOfEntity( vControl, "CtrlMapContext" );
-               if ( lTempInteger_12 == 0 )
+               lTempInteger_14 = CheckExistenceOfEntity( vControl, "CtrlMapContext" );
+               if ( lTempInteger_14 == 0 )
                { 
                   //:// Try to find the Domain first by ZKey and then by name.
                   //:// If found, also find the Context by ZKey and then by name.
                   //:// If no match was finally found, exclude the Context.
                   //:nRC = ActivateMetaOI_ByZKey( vSubtask, vDomain, 0, zREFER_DOMAIN_META,
                   //:                             zSINGLE, vControl.CtrlMapER_Domain.ZKey , 0 )
-                  GetIntegerFromAttribute( &lTempInteger_13, vControl, "CtrlMapER_Domain", "ZKey" );
-                  nRC = ActivateMetaOI_ByZKey( vSubtask, &vDomain, 0, zREFER_DOMAIN_META, zSINGLE, lTempInteger_13, 0 );
+                  GetIntegerFromAttribute( &lTempInteger_15, vControl, "CtrlMapER_Domain", "ZKey" );
+                  nRC = ActivateMetaOI_ByZKey( vSubtask, &vDomain, 0, zREFER_DOMAIN_META, zSINGLE, lTempInteger_15, 0 );
                   //:IF nRC >= 0
                   if ( nRC >= 0 )
                   { 
                      //:SET CURSOR FIRST vDomain.Context WHERE
                      //:    vDomain.Context.ZKey = vControl.CtrlMapContext.ZKey
-                     GetIntegerFromAttribute( &lTempInteger_14, vControl, "CtrlMapContext", "ZKey" );
-                     RESULT = SetCursorFirstEntityByInteger( vDomain, "Context", "ZKey", lTempInteger_14, "" );
+                     GetIntegerFromAttribute( &lTempInteger_16, vControl, "CtrlMapContext", "ZKey" );
+                     RESULT = SetCursorFirstEntityByInteger( vDomain, "Context", "ZKey", lTempInteger_16, "" );
                      //:IF RESULT >= zCURSOR_SET
                      if ( RESULT >= zCURSOR_SET )
                      { 
@@ -566,8 +598,8 @@ oTZWDLGSO_ControlRelinkDelete( zVIEW     vDialog,
                      { 
                         //:SET CURSOR FIRST vDomain.Context WHERE
                         //:    vDomain.Context.Name = vControl.CtrlMapContext.Name
-                        GetStringFromAttribute( szTempString_9, zsizeof( szTempString_9 ), vControl, "CtrlMapContext", "Name" );
-                        RESULT = SetCursorFirstEntityByString( vDomain, "Context", "Name", szTempString_9, "" );
+                        GetStringFromAttribute( szTempString_12, zsizeof( szTempString_12 ), vControl, "CtrlMapContext", "Name" );
+                        RESULT = SetCursorFirstEntityByString( vDomain, "Context", "Name", szTempString_12, "" );
                         //:IF RESULT >= zCURSOR_SET
                         if ( RESULT >= zCURSOR_SET )
                         { 
@@ -595,15 +627,15 @@ oTZWDLGSO_ControlRelinkDelete( zVIEW     vDialog,
                   { 
                      //:nRC = ActivateMetaOI_ByName( vSubtask, vDomain, 0, zREFER_DOMAIN_META,
                      //:                             zSINGLE, vControl.CtrlMapER_Domain.Name , 0 )
-                     GetStringFromAttribute( szTempString_9, zsizeof( szTempString_9 ), vControl, "CtrlMapER_Domain", "Name" );
-                     nRC = ActivateMetaOI_ByName( vSubtask, &vDomain, 0, zREFER_DOMAIN_META, zSINGLE, szTempString_9, 0 );
+                     GetStringFromAttribute( szTempString_12, zsizeof( szTempString_12 ), vControl, "CtrlMapER_Domain", "Name" );
+                     nRC = ActivateMetaOI_ByName( vSubtask, &vDomain, 0, zREFER_DOMAIN_META, zSINGLE, szTempString_12, 0 );
                      //:IF nRC >= 0
                      if ( nRC >= 0 )
                      { 
                         //:SET CURSOR FIRST vDomain.Context WHERE
                         //:    vDomain.Context.Name = vControl.CtrlMapContext.Name
-                        GetStringFromAttribute( szTempString_10, zsizeof( szTempString_10 ), vControl, "CtrlMapContext", "Name" );
-                        RESULT = SetCursorFirstEntityByString( vDomain, "Context", "Name", szTempString_10, "" );
+                        GetStringFromAttribute( szTempString_13, zsizeof( szTempString_13 ), vControl, "CtrlMapContext", "Name" );
+                        RESULT = SetCursorFirstEntityByString( vDomain, "Context", "Name", szTempString_13, "" );
                         //:IF RESULT >= zCURSOR_SET
                         if ( RESULT >= zCURSOR_SET )
                         { 
@@ -643,11 +675,11 @@ oTZWDLGSO_ControlRelinkDelete( zVIEW     vDialog,
                      ZeidonStringCopy( szMsg, 1, 0, "Excluding Context for:\n  ", 1, 0, 256 );
                      ZeidonStringConcat( szMsg, 1, 0, szWindowReportName, 1, 0, 256 );
                      ZeidonStringConcat( szMsg, 1, 0, "\n  Control: ", 1, 0, 256 );
-                     GetVariableFromAttribute( szTempString_10, 0, 'S', 33, vControl, "Control", "Tag", "", 0 );
-                     ZeidonStringConcat( szMsg, 1, 0, szTempString_10, 1, 0, 256 );
+                     GetVariableFromAttribute( szTempString_13, 0, 'S', 33, vControl, "Control", "Tag", "", 0 );
+                     ZeidonStringConcat( szMsg, 1, 0, szTempString_13, 1, 0, 256 );
                      ZeidonStringConcat( szMsg, 1, 0, "\nbecause of missing Context: ", 1, 0, 256 );
-                     GetVariableFromAttribute( szTempString_11, 0, 'S', 33, vControl, "CtrlMapContext", "Name", "", 0 );
-                     ZeidonStringConcat( szMsg, 1, 0, szTempString_11, 1, 0, 256 );
+                     GetVariableFromAttribute( szTempString_14, 0, 'S', 33, vControl, "CtrlMapContext", "Name", "", 0 );
+                     ZeidonStringConcat( szMsg, 1, 0, szTempString_14, 1, 0, 256 );
                      //:MessageSend( vSubtask, "WD00509", "Control Relink",
                      //:             szMsg, zMSGQ_OBJECT_CONSTRAINT_WARNING, 0 )
                      MessageSend( vSubtask, "WD00509", "Control Relink", szMsg, zMSGQ_OBJECT_CONSTRAINT_WARNING, 0 );
@@ -682,13 +714,13 @@ oTZWDLGSO_ControlRelinkDelete( zVIEW     vDialog,
          //:END
 
          //:IF vControl.CtrlMapLOD_Entity EXISTS
-         lTempInteger_15 = CheckExistenceOfEntity( vControl, "CtrlMapLOD_Entity" );
-         if ( lTempInteger_15 == 0 )
+         lTempInteger_17 = CheckExistenceOfEntity( vControl, "CtrlMapLOD_Entity" );
+         if ( lTempInteger_17 == 0 )
          { 
             //:SET CURSOR FIRST vLastLOD.LOD_Entity WHERE
             //:    vLastLOD.LOD_Entity.ZKey = vControl.CtrlMapLOD_Entity.ZKey
-            GetIntegerFromAttribute( &lTempInteger_16, vControl, "CtrlMapLOD_Entity", "ZKey" );
-            RESULT = SetCursorFirstEntityByInteger( *vLastLOD, "LOD_Entity", "ZKey", lTempInteger_16, "" );
+            GetIntegerFromAttribute( &lTempInteger_18, vControl, "CtrlMapLOD_Entity", "ZKey" );
+            RESULT = SetCursorFirstEntityByInteger( *vLastLOD, "LOD_Entity", "ZKey", lTempInteger_18, "" );
             //:IF RESULT < 0
             if ( RESULT < 0 )
             { 
@@ -696,8 +728,8 @@ oTZWDLGSO_ControlRelinkDelete( zVIEW     vDialog,
                //:// LOD_Entity had been deleted and readded.
                //:SET CURSOR FIRST vLastLOD.LOD_Entity WHERE
                //:    vLastLOD.LOD_Entity.Name = vControl.CtrlMapLOD_Entity.Name
-               GetStringFromAttribute( szTempString_12, zsizeof( szTempString_12 ), vControl, "CtrlMapLOD_Entity", "Name" );
-               RESULT = SetCursorFirstEntityByString( *vLastLOD, "LOD_Entity", "Name", szTempString_12, "" );
+               GetStringFromAttribute( szTempString_15, zsizeof( szTempString_15 ), vControl, "CtrlMapLOD_Entity", "Name" );
+               RESULT = SetCursorFirstEntityByString( *vLastLOD, "LOD_Entity", "Name", szTempString_15, "" );
                //:IF RESULT >= zCURSOR_SET
                if ( RESULT >= zCURSOR_SET )
                { 
@@ -711,15 +743,19 @@ oTZWDLGSO_ControlRelinkDelete( zVIEW     vDialog,
                { 
                   //:szMsg = "Deleting Control Mapping for:|   " + szWindowReportName +
                   //:        "|   Control: " + vControl.Control.Tag +
-                  //:        "| because of missing Entity: " + vControl.CtrlMapLOD_Entity.Name
+                  //:        "| because of missing Entity: " + vControl.CtrlMapLOD_Entity.Name +
+                  //:        "|   in LOD: " + vControl.CtrlMapView.Name
                   ZeidonStringCopy( szMsg, 1, 0, "Deleting Control Mapping for:\n  ", 1, 0, 256 );
                   ZeidonStringConcat( szMsg, 1, 0, szWindowReportName, 1, 0, 256 );
                   ZeidonStringConcat( szMsg, 1, 0, "\n  Control: ", 1, 0, 256 );
-                  GetVariableFromAttribute( szTempString_12, 0, 'S', 33, vControl, "Control", "Tag", "", 0 );
-                  ZeidonStringConcat( szMsg, 1, 0, szTempString_12, 1, 0, 256 );
+                  GetVariableFromAttribute( szTempString_15, 0, 'S', 33, vControl, "Control", "Tag", "", 0 );
+                  ZeidonStringConcat( szMsg, 1, 0, szTempString_15, 1, 0, 256 );
                   ZeidonStringConcat( szMsg, 1, 0, "\nbecause of missing Entity: ", 1, 0, 256 );
-                  GetVariableFromAttribute( szTempString_13, 0, 'S', 33, vControl, "CtrlMapLOD_Entity", "Name", "", 0 );
-                  ZeidonStringConcat( szMsg, 1, 0, szTempString_13, 1, 0, 256 );
+                  GetVariableFromAttribute( szTempString_16, 0, 'S', 33, vControl, "CtrlMapLOD_Entity", "Name", "", 0 );
+                  ZeidonStringConcat( szMsg, 1, 0, szTempString_16, 1, 0, 256 );
+                  ZeidonStringConcat( szMsg, 1, 0, "\n  in LOD: ", 1, 0, 256 );
+                  GetVariableFromAttribute( szTempString_17, 0, 'S', 33, vControl, "CtrlMapView", "Name", "", 0 );
+                  ZeidonStringConcat( szMsg, 1, 0, szTempString_17, 1, 0, 256 );
                   //:SysReadZeidonIni( -1, "[Workstation]", "ContinueParseGen", szContinueParseGen )
                   SysReadZeidonIni( -1, "[Workstation]", "ContinueParseGen", szContinueParseGen, zsizeof( szContinueParseGen ) );
                   //:IF szContinueParseGen = "N"

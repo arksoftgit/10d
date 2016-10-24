@@ -11832,13 +11832,13 @@ GenJSPJ_InputMapRecurs( zVIEW     vDialog,
                                     //:// szWriteBuffer = "               VmlOperation.CreateMessage( task, ^" + szCtrlTag + "^, e.getReason( ), strMapValue );"
                                     //:WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
                                     WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 );
-                                    //:szWriteBuffer = "            }"
-                                    ZeidonStringCopy( szWriteBuffer, 1, 0, "            }", 1, 0, 10001 );
+                                    //:szWriteBuffer = "         }"
+                                    ZeidonStringCopy( szWriteBuffer, 1, 0, "         }", 1, 0, 10001 );
                                     //:WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
                                     WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 );
                                     //:// end of try/catch
-                                    //:szWriteBuffer = "         }"
-                                    ZeidonStringCopy( szWriteBuffer, 1, 0, "         }", 1, 0, 10001 );
+                                    //:szWriteBuffer = "      }"
+                                    ZeidonStringCopy( szWriteBuffer, 1, 0, "      }", 1, 0, 10001 );
                                     //:WL_QC( vDialog, lFile, szWriteBuffer, "^", 1 )
                                     WL_QC( vDialog, lFile, szWriteBuffer, "^", 1 );
 

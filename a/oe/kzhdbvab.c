@@ -578,13 +578,13 @@ EndOfFunction:
       strcpy_s( szMsg, zsizeof( szMsg ), "File " );
       strcat_s( szMsg, zsizeof( szMsg ), pchFileName );
       strcat_s( szMsg, zsizeof( szMsg ), " is created successfully!" );
-      SysMessageBox( vSubtask, "Generate DDL", szMsg, 0 );
+     MB_SetMessage( vSubtask, 0, szMsg );
    }
    else
    {
       strcpy_s( szMsg, zsizeof( szMsg ), "Couldn't create file " );
       strcat_s( szMsg, zsizeof( szMsg ), pchFileName );
-      SysMessageBox( vSubtask, "Generate DDL", szMsg, 0 );
+      SysMessageBox( "Generate DDL", szMsg, 0 );
    }
 
    return( nRC );

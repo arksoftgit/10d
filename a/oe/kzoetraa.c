@@ -1073,8 +1073,8 @@ fnDisplayEntityInstance( zVIEW            lpView,
 
       TraceLineS( szSpaces, szFlags );
 
-      if ( lpEntityInstance->szTag )
-         TraceLineS( ">>>EntityInstance Tag:", lpEntityInstance->szTag );
+      if ( lpEntityInstance->lTag )
+         TraceLineX( ">>>EntityInstance Tag:", lpEntityInstance->lTag );
 
       lpViewCsr = zGETPTR( lpView->hViewCsr );
       lpSelectedInstance = zGETPTR( lpViewCsr->hFirstSelectedInstance );

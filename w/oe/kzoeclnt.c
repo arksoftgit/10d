@@ -16,6 +16,13 @@
 //  ENVIRONMENT: DOS 5.0
 //
 
+/* CHANGE LOG
+   ==========
+
+   2000.08.09 RG   Z2000
+      Removed compiler warnings
+*/
+
 #include <windows.h>
 #include <stdio.h>
 #include <sys\stat.h>
@@ -51,15 +58,16 @@ zVIEW  vSubtask;
 zBOOL  g_bRunningTest = FALSE;
 zULONG g_lTestCount = 0;
 
-#include <process.h>
+#ifdef __WIN32__
+   #include <process.h>
 
-zBOOL  g_bContinueThreadTest = 0;
-zBOOL  g_bTestThreadStarted = FALSE;
-zULONG g_hTestThread = 0;
-zULONG g_dwTestThreadID = 0;
+   zBOOL  g_bContinueThreadTest = 0;
+   zBOOL  g_bTestThreadStarted = FALSE;
+   zULONG g_hTestThread = 0;
+   zULONG g_dwTestThreadID = 0;
 
-#define DECLARE_TLS __declspec( thread )
-DECLARE_TLS zBOOL bThreadRegistered = FALSE;
+   #define DECLARE_TLS __declspec( thread )
+   DECLARE_TLS zBOOL bThreadRegistered = FALSE;
 
 void
 fnTrace( zSHORT nThreadNumber, char *pchMsg )
@@ -155,6 +163,8 @@ fnThreadProc2( zPVOID p )
 
    return( 0 );
 }
+
+#endif // __WIN32__
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -307,19 +317,28 @@ MainWndProc( HWND hWnd,                // window handle
          else
          if ( wParam == 115 )  // ID_TEST
          {
-               int i;
+            if ( g_bRunningTest )
+            {
+               g_bRunningTest = FALSE;
+               g_bContinueThreadTest = FALSE;
+            }
+            else
+            {
+               int k;
 
-               /* Display 10 numbers. */
-               for( i = 0;   i < 10;i++ )
-                  TraceLineI( "  Random =", SysGetRandomLong() );
+               g_bRunningTest = TRUE;
+            // SetTimer( hWnd, 0, 100, (TIMERPROC) TimerProc );
 
-//             zVIEW vLOD_Meta;
-//             zCHAR szName[300] = "c:\\10d\\a\\bin\\sys\\Zeidon.LLP";
-//             zCHAR szTempFile[300] = "c:\\temp\\meta.LOD";
-//             int nRC = ActivateOI_FromFile( &vLOD_Meta, "TZCMLPLO", vSubtask, szName, zSINGLE );
-//             nRC = CommitOI_ToFile( vLOD_Meta, szTempFile, zINCREMENTAL );
-//             nRC = ActivateOI_FromFile( &vLOD_Meta, "TZCMLPLO", vSubtask, szTempFile, zSINGLE );
-//             nRC = CommitOI_ToFile( vLOD_Meta, "c:\\temp\\meta-original.LOD", zUSE_OLD_LINK_CARDS );
+               g_bContinueThreadTest = TRUE;
+
+               for ( k = 1; k <= NUM_THREADS; k++ )
+               {
+                  g_hTestThread = _beginthreadex( NULL, 0, fnThreadProc2,
+                                                  (void *) k, 0, &g_dwTestThreadID );
+                  if ( g_hTestThread )
+                     CloseHandle( (HANDLE) g_hTestThread );
+               }
+            }
          }
 
          break;
@@ -455,7 +474,7 @@ InitInstance( HANDLE hInstance,     // Current instance identifier.
    if ( RegisterZeidonApplication( &vSubtask, (zLONG) hInst,
                                    (zLONG) hMainWnd,
                                    (zLONG) wClientMessage,
-                                   "\\\\Zeidon_Tools", 0, 0 ) != 0 )
+                                   "\\\\Zencas", 0, 0 ) != 0 )
                                    //lpCmdLine, 0, 0 ) != 0 )
    {
       DestroyWindow( hMainWnd );

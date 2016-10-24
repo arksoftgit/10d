@@ -5021,10 +5021,10 @@ GenJSPJ_InputMapRecurs( VIEW vDialog BASED ON LOD TZWDLGSO,
                      szWriteBuffer = "               VmlOperation.CreateMessage( task, strTag, e.getReason( ), strMapValue );"
                   // szWriteBuffer = "               VmlOperation.CreateMessage( task, ^" + szCtrlTag + "^, e.getReason( ), strMapValue );"
                      WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
-                     szWriteBuffer = "            }"
+                     szWriteBuffer = "         }"
                      WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
                      // end of try/catch
-                     szWriteBuffer = "         }"
+                     szWriteBuffer = "      }"
                      WL_QC( vDialog, lFile, szWriteBuffer, "^", 1 )
 
                   ELSE

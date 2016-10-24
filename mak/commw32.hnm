@@ -1,3 +1,37 @@
+#
+# Change Log
+#
+# 2002.08.15  RR
+#     Add htmlhelp.lib for calling compiled online help manuals.
+# 2001.02.07  RG  Z2000
+#     We only need zdctl.lib for DDL-Handlers. Therefore
+#     see if we compile DDL-Handlers: variable dblddl == y
+# 2001.02.06  RG  Z2000
+#     Added zdctl.lib to use MB_SetMessage in DDL-Handlers
+# 2000.02.06  SR  Z2000
+#     Add link flags: /debug /pdbtype:con
+#     to get debug information for release mode. It is also necessary
+#     to define pdb files (Option /PDB...) in the makefiles which
+#     include commw32.hnm
+#
+# 2001.01.12  RG  Z2000
+#     Added option Zi to build *.pdb file
+# 2000.05.12  RG  Z2000
+#     Changed option -Oselg --> -Od
+# 2000.04.20  RG  Z2000  MFC-DebugDLL's
+#     Changed back to /MTd and MDd because we can build
+#     Debug and Release version now
+# 1999.11.09  RG  Z2000  MFC-DebugDLL's
+#     Changed the option /MTd,/MDd to /MT,/MD so that no MFC-Debug DLL's
+#     are linked
+#
+# 1999.09.07  DGC
+#    Added /PROFILE option.
+#
+# 1999.02.12  DGC
+#    Added -nologo options.
+#
+
 !if "$(BOUNDSCHECKER)" == "Y"
 cl     = nmcl.exe
 linker = nmlink.exe
@@ -35,7 +69,11 @@ linkopt=/SUBSYSTEM:windows /nologo
 linkoptdll=/DLL
 linkoptexe=
 
+!if "$(blddbh)" == "y"
+linkdlls = user32.lib advapi32.lib kernel32.lib shell32.lib uuid.lib kzoengaa.lib zdctl.lib htmlhelp.lib
+!else
 linkdlls = user32.lib advapi32.lib kernel32.lib shell32.lib uuid.lib gdi32.lib kzoengaa.lib htmlhelp.lib
+!endif
 linkexes = user32.lib advapi32.lib kernel32.lib shell32.lib uuid.lib gdi32.lib kzoengaa.lib
 
 !if $(debug)
@@ -46,7 +84,7 @@ DLLFLAG = /MDd
 CPPFLAG = -D _AFXDLL -FR
 !else
 opt = -Od $(opt)
-linkopt = $(linkopt) /debug 
+linkopt = $(linkopt) /debug /pdbtype:con
 EXEFLAG = /MT
 DLLFLAG = /MD
 CPPFLAG = -D _AFXDLL

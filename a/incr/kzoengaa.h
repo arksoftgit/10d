@@ -289,7 +289,6 @@ EnableTask( zVIEW lpView );
 #define  zENTITY_KEYS            0x00200000L   // Write entity keys.
 #define  zENCODE_BLOBS           0x00400000L   // Encode blobs from binary to ASCII
 #define  zNO_NULL_STRING_TERM    0x00800000L   // Don't use null terminator for strings with length
-#define  zUSE_OLD_LINK_CARDS     0x01000000L   // Use the old style 'link cards' to indicate linked EIs.
 
 // Commit OI to DB flags.
 #define  zCOMMIT_NOCLEANUP          0x00000100L   // Don't clean up deleted instances.

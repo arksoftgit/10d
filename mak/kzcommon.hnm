@@ -1,5 +1,21 @@
 .SUFFIXES : .cpp .hpp
 
+!if "$(BUILDOS)"=="win95"
+BUILDOS = win32
+!endif
+
+!if "$(BUILDOS)"=="os232"
+!include \$(KZV)\mak\commo232.hnm
+!endif
+
+!if "$(BUILDOS)"=="os2"
+!include \$(KZV)\mak\commos2.hnm
+!endif
+
+!if "$(BUILDOS)"=="win"
+!include \$(KZV)\mak\commwin.hnm
+!endif
+
 !if "$(BUILDOS)"=="win32"
 !include \$(KZV)\mak\commw32.hnm
 !endif

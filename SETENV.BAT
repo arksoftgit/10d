@@ -38,7 +38,7 @@ if "%kztt%" == "" set kztt=a
 if "%kzt%" == "" set kzt=w
 
 set KZL=l
-set KZLB=c
+set KZLB=d
 set KZP=w
 set KZS=zdr
 set KZTT=a
