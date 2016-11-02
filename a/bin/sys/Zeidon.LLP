@@ -1,4 +1,4 @@
-z1000-Zeidon    ZEIDON   TZCMLPLO                         11/02/16   14:02:07 1.0a2   
+z1000-Zeidon    ZEIDON   TZCMLPLO                         11/02/16   16:40:51 1.0a2   
 eLPLR      1
 aName      Zeidon
 aZKey      4106137
@@ -6226,8 +6226,8 @@ aStatus    1
 aUpdateInd 2
 aName      TZERRELD
 aDesc      Data Model Relationship Maint
-aLastSyncDate 20160106031109466
-aLastUpdateDate 20160106031109466
+aLastSyncDate 20161102164025305
+aLastUpdateDate 20161102164025305
 
 eW_MetaDef 3
 aCPLR_ZKey 127047041
