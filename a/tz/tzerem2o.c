@@ -41,6 +41,13 @@ oTZEREMDO_dParentNames( zVIEW     vTZEREMDO,
                         zSHORT    GetOrSetFlag );
 
 
+zOPER_EXPORT zSHORT OPERATION
+oTZEREMDO_dCardinality( zVIEW     vTZEREMDO,
+                        LPVIEWENTITY InternalEntityStructure,
+                        LPVIEWATTRIB InternalAttribStructure,
+                        zSHORT    GetOrSetFlag );
+
+
 //:TRANSFORMATION OPERATION
 //:ImportADW_Model( VIEW vER_Model BASED ON LOD TZEREMDO,
 //:                 VIEW vADW_Work BASED ON LOD TZERADWO, VIEW vSubtask )
@@ -4244,11 +4251,59 @@ oTZEREMDO_dParentNames( zVIEW     vTZEREMDO,
 
          //:END
 
-         //:StoreStringInRecord( vTZEREMDO,
-         //:                  InternalEntityStructure,
-         //:                  InternalAttribStructure,
-         //:                  szNames )
+         //:StoreStringInRecord( vTZEREMDO, InternalEntityStructure, InternalAttribStructure, szNames )
          StoreStringInRecord( vTZEREMDO, InternalEntityStructure, InternalAttribStructure, szNames );
+         break ;
+
+      //:  /* end zDERIVED_GET */
+      //:OF   zDERIVED_SET:
+      case zDERIVED_SET :
+         break ;
+   } 
+
+
+   //:     /* end zDERIVED_SET */
+   //:END  /* case */
+   return( 0 );
+// END
+} 
+
+
+//:DERIVED ATTRIBUTE OPERATION
+//:dCardinality( VIEW vTZEREMDO BASED ON LOD TZEREMDO,
+//:              STRING ( 32 ) InternalEntityStructure,
+//:              STRING ( 32 ) InternalAttribStructure,
+//:              SHORT GetOrSetFlag )
+
+//:   STRING ( 16 ) CardMin
+zOPER_EXPORT zSHORT OPERATION
+oTZEREMDO_dCardinality( zVIEW     vTZEREMDO,
+                        LPVIEWENTITY InternalEntityStructure,
+                        LPVIEWATTRIB InternalAttribStructure,
+                        zSHORT    GetOrSetFlag )
+{
+   zCHAR     CardMin[ 17 ] = { 0 }; 
+   //:STRING ( 16 ) CardMax
+   zCHAR     CardMax[ 17 ] = { 0 }; 
+   //:STRING ( 64 ) szCardinality
+   zCHAR     szCardinality[ 65 ] = { 0 }; 
+
+
+   //:CASE GetOrSetFlag
+   switch( GetOrSetFlag )
+   { 
+      //:OF   zDERIVED_GET:
+      case zDERIVED_GET :
+         //:CardMin = vTZEREMDO.ER_RelLink.CardMin
+         GetVariableFromAttribute( CardMin, 0, 'S', 17, vTZEREMDO, "ER_RelLink", "CardMin", "", 0 );
+         //:CardMax = vTZEREMDO.ER_RelLink.CardMax
+         GetVariableFromAttribute( CardMax, 0, 'S', 17, vTZEREMDO, "ER_RelLink", "CardMax", "", 0 );
+         //:szCardinality = CardMin + " - " + CardMax
+         ZeidonStringCopy( szCardinality, 1, 0, CardMin, 1, 0, 65 );
+         ZeidonStringConcat( szCardinality, 1, 0, " - ", 1, 0, 65 );
+         ZeidonStringConcat( szCardinality, 1, 0, CardMax, 1, 0, 65 );
+         //:StoreStringInRecord( vTZEREMDO, InternalEntityStructure, InternalAttribStructure, szCardinality )
+         StoreStringInRecord( vTZEREMDO, InternalEntityStructure, InternalAttribStructure, szCardinality );
          break ;
 
       //:  /* end zDERIVED_GET */

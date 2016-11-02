@@ -528,7 +528,7 @@ ActivateMetaOI( zVIEW vSubtask0,
 //start TZCM_OPR 2015.10.27 15:41:07
 
 //end
-//start TZEREMDO 2016.08.24 08:07:12
+//start TZEREMDO 2016.11.02 13:24:36
 zOPER_EXPORT zSHORT OPERATION
 oTZEREMDO_ImportADW_Model( zVIEW vViewToInstance0,
                            zVIEW vADWWorkObject1,

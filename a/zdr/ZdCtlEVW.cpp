@@ -8340,6 +8340,7 @@ EDT_FindTextPosition( zVIEW vSubtask, zCPCHAR cpcFind, zPLONG plLine, zPLONG plC
             else  // in multi-line comment
             {
                pt.x = ptReturn.x + strlen( cpcFind );
+               pt.y = ptReturn.y;
                if (pt.x >= pED_Crystal->m_pTextBuffer->GetLineLength(ptReturn.y))
                {
                   pt.y = ptReturn.y + 1;

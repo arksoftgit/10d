@@ -1,4 +1,4 @@
-z1000-Zeidon    ZEIDON   TZCMLPLO                         10/14/16   15:42:49 1.0a2   
+z1000-Zeidon    ZEIDON   TZCMLPLO                         11/02/16   14:02:07 1.0a2   
 eLPLR      1
 aName      Zeidon
 aZKey      4106137
@@ -2797,8 +2797,8 @@ aStatus    1
 aUpdateInd 2
 aName      TZEREMDO
 aDesc      Enterprise Model ER Information
-aLastSyncDate 20160106031109239
-aLastUpdateDate 20160106031109239
+aLastSyncDate 20161102132435882
+aLastUpdateDate 20161102132435882
 
 eW_MetaDef 3
 aCPLR_ZKey 1329358
@@ -6208,8 +6208,8 @@ aStatus    1
 aUpdateInd 2
 aName      TZEREMDD
 aDesc      Data Model ER Diagram & Maint.
-aLastSyncDate 20160106031109198
-aLastUpdateDate 20160106031109198
+aLastSyncDate 20161102140127015
+aLastUpdateDate 20161102140127015
 
 eW_MetaDef 3
 aCPLR_ZKey 1348132
@@ -6343,8 +6343,8 @@ aStatus    1
 aUpdateInd 2
 aName      TZPNCTAD
 aDesc      System delivered controls dialog
-aLastSyncDate 20160516163927301
-aLastUpdateDate 20160516163927301
+aLastSyncDate 20161102132635398
+aLastUpdateDate 20161102132635398
 
 eW_MetaDef 3
 aCPLR_ZKey 1137589
