@@ -2661,7 +2661,7 @@ ofnTZZOXODO_BldXODRelRec( zVIEW vSubtask, zVIEW  vTZZOXODO,
             zCHAR   szSrcEntity[ 33 ];
             zCHAR   szTgtEntity[ 33 ];
             zCHAR   szSrcRelLink[ 33 ];
-            zCHAR   szMsg[ 500 ];
+            zCHAR   szMsg[ 1000 ];
 
             SetNameForView( vTZTENVR1, "vTZTENVR1", vSubtask, zLEVEL_TASK );
             SetNameForView( vTZZOLOD1, "vTZZOLOD1", vSubtask, zLEVEL_TASK );
