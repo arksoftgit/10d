@@ -2481,7 +2481,7 @@ ofnTZZOXODO_BldXODRelRec( zVIEW vSubtask, zVIEW  vTZZOXODO,
    zSHORT nRelError;               /* > 0 if no Relationship in TE */
    zSHORT nRC;
 
-   if ( CheckExistenceOfEntity( vTZZOLOD1, "ER_RelLinkRec" ) <  zCURSOR_SET )
+   if ( CheckExistenceOfEntity( vTZZOLOD1, "ER_RelLinkRec" ) < zCURSOR_SET )
       return( 0 );
 
    CreateViewFromViewForTask( &vTZTENVR1, vTZTENVRO_REF, 0 );
@@ -2661,10 +2661,17 @@ ofnTZZOXODO_BldXODRelRec( zVIEW vSubtask, zVIEW  vTZZOXODO,
             zCHAR   szSrcEntity[ 33 ];
             zCHAR   szTgtEntity[ 33 ];
             zCHAR   szSrcRelLink[ 33 ];
-            zCHAR    szMsg[500];
+            zCHAR   szMsg[ 500 ];
 
             SetNameForView( vTZTENVR1, "vTZTENVR1", vSubtask, zLEVEL_TASK );
             SetNameForView( vTZZOLOD1, "vTZZOLOD1", vSubtask, zLEVEL_TASK );
+
+         // TraceLineI( "Search failed in view TZTENVR1 for ER_RelLinkRec ZKey:", lRelLinkZKey );
+         // TraceLineS( "Display TZTENVR1", "###############################################################" );
+         //xDisplayObjectInstance( vTZTENVR1, "", "" );
+         // TraceLineI( "Search failed in view TZZOLOD1 for ER_RelTypeRec ZKey:", lRelTypeZKey );
+         // TraceLineS( "Display TZZOLOD1", "###############################################################" );
+         //xDisplayObjectInstance( vTZZOLOD1, "", "" );
 
             //------------------------------------------------------------------------
             strcpy_s( szRelName, zsizeof( szRelName ), "Relationship: '" );
@@ -2688,6 +2695,7 @@ ofnTZZOXODO_BldXODRelRec( zVIEW vSubtask, zVIEW  vTZZOXODO,
             strcat_s( szMsg, zsizeof( szMsg ), "a new name or your ER may be out of sync with your TE. " );
             strcat_s( szMsg, zsizeof( szMsg ), "\nIf you recreated a relationship with a new name, you must delete" );
             strcat_s( szMsg, zsizeof( szMsg ), " and recreate the subobject in the LOD." );
+            strcat_s( szMsg, zsizeof( szMsg ), "\nNote the possibility that the entity may not have an \"Identifier\" defined." );
             strcat_s( szMsg, zsizeof( szMsg ), "\nIf your ER is out of sync with the TE, you must delete and recreate your " );
             strcat_s( szMsg, zsizeof( szMsg ), "tables and relationships in the TE." );
             MessageSend( vSubtask, "ZO00305", "Operations", szMsg, zMSGQ_OBJECT_CONSTRAINT_ERROR, zBEEP );
