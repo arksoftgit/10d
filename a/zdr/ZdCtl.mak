@@ -1,7 +1,7 @@
 # Microsoft Developer Studio Generated NMAKE File, Based on ZdCtl.dsp
 !IF "$(CFG)" == ""
-CFG=ZDCTL - WIN32 DEBUG
-!MESSAGE No configuration specified. Defaulting to ZDCTL - WIN32 DEBUG.
+CFG=ZdCtl - Win32 Debug
+!MESSAGE No configuration specified. Defaulting to ZdCtl - Win32 Debug.
 !ENDIF 
 
 !IF "$(CFG)" != "ZdCtl - Win32 Release" && "$(CFG)" != "ZdCtl - Win32 Debug"
@@ -9,7 +9,7 @@ CFG=ZDCTL - WIN32 DEBUG
 !MESSAGE You can specify a configuration when running NMAKE
 !MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
-!MESSAGE NMAKE /f "ZdCtl.mak" CFG="ZDCTL - WIN32 DEBUG"
+!MESSAGE NMAKE /f "ZdCtl.mak" CFG="ZdCtl - Win32 Debug"
 !MESSAGE 
 !MESSAGE Possible choices for configuration are:
 !MESSAGE 

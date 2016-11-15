@@ -34,6 +34,9 @@
  */
 
 /* this is not a core library module, so it doesn't define JPEG_INTERNALS */
+
+#define _CRT_SECURE_NO_WARNINGS
+
 #include "windows.h"
 
 #include "jinclude.h"

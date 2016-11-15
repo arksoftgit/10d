@@ -1,6 +1,6 @@
 # Microsoft Developer Studio Generated NMAKE File, Based on ZDr.dsp
 !IF "$(CFG)" == ""
-CFG=ZDr - Win32 Release
+CFG=ZDr - Win32 Debug
 !MESSAGE No configuration specified. Defaulting to ZDr - Win32 Release.
 !ENDIF 
 

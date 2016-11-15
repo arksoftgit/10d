@@ -39,6 +39,8 @@
 
 //#define _AFXDLL  // required by Visual Studio 2005
 
+#define _CRT_SECURE_NO_WARNINGS
+
 #include "jconfig.h"    /* auto configuration options */
 #define JCONFIG_INCLUDED   /* so that jpeglib.h doesn't do it again */
 

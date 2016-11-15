@@ -1,6 +1,6 @@
 # Microsoft Developer Studio Generated NMAKE File, Based on TzCtl.dsp
 !IF "$(CFG)" == ""
-CFG=TzCtl - Win32 Release
+CFG=TzCtl - Win32 Debug
 !MESSAGE No configuration specified. Defaulting to TzCtl - Win32 Release.
 !ENDIF 
 
