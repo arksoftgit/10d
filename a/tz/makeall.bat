@@ -129,8 +129,8 @@ cd ..\tzzolodd
 nmake %1 -f tzzolodd.mak
 cd ..\tzzolodq
 nmake %1 -f tzzolodq.mak
-cd ..\waccount
-nmake %1 -f waccount.mak
+rem cd ..\waccount
+rem nmake %1 -f waccount.mak
 cd ..
 @call cds a ms
 @cd kzmsgqaa

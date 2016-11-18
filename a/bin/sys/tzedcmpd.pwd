@@ -1,8 +1,9 @@
-z1000-Zeidon    TZEDCMPD TZWDLGSO 06/10/15   16:41:03 1.0b0    
+z1000-Zeidon    TZEDCMPD TZWDLGSO 11/17/16   15:56:38 1.0b0   
 eDialog    1
 aTag       TZEDCMPD
 aDLL_Name  TZEDCMPD
 aZKey      90025935
+aNextZKeyToAssign 130069298
 aDesc      Set compiler specification
 
 eDfltWnd   2
@@ -813,7 +814,7 @@ aTag       GOTO_Domain
 aType      34
 aZKey      130069293
 aDialogName TZDMUPDD
-aWindowName DOMLIST
+aWindowName TZDMUPDD
 aSB_ActionDisabling 0
 
 eControlDef 4
@@ -4717,11 +4718,11 @@ eOperSourceFile 3
 
 eWebControlPropertyOption 2
 aName      Button (Not Submit)
-aZKey      130069296
+aZKey      130069295
 
 eWebControlPropertyOption 2
 aName      Hidden
-aZKey      130069297
+aZKey      130069296
 
 eComboBoxEntry 2
 aName      Displayed Text

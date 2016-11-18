@@ -313,6 +313,8 @@ public:
    void GetSelection(CPoint &ptStart, CPoint &ptEnd);  // moved to public
    void SetSelection(CPoint &ptStart, CPoint &ptEnd);  // moved to public
    void UpdateCaret();  // moved to public
+   void PageUp();
+   void PageDown();
 
    BOOL GetAutoIndent() const;
    void SetAutoIndent(BOOL bAutoIndent);

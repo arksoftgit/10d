@@ -460,6 +460,10 @@ zOPER_EXPORT zSHORT OPERATION
 EDT_ReplaceAll( zVIEW vSubtask );
 zOPER_EXPORT zBOOL OPERATION
 EDT_SearchSelectedText( zVIEW vSubtask );
+zOPER_EXPORT zBOOL OPERATION
+EDT_PageUp(zVIEW vSubtask);
+zOPER_EXPORT zBOOL OPERATION
+EDT_PageDown(zVIEW vSubtask);
 
 /////////////////////////////////////////////////////////////////////////////
 // Setup a comment in the current editor instance
@@ -575,7 +579,9 @@ InsertComment( zVIEW vSubtask, LPSTR szOperName, LPSTR szOperComment )
    {
       csText = sl.GetAt( pos );
       MovEOF( );
-      EDT_InsertItem( vSubtask, csText, FALSE ); // send string to Editor control
+      // KJS 11/11/16 - The last parameter is whether we should reset the position of the cursor, not sure why it's
+      // FALSE because we always set the cursor position to after what we've pasted. So I'm changing to TRUE.
+      EDT_InsertItem( vSubtask, csText, TRUE ); // send string to Editor control
       sl.GetNext( pos );  // get next list entry
    }
 
@@ -3039,6 +3045,7 @@ AEQ_GetViews( zVIEW vSubtask )
    zLONG    lLineCnt;
    zLONG    lLineLth;
    zLONG    lLine = 0, lCol = 0;
+   zLONG    lOrigLine = 0, lOrigCol = 0;
    zLONG    lOperationEndLine = -1, lOperationStartLine = -1;
    zLONG    lIndexAfterObjectName = 0;
    zCHAR    szMsg[ 100 ];
@@ -3068,6 +3075,8 @@ AEQ_GetViews( zVIEW vSubtask )
    // might be commented out, keep searching until we are not in a comment.
    lLineCnt = EDT_GetLineCount( vEditorSubtask ) - 1;
    EDT_GetCursorPosition( vEditorSubtask, &lLine, &lCol );
+   lOrigLine = lLine;
+   lOrigCol = lCol;
    lOperationEndLine = lLine;
    lCol = 0;
    while ( lOperationEndLine <= lLineCnt )
@@ -3183,6 +3192,9 @@ AEQ_GetViews( zVIEW vSubtask )
    if ( CheckExistenceOfEntity( vEdWrk, szlView ) >= zCURSOR_SET )
       AEQ_SelectView( vSubtask );
 
+   // KJS 11/11/16 - Need to set back to where the cursor was originally.
+   EDT_SetCursorPositionByLineCol(vEditorSubtask, lOrigLine, lOrigCol);
+
    return( 0 );
 
 } // AEQ_GetViews
@@ -3280,7 +3292,9 @@ fnPasteQualifier( zVIEW  vSubtask,
 
       strcat_s( szMsg, zsizeof( szMsg ), " " );
       csStringToInsert = szMsg;
-      EDT_InsertItem( vEditorSubtask, csStringToInsert, FALSE );
+      // KJS 11/11/16 - The last parameter is whether we should reset the position of the cursor, not sure why it's
+      // FALSE because we always set the cursor position to after what we've pasted. So I'm changing to TRUE.
+      EDT_InsertItem( vEditorSubtask, csStringToInsert, TRUE );
       SetFocusToCtrl( vEditorSubtask, EDIT_CONTROL_NAME );
    }
 
@@ -3686,7 +3700,9 @@ PasteOperation( zVIEW vSubtask, zVIEW vOp )
       csTemp += ";";
 
    csTemp += csNewLine;
-   EDT_InsertItem( vEditorSubtask, csTemp, FALSE );
+   // KJS 11/11/16 - The last parameter is whether we should reset the position of the cursor, not sure why it's
+   // FALSE because we always set the cursor position to after what we've pasted. So I'm changing to TRUE.
+   EDT_InsertItem( vEditorSubtask, csTemp, TRUE );
    return( 0 );
 
 } // PasteOperation
@@ -3843,7 +3859,9 @@ OpIns_InsertOperation( zVIEW vSubtask )
             strcat_s( szBuffer, zsizeof( szBuffer ), ";" );
 
          csIndent += szBuffer;
-         EDT_InsertItem( vSubtask, csIndent, FALSE );
+         // KJS 11/11/16 - The last parameter is whether we should reset the position of the cursor, not sure why it's
+         // FALSE because we always set the cursor position to after what we've pasted. So I'm changing to TRUE.
+         EDT_InsertItem( vSubtask, csIndent, TRUE );
          break;
       }
 
@@ -4298,7 +4316,9 @@ VOR_PasteName( zVIEW vSubtask )
 
 // CString zs = szMsg;
 // BSTR bstr = zs.AllocSysString( );
-   EDT_InsertItem( vSubtask, szMsg, FALSE );
+// KJS 11/11/16 - The last parameter is whether we should reset the position of the cursor, not sure why it's
+// FALSE because we always set the cursor position to after what we've pasted. So I'm changing to TRUE.
+   EDT_InsertItem( vSubtask, szMsg, TRUE );
    DropView( vList );
 
 
@@ -4747,7 +4767,9 @@ fnInsertVML_Text( zVIEW      vSubtask,
       lPositionCursor--;
    }
 
-   EDT_InsertItem( vSubtask, csCompleteCommand, FALSE );
+   // KJS 11/11/16 - The last parameter is whether we should reset the position of the cursor, not sure why it's
+   // FALSE because we always set the cursor position to after what we've pasted. So I'm changing to TRUE.
+   EDT_InsertItem( vSubtask, csCompleteCommand, TRUE );
 
    if ( lPositionCursor >= 0 )
    {
@@ -5845,7 +5867,7 @@ OBJ_PasteObjectName( zVIEW vSubtask )
    {
       case 'N':
          zs = szName;
-         EDT_InsertItem( vEditorSubtask, zs, FALSE );
+         EDT_InsertItem( vEditorSubtask, zs, TRUE );
          break;
 
       case 'B':
@@ -5853,7 +5875,7 @@ OBJ_PasteObjectName( zVIEW vSubtask )
          zs += szName;
          zs += " BASED ON LOD ";
          zs += szName;
-         EDT_InsertItem( vEditorSubtask, zs, FALSE );
+         EDT_InsertItem( vEditorSubtask, zs, TRUE );
          break;
 
       case 'G':
@@ -5862,7 +5884,7 @@ OBJ_PasteObjectName( zVIEW vSubtask )
          zs += " NAMED \"";
          zs += szName;
          zs += "\"";
-         EDT_InsertItem( vEditorSubtask, zs, FALSE );
+         EDT_InsertItem( vEditorSubtask, zs, TRUE );
          break;
 
       case 'S':
@@ -5871,7 +5893,7 @@ OBJ_PasteObjectName( zVIEW vSubtask )
          zs += " \"";
          zs += szName;
          zs += "\"";
-         EDT_InsertItem( vEditorSubtask, zs, FALSE );
+         EDT_InsertItem( vEditorSubtask, zs, TRUE );
          break;
    }
 
@@ -6043,6 +6065,9 @@ TZEDFRMD_GotoOperation( zVIEW vSubtask )
    LPSTR    szBuffer = NULL;
    CString  csDelimiter = "\t,)( ";
 
+   // This isn't working correctly at the moment, so we will return doing nothing.
+   return(0);
+
    EDT_GetCursorPosition( vSubtask, &lLine, &lCol );
 
    // return if we are within a comment
@@ -6134,13 +6159,20 @@ TZEDFRMD_GotoOperation( zVIEW vSubtask )
    csSearchString.Format( csOperSrch, csBuffer );
 
    lLine = 0; // search from begin of file
-   EDT_FindTextPosition( vSubtask, csSearchString, &lLine, &lCol, dwTBEDTDefaultSearchBehavior );
+   lCol = 0;
+
+   // KJS 11/14/16 - The problem we are having is finding the string using csOperSrch. Wondering if maybe we should look for OPERATION, then look for ")" which would be
+   // the close of the operation and search that???? Or maybe I should be looking for "Operation" then look if the operation name is on the same line or the next line
+   // that isn't blank.
+   //EDT_FindTextPosition(vSubtask, csSearchString, &lLine, &lCol, dwTBEDTDefaultSearchBehavior);
+   EDT_FindTextPosition(vSubtask, "Operation", &lLine, &lCol, dwTBEDTDefaultSearchBehavior);
 
    // Skipping lines where the search text is part of a comment
    while ( fnIsCommentAtIndex( vSubtask, lLine, lCol ) && lLine > -1 )
    {
       lLine++;
-      EDT_FindTextPosition( vSubtask, csSearchString, &lLine, &lCol, dwTBEDTDefaultSearchBehavior );
+      EDT_FindTextPosition(vSubtask, "Operation", &lLine, &lCol, dwTBEDTDefaultSearchBehavior);
+    //EDT_FindTextPosition(vSubtask, csSearchString, &lLine, &lCol, dwTBEDTDefaultSearchBehavior);
    }
 
    if ( lLine >= 0 ) // we found something so place the cursor onto it
@@ -6157,6 +6189,41 @@ TZEDFRMD_GotoOperation( zVIEW vSubtask )
    return( 0 );
 
 } // TZEDFRMD_GotoOperation
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  OPERATION: TZEDFRMD_EditFind
+//
+zOPER_EXPORT zSHORT OPERATION
+TZEDFRMD_PageUp( zVIEW vSubtask )
+{
+   /*
+   zLONG    lLine = 0, lCol = 0;
+
+   EDT_GetCursorPosition(vSubtask, &lLine, &lCol);
+
+   if (lLine >= 25) // we found something so place the cursor onto it
+   {
+      EDT_SetCursorPositionByLineCol(vSubtask, lLine - 25, lCol);
+      return(1);
+   }
+   */
+   return EDT_PageUp( vSubtask );
+
+} // TZEDFRMD_PageUp
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  OPERATION: TZEDFRMD_PageDown
+//
+zOPER_EXPORT zSHORT OPERATION
+TZEDFRMD_PageDown( zVIEW vSubtask )
+{
+   return EDT_PageDown( vSubtask );
+   //return(0);
+
+}
 
 /////////////////////////////////////////////////////////////////////////////
 //

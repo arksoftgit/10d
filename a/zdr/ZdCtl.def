@@ -21,7 +21,7 @@
 EXPORTS
 
 ;;
-;; Maximum Ordinal value in this "OPERATION" section is > @606 <
+;; Maximum Ordinal value in this "OPERATION" section is > @608 <
 ;;
 
    ActiveX                                                @19
@@ -98,6 +98,8 @@ EXPORTS
    EDT_OnSize                                             @590
    EDT_OpenNewObject                                      @603
    EDT_OpenObject                                         @572
+   EDT_PageUp                                             @607
+   EDT_PageDown                                           @608
    EDT_PasteText                                          @573
    EDT_PrintObject                                        @574
    EDT_PropertyDialog                                     @575

@@ -39,6 +39,9 @@ local.properties
 *.suo
 *.user
 *.sln.docstates
+*.VC.opendb 
+*.VC.db
+ZDr.VC.VC.opendb
 
 # Build results
 
@@ -85,6 +88,7 @@ mtznlast.bat
 *.lib
 *.LIB
 *.dll
+*.exe
 *_i.c
 *_p.c
 *.asm

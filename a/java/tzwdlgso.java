@@ -44,6 +44,7 @@ public class DialogImpl implements Dialog
    protected String  WEB_PageBackgroundInclude;
    protected String  WEB_NoAutoLogOut;
    protected String  WEB_ImportInclude;
+   protected String  WEB_Logout;
    protected String  LastSyncDate;
    protected String  wOriginalViewName;
    protected String  wNewViewName;
@@ -340,6 +341,22 @@ public class DialogImpl implements Dialog
    }
 
    /**
+    * @return the WEB_Logout
+    */
+   public String getWEB_Logout( )
+   {
+      return WEB_Logout;
+   }
+
+   /**
+    * @param WEB_Logout to set 
+    */
+   public void setWEB_Logout( String WEB_Logout )
+   {
+      this.WEB_Logout = WEB_Logout;
+   }
+
+   /**
     * @return the LastSyncDate
     */
    public String getLastSyncDate( )
@@ -598,6 +615,7 @@ public class DialogImpl implements Dialog
       WEB_PageBackgroundInclude = cursor.getStringFromAttribute( "WEB_PageBackgroundInclude" );  if ( WEB_PageBackgroundInclude == null ) WEB_PageBackgroundInclude = "";
       WEB_NoAutoLogOut = cursor.getStringFromAttribute( "WEB_NoAutoLogOut" );  if ( WEB_NoAutoLogOut == null ) WEB_NoAutoLogOut = "";
       WEB_ImportInclude = cursor.getStringFromAttribute( "WEB_ImportInclude" );  if ( WEB_ImportInclude == null ) WEB_ImportInclude = "";
+      WEB_Logout = cursor.getStringFromAttribute( "WEB_Logout" );  if ( WEB_Logout == null ) WEB_Logout = "";
       LastSyncDate = cursor.getStringFromAttribute( "LastSyncDate" );  if ( LastSyncDate == null ) LastSyncDate = "";
       wOriginalViewName = cursor.getStringFromAttribute( "wOriginalViewName" );  if ( wOriginalViewName == null ) wOriginalViewName = "";
       wNewViewName = cursor.getStringFromAttribute( "wNewViewName" );  if ( wNewViewName == null ) wNewViewName = "";
@@ -1099,6 +1117,7 @@ public class WindowImpl implements Window
    protected String  WEB_JSPGenerationPositioning;
    protected String  WEB_RegisterZeidonWindow;
    protected String  WEB_UnregisterZeidonWindow;
+   protected String  WEB_Logout;
    protected Integer BarID;
    protected String  CaptionNLS_Text;
    protected Integer ControlTagCounter;
@@ -1592,6 +1611,22 @@ public class WindowImpl implements Window
    }
 
    /**
+    * @return the WEB_Logout
+    */
+   public String getWEB_Logout( )
+   {
+      return WEB_Logout;
+   }
+
+   /**
+    * @param WEB_Logout to set 
+    */
+   public void setWEB_Logout( String WEB_Logout )
+   {
+      this.WEB_Logout = WEB_Logout;
+   }
+
+   /**
     * @return the BarID
     */
    public Integer getBarID( )
@@ -1687,6 +1722,7 @@ public class WindowImpl implements Window
       WEB_JSPGenerationPositioning = cursor.getStringFromAttribute( "WEB_JSPGenerationPositioning" );  if ( WEB_JSPGenerationPositioning == null ) WEB_JSPGenerationPositioning = "";
       WEB_RegisterZeidonWindow = cursor.getStringFromAttribute( "WEB_RegisterZeidonWindow" );  if ( WEB_RegisterZeidonWindow == null ) WEB_RegisterZeidonWindow = "";
       WEB_UnregisterZeidonWindow = cursor.getStringFromAttribute( "WEB_UnregisterZeidonWindow" );  if ( WEB_UnregisterZeidonWindow == null ) WEB_UnregisterZeidonWindow = "";
+      WEB_Logout = cursor.getStringFromAttribute( "WEB_Logout" );  if ( WEB_Logout == null ) WEB_Logout = "";
       BarID = cursor.getIntegerFromAttribute( "BarID" );  if ( BarID == null ) BarID = 0;
       CaptionNLS_Text = cursor.getStringFromAttribute( "CaptionNLS_Text" );  if ( CaptionNLS_Text == null ) CaptionNLS_Text = "";
       ControlTagCounter = cursor.getIntegerFromAttribute( "ControlTagCounter" );  if ( ControlTagCounter == null ) ControlTagCounter = 0;
@@ -1778,6 +1814,9 @@ public class ControlImpl implements Control
    protected String  WebNoGridDataMsgClass;
    protected String  WebreCAPTCHAPublicKey;
    protected String  WebreCAPTCHAPrivateKey;
+   protected String  WebHTML5Attribute;
+   protected String  WebPlaceholder;
+   protected String  MenuName;
    protected String  DIL_Inherited;
    protected String  NLS_Text;
    protected String  NLS_DIL_Text;
@@ -2642,6 +2681,54 @@ public class ControlImpl implements Control
    }
 
    /**
+    * @return the WebHTML5Attribute
+    */
+   public String getWebHTML5Attribute( )
+   {
+      return WebHTML5Attribute;
+   }
+
+   /**
+    * @param WebHTML5Attribute to set 
+    */
+   public void setWebHTML5Attribute( String WebHTML5Attribute )
+   {
+      this.WebHTML5Attribute = WebHTML5Attribute;
+   }
+
+   /**
+    * @return the WebPlaceholder
+    */
+   public String getWebPlaceholder( )
+   {
+      return WebPlaceholder;
+   }
+
+   /**
+    * @param WebPlaceholder to set 
+    */
+   public void setWebPlaceholder( String WebPlaceholder )
+   {
+      this.WebPlaceholder = WebPlaceholder;
+   }
+
+   /**
+    * @return the MenuName
+    */
+   public String getMenuName( )
+   {
+      return MenuName;
+   }
+
+   /**
+    * @param MenuName to set 
+    */
+   public void setMenuName( String MenuName )
+   {
+      this.MenuName = MenuName;
+   }
+
+   /**
     * @return the DIL_Inherited
     */
    public String getDIL_Inherited( )
@@ -2808,6 +2895,9 @@ public class ControlImpl implements Control
       WebNoGridDataMsgClass = cursor.getStringFromAttribute( "WebNoGridDataMsgClass" );  if ( WebNoGridDataMsgClass == null ) WebNoGridDataMsgClass = "";
       WebreCAPTCHAPublicKey = cursor.getStringFromAttribute( "WebreCAPTCHAPublicKey" );  if ( WebreCAPTCHAPublicKey == null ) WebreCAPTCHAPublicKey = "";
       WebreCAPTCHAPrivateKey = cursor.getStringFromAttribute( "WebreCAPTCHAPrivateKey" );  if ( WebreCAPTCHAPrivateKey == null ) WebreCAPTCHAPrivateKey = "";
+      WebHTML5Attribute = cursor.getStringFromAttribute( "WebHTML5Attribute" );  if ( WebHTML5Attribute == null ) WebHTML5Attribute = "";
+      WebPlaceholder = cursor.getStringFromAttribute( "WebPlaceholder" );  if ( WebPlaceholder == null ) WebPlaceholder = "";
+      MenuName = cursor.getStringFromAttribute( "MenuName" );  if ( MenuName == null ) MenuName = "";
       DIL_Inherited = cursor.getStringFromAttribute( "DIL_Inherited" );  if ( DIL_Inherited == null ) DIL_Inherited = "";
       NLS_Text = cursor.getStringFromAttribute( "NLS_Text" );  if ( NLS_Text == null ) NLS_Text = "";
       NLS_DIL_Text = cursor.getStringFromAttribute( "NLS_DIL_Text" );  if ( NLS_DIL_Text == null ) NLS_DIL_Text = "";
@@ -2909,6 +2999,9 @@ public class CtrlCtrlImpl implements CtrlCtrl
    protected String  TextUnderline;
    protected String  WebCtrlLabelLink;
    protected String  WebSelectSetName;
+   protected String  WebHTML5Attribute;
+   protected String  WebPlaceholder;
+   protected String  MenuName;
 
 
    // ctor
@@ -3877,6 +3970,54 @@ public class CtrlCtrlImpl implements CtrlCtrl
       this.WebSelectSetName = WebSelectSetName;
    }
 
+   /**
+    * @return the WebHTML5Attribute
+    */
+   public String getWebHTML5Attribute( )
+   {
+      return WebHTML5Attribute;
+   }
+
+   /**
+    * @param WebHTML5Attribute to set 
+    */
+   public void setWebHTML5Attribute( String WebHTML5Attribute )
+   {
+      this.WebHTML5Attribute = WebHTML5Attribute;
+   }
+
+   /**
+    * @return the WebPlaceholder
+    */
+   public String getWebPlaceholder( )
+   {
+      return WebPlaceholder;
+   }
+
+   /**
+    * @param WebPlaceholder to set 
+    */
+   public void setWebPlaceholder( String WebPlaceholder )
+   {
+      this.WebPlaceholder = WebPlaceholder;
+   }
+
+   /**
+    * @return the MenuName
+    */
+   public String getMenuName( )
+   {
+      return MenuName;
+   }
+
+   /**
+    * @param MenuName to set 
+    */
+   public void setMenuName( String MenuName )
+   {
+      this.MenuName = MenuName;
+   }
+
    public int loadCtrlCtrlEntityStructure( EntityCursor cursor )
    {
       Tag = cursor.getStringFromAttribute( "Tag" );  if ( Tag == null ) Tag = "";
@@ -3939,6 +4080,9 @@ public class CtrlCtrlImpl implements CtrlCtrl
       TextUnderline = cursor.getStringFromAttribute( "TextUnderline" );  if ( TextUnderline == null ) TextUnderline = "";
       WebCtrlLabelLink = cursor.getStringFromAttribute( "WebCtrlLabelLink" );  if ( WebCtrlLabelLink == null ) WebCtrlLabelLink = "";
       WebSelectSetName = cursor.getStringFromAttribute( "WebSelectSetName" );  if ( WebSelectSetName == null ) WebSelectSetName = "";
+      WebHTML5Attribute = cursor.getStringFromAttribute( "WebHTML5Attribute" );  if ( WebHTML5Attribute == null ) WebHTML5Attribute = "";
+      WebPlaceholder = cursor.getStringFromAttribute( "WebPlaceholder" );  if ( WebPlaceholder == null ) WebPlaceholder = "";
+      MenuName = cursor.getStringFromAttribute( "MenuName" );  if ( MenuName == null ) MenuName = "";
 
       return 0;
    }
@@ -14720,6 +14864,7 @@ public class MenuImpl implements Menu
    protected String  Tag;
    protected Integer ZKey;
    protected String  CSS_Class;
+   protected String  WebHTML5Attribute;
 
 
    // ctor
@@ -14776,11 +14921,28 @@ public class MenuImpl implements Menu
       this.CSS_Class = CSS_Class;
    }
 
+   /**
+    * @return the WebHTML5Attribute
+    */
+   public String getWebHTML5Attribute( )
+   {
+      return WebHTML5Attribute;
+   }
+
+   /**
+    * @param WebHTML5Attribute to set 
+    */
+   public void setWebHTML5Attribute( String WebHTML5Attribute )
+   {
+      this.WebHTML5Attribute = WebHTML5Attribute;
+   }
+
    public int loadMenuEntityStructure( EntityCursor cursor )
    {
       Tag = cursor.getStringFromAttribute( "Tag" );  if ( Tag == null ) Tag = "";
       ZKey = cursor.getIntegerFromAttribute( "ZKey" );  if ( ZKey == null ) ZKey = 0;
       CSS_Class = cursor.getStringFromAttribute( "CSS_Class" );  if ( CSS_Class == null ) CSS_Class = "";
+      WebHTML5Attribute = cursor.getStringFromAttribute( "WebHTML5Attribute" );  if ( WebHTML5Attribute == null ) WebHTML5Attribute = "";
 
       return 0;
    }
@@ -14830,6 +14992,7 @@ public class OptionImpl implements Option
    protected Integer SeqNo_Option;
    protected String  NLS_Text;
    protected String  CSS_Class;
+   protected String  WebHTML5Attribute;
 
 
    // ctor
@@ -15078,6 +15241,22 @@ public class OptionImpl implements Option
       this.CSS_Class = CSS_Class;
    }
 
+   /**
+    * @return the WebHTML5Attribute
+    */
+   public String getWebHTML5Attribute( )
+   {
+      return WebHTML5Attribute;
+   }
+
+   /**
+    * @param WebHTML5Attribute to set 
+    */
+   public void setWebHTML5Attribute( String WebHTML5Attribute )
+   {
+      this.WebHTML5Attribute = WebHTML5Attribute;
+   }
+
    public int loadOptionEntityStructure( EntityCursor cursor )
    {
       Tag = cursor.getStringFromAttribute( "Tag" );  if ( Tag == null ) Tag = "";
@@ -15095,6 +15274,7 @@ public class OptionImpl implements Option
       SeqNo_Option = cursor.getIntegerFromAttribute( "SeqNo_Option" );  if ( SeqNo_Option == null ) SeqNo_Option = 0;
       NLS_Text = cursor.getStringFromAttribute( "NLS_Text" );  if ( NLS_Text == null ) NLS_Text = "";
       CSS_Class = cursor.getStringFromAttribute( "CSS_Class" );  if ( CSS_Class == null ) CSS_Class = "";
+      WebHTML5Attribute = cursor.getStringFromAttribute( "WebHTML5Attribute" );  if ( WebHTML5Attribute == null ) WebHTML5Attribute = "";
 
       return 0;
    }
@@ -15144,6 +15324,7 @@ public class OptOptImpl implements OptOpt
    protected Integer SeqNo_Option;
    protected String  NLS_Text;
    protected String  CSS_Class;
+   protected String  WebHTML5Attribute;
 
 
    // ctor
@@ -15392,6 +15573,22 @@ public class OptOptImpl implements OptOpt
       this.CSS_Class = CSS_Class;
    }
 
+   /**
+    * @return the WebHTML5Attribute
+    */
+   public String getWebHTML5Attribute( )
+   {
+      return WebHTML5Attribute;
+   }
+
+   /**
+    * @param WebHTML5Attribute to set 
+    */
+   public void setWebHTML5Attribute( String WebHTML5Attribute )
+   {
+      this.WebHTML5Attribute = WebHTML5Attribute;
+   }
+
    public int loadOptOptEntityStructure( EntityCursor cursor )
    {
       Tag = cursor.getStringFromAttribute( "Tag" );  if ( Tag == null ) Tag = "";
@@ -15409,6 +15606,7 @@ public class OptOptImpl implements OptOpt
       SeqNo_Option = cursor.getIntegerFromAttribute( "SeqNo_Option" );  if ( SeqNo_Option == null ) SeqNo_Option = 0;
       NLS_Text = cursor.getStringFromAttribute( "NLS_Text" );  if ( NLS_Text == null ) NLS_Text = "";
       CSS_Class = cursor.getStringFromAttribute( "CSS_Class" );  if ( CSS_Class == null ) CSS_Class = "";
+      WebHTML5Attribute = cursor.getStringFromAttribute( "WebHTML5Attribute" );  if ( WebHTML5Attribute == null ) WebHTML5Attribute = "";
 
       return 0;
    }

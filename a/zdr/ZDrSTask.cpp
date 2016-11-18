@@ -3799,7 +3799,7 @@ ZSubtask::HandleEvent( zLONG lEvent )
          }
       }
 
-      if ( OperatorPrompt( m_vDialog, "No close action specified", "Permit close?", 
+      if ( OperatorPrompt( m_vDialog, "No close action specified", "Permit close?",
                           TRUE, zBUTTONS_YESNO, zRESPONSE_NO, zICON_QUESTION ) == zRESPONSE_YES )
       {
          PostClose( 0 );

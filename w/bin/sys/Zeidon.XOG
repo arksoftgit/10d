@@ -1,4 +1,4 @@
-z1000-Zeidon    ZEIDON   TZZOXOGO 04/21/16   16:14:14 1.0a2   
+z1000-Zeidon    ZEIDON   TZZOXOGO 11/10/16   13:12:42 1.0a2   
 eTZZOXOGO  1
 aNAME      Zeidon
 
@@ -2522,6 +2522,98 @@ aDATATYPE  S
 ePARAMETER 4
 aNAME      vDialogMenu
 aDATATYPE  V
+
+eOPERATION 3
+aNAME      GenJSPJ_CrteFileTransferForm
+aTYPE      G
+
+ePARAMETER 4
+aNAME      vDialog
+aDATATYPE  V
+
+ePARAMETER 4
+aNAME      vDialogRoot
+aDATATYPE  V
+
+ePARAMETER 4
+aNAME      File
+aDATATYPE  L
+
+ePARAMETER 4
+aNAME      WriteBuffer
+aDATATYPE  S
+
+ePARAMETER 4
+aNAME      Indent
+aDATATYPE  S
+
+ePARAMETER 4
+aNAME      NoPositioning
+aDATATYPE  S
+
+ePARAMETER 4
+aNAME      OffsetX
+aDATATYPE  L
+
+ePARAMETER 4
+aNAME      OffsetY
+aDATATYPE  L
+
+eOPERATION 3
+aNAME      GenJSPJ_CrteListBoxAsList
+aTYPE      G
+
+ePARAMETER 4
+aNAME      vDialog
+aDATATYPE  V
+
+ePARAMETER 4
+aNAME      lFile
+aDATATYPE  L
+
+ePARAMETER 4
+aNAME      szWriteBuffer
+aDATATYPE  S
+
+ePARAMETER 4
+aNAME      szIndent
+aDATATYPE  S
+
+ePARAMETER 4
+aNAME      szCtrlTag
+aDATATYPE  S
+
+ePARAMETER 4
+aNAME      szNoPositioning
+aDATATYPE  S
+
+ePARAMETER 4
+aNAME      lOffsetX
+aDATATYPE  L
+
+ePARAMETER 4
+aNAME      lOffsetY
+aDATATYPE  L
+
+eOPERATION 3
+aNAME      BuildMenuListJ
+aTYPE      G
+
+ePARAMETER 4
+aNAME      vDialog
+aDATATYPE  V
+
+ePARAMETER 4
+aNAME      vDialogRoot
+aDATATYPE  V
+
+ePARAMETER 4
+aNAME      lFile
+aDATATYPE  L
+
+ePARAMETER 4
+aNAME      szMenuName
+aDATATYPE  S
 
 eOPERATION 3
 aNAME      GenJSPJ_CrtePushButton

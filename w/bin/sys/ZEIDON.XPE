@@ -1,4 +1,4 @@
-z1000-Zeidon    ZEIDON   KZPEXVOO 04/26/16   11:20:56 1.0a2   
+z1000-Zeidon    ZEIDON   KZPEXVOO 08/31/16   11:33:50 1.0a2   
 ePE        1
 aRel       917288809
 
@@ -113,17 +113,17 @@ aCOP       IconCtl
 aDLL       ZDCTL
 
 eCtrl      2
-aKey       4002
-aCOP       ActiveX
-aDLL       ZDCTL
-
-eCtrl      2
 aKey       4017
 aCOP       ActiveX
 aDLL       ZDCTL
 
 eCtrl      2
 aKey       4005
+aCOP       ActiveX
+aDLL       ZDCTL
+
+eCtrl      2
+aKey       4002
 aCOP       ActiveX
 aDLL       ZDCTL
 

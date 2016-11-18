@@ -1,13 +1,13 @@
-z1000-Zeidon    WD       TZDGSRCO 12/08/15   12:31:54 1.0a2    
+z1000-Zeidon    WD       TZDGSRCO 10/19/16   10:46:02 1.0a2    
 eDomainGroup 1
 aZKey      1320467
-aNextZKeyToAssign 130069816
+aNextZKeyToAssign 130069825
 aName      WD
 aDesc      Web jsp generation control types 
 aExtension C
 aLanguageType C
 aDomainAndGlobalOpGroupName TZAPDMAA
-aWorkNumeric 48
+aWorkNumeric 49
 
 eDomain    2
 aZKey      1320468
@@ -391,6 +391,11 @@ aZKey      89581085
 aExternalValue Filter Rows (wHideTableRow='Y')
 aInternalValue Filter Rows
 
+eTableEntry 4
+aZKey      130069819
+aExternalValue Generate as <ul> List
+aInternalValue Gen As List
+
 eDomain    2
 aZKey      68304446
 aName      WD_WebEditControlProperties
@@ -407,12 +412,14 @@ aName      WD_WebEditControlProperties
 aIsDefault Y
 
 eTableEntry 4
-aZKey      130000004
+aZKey      130069820
+aExternalValue Autocomplete Off
+aInternalValue Autocomplete Off
 
 eTableEntry 4
-aZKey      68304448
-aExternalValue No Current Values
-aInternalValue No Current Values
+aZKey      130069822
+aExternalValue Number
+aInternalValue Number
 
 eTableEntry 4
 aZKey      92656445
@@ -515,6 +522,11 @@ aExternalValue Show/Hide Toggle2
 aInternalValue Show/Hide Toggle2
 
 eTableEntry 4
+aZKey      130069818
+aExternalValue Menu Action List
+aInternalValue Menu Action List
+
+eTableEntry 4
 aZKey      68304372
 aExternalValue Repeating Group
 aInternalValue Repeating Group
@@ -580,6 +592,16 @@ aExternalValue Edit
 aInternalValue Edit
 
 eTableEntry 4
+aZKey      130069825
+aExternalValue Number (Used with Edit)
+aInternalValue Number
+
+eTableEntry 4
+aZKey      90249868
+aExternalValue Wrap
+aInternalValue WRAP
+
+eTableEntry 4
 aZKey      68304443
 aExternalValue Multiline
 aInternalValue Multiline
@@ -593,11 +615,6 @@ eTableEntry 4
 aZKey      68442680
 aExternalValue Absolute Width
 aInternalValue Absolute Width
-
-eTableEntry 4
-aZKey      90249868
-aExternalValue Wrap
-aInternalValue WRAP
 
 eTableEntry 4
 aZKey      90768599
@@ -1830,6 +1847,11 @@ aExternalValue Start Jasper PDF Report
 aInternalValue 48
 
 eTableEntry 4
+aZKey      130069821
+aExternalValue Start Jasper XLS File
+aInternalValue 49
+
+eTableEntry 4
 aZKey      4847905
 aExternalValue Replace Dialog with Dialog
 aInternalValue 51
@@ -1963,6 +1985,6 @@ aType      13
 aLastUpdateDate 19950908094926000
 aLastCheckInDate 19951102203051110
 
-i202       199
-i205       199
-i360       199
+i205       202
+i208       202
+i364       202

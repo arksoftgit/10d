@@ -6197,13 +6197,13 @@ fnSysCloseFileWithControl( LPTASK lpTask,
    if ( lpOwningTask == lpTask )
    {
       zLONG lProcessID = SysGetProcessID( 0 );
-
+/*
       if ( lpTask != zGETPTR( AnchorBlock->hMainTask ) ) // this trace causes problems when starting OE
       {
          TraceLine( "fnSysCloseFileWithControl %s   Handle: 0x%08x   Task: 0x%08x   Process: 0x%08x:0x%08x",
                     lpOpenFile->szFileName, lFileHandle, lpTask, lProcessID, lpOpenFile->lProcessID );
       }
-
+*/
       if ( lpOpenFile->lProcessID == lProcessID )
          nRC = CloseHandle( (HANDLE) lFileHandle ) ? 0 : zCALL_ERROR;
    }

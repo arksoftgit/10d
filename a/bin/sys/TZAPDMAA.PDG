@@ -1,4 +1,4 @@
-z1000-Zeidon    TZAPDMAA TZDGSRCO 10/23/15   15:16:43 1.0a2    
+z1000-Zeidon    TZAPDMAA TZDGSRCO 08/23/16   10:34:13 1.0a2   
 eDomainGroup 1
 aZKey      90000023
 aName      TZAPDMAA
@@ -32,7 +32,7 @@ eDomain    2
 aZKey      110003499
 aName      ZKey
 aDomainType E
-aJavaClass com.quinsoft.zeidon.domains.StaticTableDomain
+aJavaClass com.quinsoft.zeidon.domains.IntegerDomain
 aDataType  L
 aContextRestriction N
 

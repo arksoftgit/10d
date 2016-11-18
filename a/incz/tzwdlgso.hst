@@ -24,6 +24,7 @@ zLONG  lStructSize;
    zCHAR WEB_PageBackgroundInclude[ 255 ];
    zCHAR WEB_NoAutoLogOut[ 2 ];
    zCHAR WEB_ImportInclude[ 255 ];
+   zCHAR WEB_Logout[ 255 ];
    zCHAR LastSyncDate[ 7 ];
    zCHAR wOriginalViewName[ 255 ];
    zCHAR wNewViewName[ 255 ];
@@ -108,6 +109,7 @@ zLONG  lStructSize;
    zCHAR WEB_JSPGenerationPositioning[ 2 ];
    zCHAR WEB_RegisterZeidonWindow[ 2 ];
    zCHAR WEB_UnregisterZeidonWindow[ 2 ];
+   zCHAR WEB_Logout[ 255 ];
    zLONG BarID;
    zCHAR CaptionNLS_Text[ 255 ];
    zLONG ControlTagCounter;
@@ -174,6 +176,9 @@ zLONG  lStructSize;
    zCHAR WebNoGridDataMsgClass[ 255 ];
    zCHAR WebreCAPTCHAPublicKey[ 255 ];
    zCHAR WebreCAPTCHAPrivateKey[ 255 ];
+   zCHAR WebHTML5Attribute[ 255 ];
+   zCHAR WebPlaceholder[ 255 ];
+   zCHAR MenuName[ 255 ];
    zCHAR DIL_Inherited[ 255 ];
    zCHAR NLS_Text[ 255 ];
    zCHAR NLS_DIL_Text[ 255 ];
@@ -250,6 +255,9 @@ zLONG  lStructSize;
    zCHAR TextUnderline[ 2 ];
    zCHAR WebCtrlLabelLink[ 255 ];
    zCHAR WebSelectSetName[ 255 ];
+   zCHAR WebHTML5Attribute[ 255 ];
+   zCHAR WebPlaceholder[ 255 ];
+   zCHAR MenuName[ 255 ];
 
 unsigned char CheckByte;
 
@@ -1108,6 +1116,7 @@ zLONG  lStructSize;
    zCHAR Tag[ 33 ];
    zLONG ZKey;
    zCHAR CSS_Class[ 255 ];
+   zCHAR WebHTML5Attribute[ 255 ];
 
 unsigned char CheckByte;
 
@@ -1132,6 +1141,7 @@ zLONG  lStructSize;
    zLONG SeqNo_Option;
    zCHAR NLS_Text[ 255 ];
    zCHAR CSS_Class[ 255 ];
+   zCHAR WebHTML5Attribute[ 255 ];
 
 unsigned char CheckByte;
 
@@ -1156,6 +1166,7 @@ zLONG  lStructSize;
    zLONG SeqNo_Option;
    zCHAR NLS_Text[ 255 ];
    zCHAR CSS_Class[ 255 ];
+   zCHAR WebHTML5Attribute[ 255 ];
 
 unsigned char CheckByte;
 

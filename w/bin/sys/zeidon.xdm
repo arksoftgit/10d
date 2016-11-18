@@ -1,4 +1,4 @@
-z1000-Zeidon    ZEIDON   TZDMXGPO 12/08/15   12:32:01 1.0a2    
+z1000-Zeidon    ZEIDON   TZDMXGPO 11/17/16   15:59:10 1.0a2   
 eDomainGroup 1
 aName      Zeidon9B
 
@@ -5798,6 +5798,11 @@ aExternalValue Start Jasper PDF Report
 aInternalValue 48
 
 eTableEntry 4
+aZKey      130069821
+aExternalValue Start Jasper XLS File
+aInternalValue 49
+
+eTableEntry 4
 aZKey      4847905
 aExternalValue Replace Dialog with Dialog
 aInternalValue 51
@@ -6615,12 +6620,14 @@ aName      WD_WebEditControlProperties
 aIsDefault Y
 
 eTableEntry 4
-aZKey      130000004
+aZKey      130069820
+aExternalValue Autocomplete Off
+aInternalValue Autocomplete Off
 
 eTableEntry 4
-aZKey      68304448
-aExternalValue No Current Values
-aInternalValue No Current Values
+aZKey      130069822
+aExternalValue Number
+aInternalValue Number
 
 eTableEntry 4
 aZKey      92656445
@@ -6687,6 +6694,11 @@ aZKey      89581085
 aExternalValue Filter Rows (wHideTableRow='Y')
 aInternalValue Filter Rows
 
+eTableEntry 4
+aZKey      130069819
+aExternalValue Generate as <ul> List
+aInternalValue Gen As List
+
 eDomain    2
 aJavaClass com.quinsoft.zeidon.domains.StaticTableDomain
 aZKey      68304279
@@ -6713,6 +6725,16 @@ aExternalValue Edit
 aInternalValue Edit
 
 eTableEntry 4
+aZKey      130069825
+aExternalValue Number (Used with Edit)
+aInternalValue Number
+
+eTableEntry 4
+aZKey      90249868
+aExternalValue Wrap
+aInternalValue WRAP
+
+eTableEntry 4
 aZKey      68304443
 aExternalValue Multiline
 aInternalValue Multiline
@@ -6726,11 +6748,6 @@ eTableEntry 4
 aZKey      68442680
 aExternalValue Absolute Width
 aInternalValue Absolute Width
-
-eTableEntry 4
-aZKey      90249868
-aExternalValue Wrap
-aInternalValue WRAP
 
 eTableEntry 4
 aZKey      90768599
@@ -6811,6 +6828,11 @@ eTableEntry 4
 aZKey      130069816
 aExternalValue Show/Hide Toggle2
 aInternalValue Show/Hide Toggle2
+
+eTableEntry 4
+aZKey      130069818
+aExternalValue Menu Action List
+aInternalValue Menu Action List
 
 eTableEntry 4
 aZKey      68304372

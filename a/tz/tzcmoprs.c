@@ -389,7 +389,7 @@ InitializeLPLR( zVIEW  vSubtask,
    LPTASK lpTask;
    zSHORT nRC;
 
-   TraceLineS("*** InitializeLPLR *** ", "");
+   //TraceLineS("*** InitializeLPLR *** ", "");
 
    // Check to make sure that the Workstation Administration tool is not up.
    lpTask = 0;

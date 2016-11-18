@@ -13,6 +13,8 @@ CreateTabIndexString( VIEW vDialog BASED ON LOD TZWDLGSO,
    VIEW vDialogRoot BASED ON LOD TZWDLGSO
    STRING ( 8 ) szWork
    INTEGER      lTabIndex
+   
+   TraceLineS("In CreateTabIndexString ---- ", "")
 
    GET VIEW vDialogRoot NAMED "vDialogRoot"
    lTabIndex = vDialog.Control.SyncKey
@@ -41,43 +43,90 @@ BuildMainNavSection( VIEW vDialog,
                      VIEW vDialogRoot BASED ON LOD TZWDLGSO,
                      INTEGER lFile )
 
+   VIEW vCurrentDlgRoot BASED ON LOD TZWDLGSO
    STRING ( 10000 ) szWriteBuffer
-   STRING ( 50 )    szNavigationTitle
+   STRING ( 500 )   szNavigationTitle
+   STRING ( 500 )   szText
+   STRING ( 5 )     szSrch
    STRING ( 256 )   szHTML_Address
+   STRING ( 256 )   szHTML5Attr
    STRING ( 256 )   szClass
    STRING ( 50 )    szDialogName
    STRING ( 50 )    szMenuName
    STRING ( 34 )    szActionName
+   STRING ( 1 )     szWindowIsjMobile
    INTEGER          ActionType
    SHORT            nRC
+   
+   // We need the root of the dialog being generated but sometimes the passed vDialogRoot is
+   // the root of a different dialog (if we are reusing menu from a different dialog). 
+   // Get the root of the dialog being generated.
+   GET VIEW vCurrentDlgRoot NAMED "DialogRoot"
+   
+   IF vDialog.WndStyle.Tag = "jMobile Window"
+      szWindowIsjMobile = "Y"
+   ELSE
+      szWindowIsjMobile = ""
+   END      
 
    // MAIN NAVIGATION BAR
 
    szWriteBuffer = "<!-- Main Navigation *********************** -->"
    WL_QC( vDialogRoot, lFile, szWriteBuffer, "^", 0 )
-   IF vDialogRoot.Menu EXISTS
-      szMenuName = vDialogRoot.Menu.Tag
+   IF vDialogRoot.Menu EXISTS 
+      szMenuName = vDialogRoot.Menu.Tag 
       IF vDialogRoot.Menu.CSS_Class != ""
-         szClass = " class=^" + vDialogRoot.Menu.CSS_Class + "^ "
+         szClass = " class=^" + vDialogRoot.Menu.CSS_Class + "^ " 
       END
    END
-   szWriteBuffer = "<div id=^mainnavigation^" + szClass + ">"
+
+   // KJS 02/23/16 - We have added a field for HTML5 attributes (this could be for jQuery Mobile or whatever extra attributes we want).
+   // It is simply a string and we will add it to different controls like <div> or <input> etc.
+   szHTML5Attr = ""
+   IF vDialogRoot.Menu.WebHTML5Attribute != ""
+      szHTML5Attr = " " + vDialogRoot.Menu.WebHTML5Attribute + " "
+   END
+     
+   IF szWindowIsjMobile = "Y"
+      szWriteBuffer = "<div data-role=^navbar^ id=^div" + szMenuName + "^ " + szClass + ">"
+   ELSE 
+      szWriteBuffer = "<div id=^mainnavigation^" + szHTML5Attr + szClass + ">"
+   END
    WL_QC( vDialogRoot, lFile, szWriteBuffer, "^", 0 )
    //szWriteBuffer = "   <ul id=^" + szMenuName + "^ name=^" + szMenuName + "^" + szClass + ">"
-   szWriteBuffer = "   <ul id=^" + szMenuName + "^ name=^" + szMenuName + "^ >"
+   szWriteBuffer = "   <ul id=^" + szMenuName + "^ name=^" + szMenuName + "^" + szHTML5Attr + " >"
    WL_QC( vDialogRoot, lFile, szWriteBuffer, "^", 0 )
 
    FOR EACH vDialogRoot.OptAct WITHIN vDialogRoot.Menu
-      szNavigationTitle = vDialogRoot.Option.Text
+      //szNavigationTitle = vDialogRoot.Option.Text
+      // KJS 09/30/16 - Language Conversion.
+      // I'm not sure that I want to use language conversion on mapped fields, but then again, I'm thinking maybe we should.
+      // So for now, I am always using, if the flag is set.
+      IF vCurrentDlgRoot.Dialog.wWebUsesLanguageConversion = "Y"
+         szText = vDialogRoot.Option.Text
+         zSearchAndReplace( szText, 500, "\", "\\" )
+         szSrch = "\" + QUOTES 
+         zSearchAndReplace( szText, 500, QUOTES, szSrch )
+         szNavigationTitle = "<%=LangConv.getLanguageText(^" + szText + "^)%>" 
+      ELSE
+         szNavigationTitle = vDialogRoot.Option.Text
+      END
       szDialogName = vDialogRoot.OptAct.DialogName
       IF szDialogName = ""
          szDialogName = "NoDialogName"
       END
-
+      
       IF vDialogRoot.Option.CSS_Class != ""
          szClass = " class=^" + vDialogRoot.Option.CSS_Class + "^ "
       ELSE
          szClass = ""
+      END
+      
+      // KJS 02/23/16 - We have added a field for HTML5 attributes (this could be for jQuery Mobile or whatever extra attributes we want).
+      // It is simply a string and we will add it to different controls like <div> or <input> etc.
+      szHTML5Attr = ""
+      IF vDialogRoot.Option.WebHTML5Attribute != ""
+         szHTML5Attr = " " + vDialogRoot.Option.WebHTML5Attribute + " "
       END
 
       IF vDialogRoot.OptAct EXISTS
@@ -97,11 +146,15 @@ BuildMainNavSection( VIEW vDialog,
             SET CURSOR FIRST vDialogRoot.Action WHERE vDialogRoot.Action.ZKey = vDialogRoot.OptAct.ZKey
             szHTML_Address = vDialogRoot.Action.WebHTML_TransferAddress
          END
-         szWriteBuffer = "       <li id=^l" + szActionName + "^ name=^l" + szActionName + "^ " + szClass + "><a href=^" + szHTML_Address + "^ target=^_blank^>" + szNavigationTitle + "</a></li>"
+         szWriteBuffer = "       <li id=^l" + szActionName + "^ name=^l" + szActionName + "^ " + szHTML5Attr + szClass + "><a href=^" + szHTML_Address + "^ target=^_blank^>" + szNavigationTitle + "</a></li>"
       ELSE
          // Regular Action
-
-         szWriteBuffer = "       <li id=^l" + szActionName + "^ name=^l" + szActionName + "^ " + szClass + "><a href=^#^ onclick=^" + szActionName + "()^>" + szNavigationTitle + "</a></li>"
+         // I know in the case of jMobile, we want the class and szHTML5Attr to be on the <a href not the <li. So I am going to change that in this instance...
+         IF szWindowIsjMobile = "Y"
+            szWriteBuffer = "       <li id=^l" + szActionName + "^ name=^l" + szActionName + "^ ><a href=^#^ " + szHTML5Attr + szClass + " onclick=^" + szActionName + "()^>" + szNavigationTitle + "</a></li>"
+         ELSE 
+            szWriteBuffer = "       <li id=^l" + szActionName + "^ name=^l" + szActionName + "^ " + szHTML5Attr + szClass + "><a href=^#^ onclick=^" + szActionName + "()^>" + szNavigationTitle + "</a></li>"
+         END
       END
       WL_QC( vDialogRoot, lFile, szWriteBuffer, "^", 0 )
    END
@@ -117,8 +170,10 @@ BuildMainNavSection( VIEW vDialog,
    // Include the banner at the bottom of the menu options.
    //szWriteBuffer = "<div class=^noprint^>"
    //WL_QC( vDialogRoot, lFile, szWriteBuffer, "^", 0 )
-   szWriteBuffer = "<%@include file=^./include/topmenuend.inc^ %>"
-   WL_QC( vDialogRoot, lFile, szWriteBuffer, "^", 0 )
+   IF szWindowIsjMobile = ""
+      szWriteBuffer = "<%@include file=^./include/topmenuend.inc^ %>"
+      WL_QC( vDialogRoot, lFile, szWriteBuffer, "^", 0 )
+   END
    // KJS 07/31/08 - I am taking out the following inc file.  I am
    // currently thinking that anything in this inc file could simply
    // be put in topmenuend.inc and that might seem a little simpler.
@@ -1931,7 +1986,14 @@ GenJSP_CrteEditBox( VIEW vDialog BASED ON LOD TZWDLGSO,
    IF szTitle != ""
       szTitleHTML = szTitleHTML + " placeholder=^" + szTitle + "^"
    END
-
+   // Doug and I both added a placeholder attribute. Not sure what to do since I know that Aadit uses WebPlaceholder.
+   IF szTitle = ""
+      szTitle = vDialog.Control.WebPlaceholder
+      IF szTitle != ""
+         szTitleHTML = szTitleHTML + " placeholder=^" + szTitle + "^"
+      END
+   END
+   
    CreateDisabledString( vDialog, szDisabled )
    szClass = vDialog.Control.CSS_Class
    IF szClass = ""
