@@ -15,15 +15,21 @@ extern "C"
 //:                     VIEW vDialogRoot BASED ON LOD TZWDLGSO,
 //:                     INTEGER lFile )
 
-//:   STRING ( 10000 ) szWriteBuffer
+//:   VIEW vCurrentDlgRoot BASED ON LOD TZWDLGSO
 zOPER_EXPORT zSHORT OPERATION
 BuildMainNavSection( zVIEW     vDialog,
                      zVIEW     vDialogRoot,
                      zLONG     lFile )
 {
+   zVIEW     vCurrentDlgRoot = 0; 
+   //:STRING ( 10000 ) szWriteBuffer
    zCHAR     szWriteBuffer[ 10001 ] = { 0 }; 
-   //:STRING ( 50 )    szNavigationTitle
-   zCHAR     szNavigationTitle[ 51 ] = { 0 }; 
+   //:STRING ( 500 )   szNavigationTitle
+   zCHAR     szNavigationTitle[ 501 ] = { 0 }; 
+   //:STRING ( 500 )   szText
+   zCHAR     szText[ 501 ] = { 0 }; 
+   //:STRING ( 5 )     szSrch
+   zCHAR     szSrch[ 6 ] = { 0 }; 
    //:STRING ( 256 )   szHTML_Address
    zCHAR     szHTML_Address[ 257 ] = { 0 }; 
    //:STRING ( 256 )   szHTML5Attr
@@ -42,10 +48,10 @@ BuildMainNavSection( zVIEW     vDialog,
    zLONG     ActionType = 0; 
    //:SHORT            nRC
    zSHORT    nRC = 0; 
+   zSHORT    RESULT; 
    zSHORT    lTempInteger_0; 
    zCHAR     szTempString_0[ 255 ]; 
    zCHAR     szTempString_1[ 255 ]; 
-   zSHORT    RESULT; 
    zCHAR     szTempString_2[ 255 ]; 
    zCHAR     szTempString_3[ 255 ]; 
    zSHORT    lTempInteger_1; 
@@ -53,6 +59,12 @@ BuildMainNavSection( zVIEW     vDialog,
    zSHORT    lTempInteger_2; 
    zLONG     lTempInteger_3; 
 
+
+   //:// We need the root of the dialog being generated but sometimes the passed vDialogRoot is
+   //:// the root of a different dialog (if we are reusing menu from a different dialog). 
+   //:// Get the root of the dialog being generated.
+   //:GET VIEW vCurrentDlgRoot NAMED "DialogRoot"
+   RESULT = GetViewByName( &vCurrentDlgRoot, "DialogRoot", vDialog, zLEVEL_TASK );
 
    //:IF vDialog.WndStyle.Tag = "jMobile Window"
    if ( CompareAttributeToString( vDialog, "WndStyle", "Tag", "jMobile Window" ) == 0 )
@@ -151,8 +163,35 @@ BuildMainNavSection( zVIEW     vDialog,
    RESULT = SetCursorFirstEntity( vDialogRoot, "OptAct", "Menu" );
    while ( RESULT > zCURSOR_UNCHANGED )
    { 
-      //:szNavigationTitle = vDialogRoot.Option.Text
-      GetVariableFromAttribute( szNavigationTitle, 0, 'S', 51, vDialogRoot, "Option", "Text", "", 0 );
+      //://szNavigationTitle = vDialogRoot.Option.Text
+      //:// KJS 09/30/16 - Language Conversion.
+      //:// I'm not sure that I want to use language conversion on mapped fields, but then again, I'm thinking maybe we should.
+      //:// So for now, I am always using, if the flag is set.
+      //:IF vCurrentDlgRoot.Dialog.wWebUsesLanguageConversion = "Y"
+      if ( CompareAttributeToString( vCurrentDlgRoot, "Dialog", "wWebUsesLanguageConversion", "Y" ) == 0 )
+      { 
+         //:szText = vDialogRoot.Option.Text
+         GetVariableFromAttribute( szText, 0, 'S', 501, vDialogRoot, "Option", "Text", "", 0 );
+         //:zSearchAndReplace( szText, 500, "\", "\\" )
+         zSearchAndReplace( szText, 500, "\\", "\\\\" );
+         //:szSrch = "\" + QUOTES 
+         ZeidonStringCopy( szSrch, 1, 0, "\\", 1, 0, 6 );
+         ZeidonStringConcat( szSrch, 1, 0, QUOTES, 1, 0, 6 );
+         //:zSearchAndReplace( szText, 500, QUOTES, szSrch )
+         zSearchAndReplace( szText, 500, QUOTES, szSrch );
+         //:szNavigationTitle = "<%=LangConv.getLanguageText(^" + szText + "^)%>" 
+         ZeidonStringCopy( szNavigationTitle, 1, 0, "<%=LangConv.getLanguageText(^", 1, 0, 501 );
+         ZeidonStringConcat( szNavigationTitle, 1, 0, szText, 1, 0, 501 );
+         ZeidonStringConcat( szNavigationTitle, 1, 0, "^)%>", 1, 0, 501 );
+         //:ELSE
+      } 
+      else
+      { 
+         //:szNavigationTitle = vDialogRoot.Option.Text
+         GetVariableFromAttribute( szNavigationTitle, 0, 'S', 501, vDialogRoot, "Option", "Text", "", 0 );
+      } 
+
+      //:END
       //:szDialogName = vDialogRoot.OptAct.DialogName
       GetVariableFromAttribute( szDialogName, 0, 'S', 51, vDialogRoot, "OptAct", "DialogName", "", 0 );
       //:IF szDialogName = ""

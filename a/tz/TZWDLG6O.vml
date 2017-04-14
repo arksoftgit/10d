@@ -1010,9 +1010,9 @@ GenerateJSPJava( VIEW vDialog BASED ON LOD TZWDLGSO,
    WL_QC( vDialog, lFileJSP, szWriteBuffer, "^", 1 )
 
    SysGetDateTime( szTimestamp )
-   szWriteBuffer = "<%-- " + szFormName + " --%>"
-   //szWriteBuffer = "<%-- " + szFormName + "   Generate Timestamp: " + szTimestamp
-   //szWriteBuffer = szWriteBuffer + " --%>"
+// szWriteBuffer = "<%-- " + szFormName + " --%>" dks 2017.01.31 the following helps to keep track of what's loaded by Tomcat
+   szWriteBuffer = "<%-- " + szFormName + "   Generate Timestamp: " + szTimestamp
+   szWriteBuffer = szWriteBuffer + " --%>"
    WL_QC( vDialog, lFileJSP, szWriteBuffer, "^", 1 )
 
    szIOImport = ""
@@ -3265,7 +3265,7 @@ DKS_TRACE_END */
 
          // Determine if Action for the ActCtrl is for a PushBtn within a Grid or HyperText (not hyperlink)
          // or an image (Bitmap or BitmapBtn) within a Grid..
-         // KJS 11/10/12 - In GenJSPJ_Action we have already determined ifthis action is on a control within
+         // KJS 11/10/12 - In GenJSPJ_Action we have already determined if this action is on a control within
          // a grid or a repeating group.
          IF vDialog.Action.ParentIsGridOrGrp = "Y"
             szListButtonFlag = "Y"

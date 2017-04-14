@@ -1,9 +1,9 @@
-z1000-Zeidon    TZSIWK1O TZZOXODO                         08/24/16   08:07:15 1.0a2   
+z1000-Zeidon    TZSIWK1O TZZOXODO                         11/18/16   15:04:20 1.0a2   
 eOBJECT    1
 aNAME      TZSIWK1O
 aZKey      1328469
 aOPER_LIBNM TZSIWK1O
-aER_DATE   2016040810270253
+aER_DATE   2016082310530324
 
 eENTITY    2
 aNAME      WorkEntry
@@ -47,8 +47,8 @@ eATTRIB    4
 aNAME      ZKey
 aERATT_TOK 1321274
 aPERSIST   Y
-aAPDM_TOK  90000044
-aDOMAIN    Integer
+aAPDM_TOK  110003499
+aDOMAIN    ZKey
 aTYPE      L
 aLTH       4
 aKEY       Y
@@ -196,8 +196,8 @@ eATTRIB    5
 aNAME      ZKey
 aERATT_TOK 1321101
 aPERSIST   Y
-aAPDM_TOK  90000044
-aDOMAIN    Integer
+aAPDM_TOK  110003499
+aDOMAIN    ZKey
 aTYPE      L
 aLTH       4
 aKEY       Y
@@ -357,8 +357,8 @@ eATTRIB    6
 aNAME      ZKey
 aERATT_TOK 1321101
 aPERSIST   Y
-aAPDM_TOK  90000044
-aDOMAIN    Integer
+aAPDM_TOK  110003499
+aDOMAIN    ZKey
 aTYPE      L
 aLTH       4
 aKEY       Y
@@ -517,8 +517,8 @@ eATTRIB    6
 aNAME      ZKey
 aERATT_TOK 1321271
 aPERSIST   Y
-aAPDM_TOK  90000044
-aDOMAIN    Integer
+aAPDM_TOK  110003499
+aDOMAIN    ZKey
 aTYPE      L
 aLTH       4
 aKEY       Y
@@ -578,8 +578,8 @@ eATTRIB    5
 aNAME      ZKey
 aERATT_TOK 1321271
 aPERSIST   Y
-aAPDM_TOK  90000044
-aDOMAIN    Integer
+aAPDM_TOK  110003499
+aDOMAIN    ZKey
 aTYPE      L
 aLTH       4
 aKEY       Y
@@ -639,8 +639,8 @@ eATTRIB    4
 aNAME      ZKey
 aERATT_TOK 1320932
 aPERSIST   Y
-aAPDM_TOK  90000044
-aDOMAIN    Integer
+aAPDM_TOK  110003499
+aDOMAIN    ZKey
 aTYPE      L
 aLTH       4
 aKEY       Y
@@ -699,8 +699,8 @@ eATTRIB    5
 aNAME      ZKey
 aERATT_TOK 1320937
 aPERSIST   Y
-aAPDM_TOK  90000044
-aDOMAIN    Integer
+aAPDM_TOK  110003499
+aDOMAIN    ZKey
 aTYPE      L
 aLTH       4
 aKEY       Y
@@ -916,8 +916,8 @@ eATTRIB    6
 aNAME      ZKey
 aERATT_TOK 1320937
 aPERSIST   Y
-aAPDM_TOK  90000044
-aDOMAIN    Integer
+aAPDM_TOK  110003499
+aDOMAIN    ZKey
 aTYPE      L
 aLTH       4
 aKEY       Y
@@ -1119,8 +1119,8 @@ eATTRIB    6
 aNAME      ZKey
 aERATT_TOK 1321101
 aPERSIST   Y
-aAPDM_TOK  90000044
-aDOMAIN    Integer
+aAPDM_TOK  110003499
+aDOMAIN    ZKey
 aTYPE      L
 aLTH       4
 aKEY       Y
@@ -1279,8 +1279,8 @@ eATTRIB    7
 aNAME      ZKey
 aERATT_TOK 1321101
 aPERSIST   Y
-aAPDM_TOK  90000044
-aDOMAIN    Integer
+aAPDM_TOK  110003499
+aDOMAIN    ZKey
 aTYPE      L
 aLTH       4
 aKEY       Y

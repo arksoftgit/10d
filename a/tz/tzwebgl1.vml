@@ -5095,7 +5095,9 @@ GenJSP_InputMapRecurs( VIEW vDialog BASED ON LOD TZWDLGSO,
                WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
                szWriteBuffer = "            }"
                WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
-               szWriteBuffer = "            if ( strQuestionType.equals(^Multiple Choice Single Response^) || strQuestionType.equals(^Multiple Choice Multiple Response^) )"
+               szWriteBuffer = "            if ( strQuestionType.equals(^Multiple Choice Single Response^) ||"
+               WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
+               szWriteBuffer = "                 strQuestionType.equals(^Multiple Choice Multiple Response^) )"
                WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
                szWriteBuffer = "            {"
                WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
@@ -6652,7 +6654,7 @@ END
 **    OPERATION: GenJSP_TableExport
 **    This function loops through all the tables on the page and creates a javascript function for each
 **    that allows the user to view the table export data (tab delimited data from the table for exporting
-**    g into excel that is created in a <textarea>).
+**    into excel that is created in a <textarea>).
 **
 *************************************************************************************************/
 GLOBAL OPERATION

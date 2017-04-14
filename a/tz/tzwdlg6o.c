@@ -695,12 +695,14 @@ oTZWDLGSO_GenerateJSPJava( zVIEW     vDialog,
 
    //:SysGetDateTime( szTimestamp )
    SysGetDateTime( szTimestamp, zsizeof( szTimestamp ) );
-   //:szWriteBuffer = "<%-- " + szFormName + " --%>"
+   //:// szWriteBuffer = "<%-- " + szFormName + " --%>" dks 2017.01.31 the following helps to keep track of what's loaded by Tomcat
+   //:szWriteBuffer = "<%-- " + szFormName + "   Generate Timestamp: " + szTimestamp
    ZeidonStringCopy( szWriteBuffer, 1, 0, "<%-- ", 1, 0, 10001 );
    ZeidonStringConcat( szWriteBuffer, 1, 0, szFormName, 1, 0, 10001 );
+   ZeidonStringConcat( szWriteBuffer, 1, 0, "   Generate Timestamp: ", 1, 0, 10001 );
+   ZeidonStringConcat( szWriteBuffer, 1, 0, szTimestamp, 1, 0, 10001 );
+   //:szWriteBuffer = szWriteBuffer + " --%>"
    ZeidonStringConcat( szWriteBuffer, 1, 0, " --%>", 1, 0, 10001 );
-   //://szWriteBuffer = "<%-- " + szFormName + "   Generate Timestamp: " + szTimestamp
-   //://szWriteBuffer = szWriteBuffer + " --%>"
    //:WL_QC( vDialog, lFileJSP, szWriteBuffer, "^", 1 )
    WL_QC( vDialog, lFileJSP, szWriteBuffer, "^", 1 );
 
@@ -5068,7 +5070,7 @@ oTZWDLGSO_GenerateJSPJava( zVIEW     vDialog,
 
          //:// Determine if Action for the ActCtrl is for a PushBtn within a Grid or HyperText (not hyperlink)
          //:// or an image (Bitmap or BitmapBtn) within a Grid..
-         //:// KJS 11/10/12 - In GenJSPJ_Action we have already determined ifthis action is on a control within
+         //:// KJS 11/10/12 - In GenJSPJ_Action we have already determined if this action is on a control within
          //:// a grid or a repeating group.
          //:IF vDialog.Action.ParentIsGridOrGrp = "Y"
          if ( CompareAttributeToString( vDialog, "Action", "ParentIsGridOrGrp", "Y" ) == 0 )

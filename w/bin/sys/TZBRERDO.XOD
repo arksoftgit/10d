@@ -1,9 +1,9 @@
-z1000-Zeidon    TZBRERDO TZZOXODO                         08/24/16   08:07:09 1.0a2   
+z1000-Zeidon    TZBRERDO TZZOXODO                         11/18/16   15:04:11 1.0a2   
 eOBJECT    1
 aNAME      TZBRERDO
 aZKey      1330494
 aOPER_LIBNM TZBRERDO
-aER_DATE   2016040810270253
+aER_DATE   2016082310530324
 
 eENTITY    2
 aNAME      Z_MetaDef
@@ -28,8 +28,8 @@ eATTRIB    3
 aNAME      ZKey
 aERATT_TOK 1321861
 aPERSIST   Y
-aAPDM_TOK  90000044
-aDOMAIN    Integer
+aAPDM_TOK  110003499
+aDOMAIN    ZKey
 aTYPE      L
 aLTH       4
 aKEY       Y
@@ -108,8 +108,8 @@ eATTRIB    4
 aNAME      ZKey
 aERATT_TOK 1320833
 aPERSIST   Y
-aAPDM_TOK  90000044
-aDOMAIN    Integer
+aAPDM_TOK  110003499
+aDOMAIN    ZKey
 aTYPE      L
 aLTH       4
 aKEY       Y
@@ -154,8 +154,8 @@ eATTRIB    5
 aNAME      ZKey
 aERATT_TOK 1320862
 aPERSIST   Y
-aAPDM_TOK  90000044
-aDOMAIN    Integer
+aAPDM_TOK  110003499
+aDOMAIN    ZKey
 aTYPE      L
 aLTH       4
 aKEY       Y
@@ -288,8 +288,8 @@ eATTRIB    6
 aNAME      ZKey
 aERATT_TOK 1320876
 aPERSIST   Y
-aAPDM_TOK  90000044
-aDOMAIN    Integer
+aAPDM_TOK  110003499
+aDOMAIN    ZKey
 aTYPE      L
 aLTH       4
 aKEY       Y
@@ -376,8 +376,8 @@ eATTRIB    7
 aNAME      ZKey
 aERATT_TOK 1320883
 aPERSIST   Y
-aAPDM_TOK  90000044
-aDOMAIN    Integer
+aAPDM_TOK  110003499
+aDOMAIN    ZKey
 aTYPE      L
 aLTH       4
 aKEY       Y
@@ -511,8 +511,8 @@ eATTRIB    8
 aNAME      ZKey
 aERATT_TOK 1320876
 aPERSIST   Y
-aAPDM_TOK  90000044
-aDOMAIN    Integer
+aAPDM_TOK  110003499
+aDOMAIN    ZKey
 aTYPE      L
 aLTH       4
 aKEY       Y
@@ -611,8 +611,8 @@ eATTRIB    9
 aNAME      ZKey
 aERATT_TOK 1320862
 aPERSIST   Y
-aAPDM_TOK  90000044
-aDOMAIN    Integer
+aAPDM_TOK  110003499
+aDOMAIN    ZKey
 aTYPE      L
 aLTH       4
 aKEY       Y

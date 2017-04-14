@@ -5754,7 +5754,9 @@ GenJSPJ_InputMapRecurs( VIEW vDialog BASED ON LOD TZWDLGSO,
                WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
                szWriteBuffer = "            }"
                WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
-               szWriteBuffer = "            if ( strQuestionType.equals(^Multiple Choice Single Response^) || strQuestionType.equals(^Multiple Choice Multiple Response^) )"
+               szWriteBuffer = "            if ( strQuestionType.equals(^Multiple Choice Single Response^) ||"
+               WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
+               szWriteBuffer = "                 strQuestionType.equals(^Multiple Choice Multiple Response^) )"
                WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
                szWriteBuffer = "            {"
                WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
@@ -7300,10 +7302,10 @@ GenJSPJ_Action( VIEW vDialog     BASED ON LOD TZWDLGSO,
             WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
          END
 
-	 // This is code that Doug had intead of my above code ... 
-	 // since I don't understand it at the moment, I am putting here but it's commentted out.
-	 
-	/*
+         // This is code that Doug had intead of my above code ... 
+         // since I don't understand it at the moment, I am putting here but it's commentted out.
+
+         /*
          // We don't want the getViewByName if it was generated above with the code:
          // IF nGridParent = 1 OR szRepeatingGroupFlag = "Y"
          IF nGridParent = 1 OR szRepeatingGroupFlag = "Y"
@@ -7316,7 +7318,7 @@ GenJSPJ_Action( VIEW vDialog     BASED ON LOD TZWDLGSO,
             szWriteBuffer = "         EntityCursor cursor = " + szViewName + "Auto.cursor( ^" + szEntityName + "^ );"
             WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
          END
-	*/
+         */
          
          szWriteBuffer = "      EntityCursor cursor = " + szViewName + ".cursor( ^" + szEntityName + "^ );"
          WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )

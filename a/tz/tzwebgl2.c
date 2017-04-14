@@ -13410,8 +13410,12 @@ GenJSPJ_InputMapRecurs( zVIEW     vDialog,
                               ZeidonStringCopy( szWriteBuffer, 1, 0, "            }", 1, 0, 10001 );
                               //:WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
                               WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 );
-                              //:szWriteBuffer = "            if ( strQuestionType.equals(^Multiple Choice Single Response^) || strQuestionType.equals(^Multiple Choice Multiple Response^) )"
-                              ZeidonStringCopy( szWriteBuffer, 1, 0, "            if ( strQuestionType.equals(^Multiple Choice Single Response^) | strQuestionType.equals(^Multiple Choice Multiple Response^) )", 1, 0, 10001 );
+                              //:szWriteBuffer = "            if ( strQuestionType.equals(^Multiple Choice Single Response^) ||"
+                              ZeidonStringCopy( szWriteBuffer, 1, 0, "            if ( strQuestionType.equals(^Multiple Choice Single Response^) |", 1, 0, 10001 );
+                              //:WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
+                              WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 );
+                              //:szWriteBuffer = "                 strQuestionType.equals(^Multiple Choice Multiple Response^) )"
+                              ZeidonStringCopy( szWriteBuffer, 1, 0, "                 strQuestionType.equals(^Multiple Choice Multiple Response^) )", 1, 0, 10001 );
                               //:WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
                               WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 );
                               //:szWriteBuffer = "            {"
@@ -16048,6 +16052,23 @@ GenJSPJ_Action( zVIEW     vDialog,
 
          //:END
 
+         //:// This is code that Doug had intead of my above code ... 
+         //:// since I don't understand it at the moment, I am putting here but it's commentted out.
+
+         //:/*
+         //:// We don't want the getViewByName if it was generated above with the code:
+         //:// IF nGridParent = 1 OR szRepeatingGroupFlag = "Y"
+         //:IF nGridParent = 1 OR szRepeatingGroupFlag = "Y"
+         //:   szWriteBuffer = "         EntityCursor cursor = " + szViewName + ".cursor( ^" + szEntityName + "^ );"
+         //:   WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
+         //:ELSE
+         //:   // dks 2016.04.15 ... rather than debugging when this improperly occurs, changing the name of the view by adding Auto
+         //:   szWriteBuffer = "         View " + szViewName + "Auto = task.getViewByName( ^" + szViewName + "^ );"
+         //:   WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
+         //:   szWriteBuffer = "         EntityCursor cursor = " + szViewName + "Auto.cursor( ^" + szEntityName + "^ );"
+         //:   WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
+         //:END
+         //:*/
 
          //:szWriteBuffer = "      EntityCursor cursor = " + szViewName + ".cursor( ^" + szEntityName + "^ );"
          ZeidonStringCopy( szWriteBuffer, 1, 0, "      EntityCursor cursor = ", 1, 0, 10001 );

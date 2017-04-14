@@ -1,9 +1,9 @@
-z1000-Zeidon    TZBRERLO TZZOXODO                         08/24/16   08:07:09 1.0a2   
+z1000-Zeidon    TZBRERLO TZZOXODO                         11/18/16   15:04:11 1.0a2   
 eOBJECT    1
 aNAME      TZBRERLO
 aZKey      90126485
 aOPER_LIBNM TZBRERLO
-aER_DATE   2016040810270253
+aER_DATE   2016082310530324
 
 eENTITY    2
 aNAME      ER_Entity
@@ -53,8 +53,8 @@ eATTRIB    3
 aNAME      ZKey
 aERATT_TOK 1320862
 aPERSIST   Y
-aAPDM_TOK  90000044
-aDOMAIN    Integer
+aAPDM_TOK  110003499
+aDOMAIN    ZKey
 aTYPE      L
 aLTH       4
 aKEY       Y

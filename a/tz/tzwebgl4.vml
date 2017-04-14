@@ -1541,7 +1541,6 @@ GenJSPJ_CrteCtrlsRadio( VIEW vDialog BASED ON LOD TZWDLGSO,
 
 END
 
-
 /*************************************************************************************************
 **
 **    OPERATION: GenJSPJ_CrteGroupTable
@@ -2361,11 +2360,11 @@ GenJSPJ_CrteGroupTable( VIEW vDialog BASED ON LOD TZWDLGSO,
                szContextName = ""
             END
 
-            IF vDialog.CtrlMapER_Domain.MaxStringLth > 254
-               lMaxStringLength = vDialog.CtrlMapER_Domain.MaxStringLth
-               szMaxStringLength = lMaxStringLength
-            ELSE
+            lMaxStringLength = vDialog.CtrlMapER_Domain.MaxStringLth
+            IF lMaxStringLength <= 0
                szMaxStringLength = "254"
+            ELSE
+               szMaxStringLength = lMaxStringLength
             END
 
             szWriteBuffer = "            strErrorMapValue = " +
@@ -2439,11 +2438,12 @@ GenJSPJ_CrteGroupTable( VIEW vDialog BASED ON LOD TZWDLGSO,
                szTinyMCEFlag = "Y"
             END
 
+            IF lMaxStringLength <= 0
+               szMaxStringLength = "20"
+            ELSE
+               szMaxStringLength = lMaxStringLength
+            END
             IF vDialog.Control.WebCtrlType = "wysiwygEditor" OR szTinyMCEFlag = "Y"
-
-            // CreateTabIndexString( vDialog, szTabIndex )
-            // CreateAbsolStyleString( vDialog, szAbsoluteStyle, lOffsetX, lOffsetY, "" )
-            // szAbsoluteStyle = szAbsoluteStyle + szTabIndex
 
                szClass = vDialog.Control.CSS_Class
                IF szClass = ""
@@ -2456,8 +2456,7 @@ GenJSPJ_CrteGroupTable( VIEW vDialog BASED ON LOD TZWDLGSO,
                   WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
                   szWriteBuffer = "<div class=^" + szClass + "^ " + szTitleHTML + " style=^width:" + szSize + "px;height:" + szHeight + "px;position:absolute;left:0px;top:0px;^><%=strErrorMapValue%></div></div>"
                ELSE
-                  szWriteBuffer = "<textarea" + szHTMLCtrlID +
-                                  "class=^" + szClass + "^ " + szTitleHTML + szStyle + ">" +
+                  szWriteBuffer = "<textarea" + szHTMLCtrlID + "class=^" + szClass + "^ maxlength=^" + szMaxStringLength + "^ " + szTitleHTML + szStyle + ">" +
                                // "^ rows="15" cols="80" style="width: 80%">" +
                                   "<%=strErrorMapValue%></textarea>"
                END
@@ -2467,8 +2466,7 @@ GenJSPJ_CrteGroupTable( VIEW vDialog BASED ON LOD TZWDLGSO,
                lTemp = vDialog.Control.Subtype
                lTemp = IsFlagSequenceSet( lTemp, zCONTROL_DISABLED )
                IF lTemp = 0
-                  szWriteBuffer = "<textarea" + szHTMLCtrlID + szTitleHTML +
-                                  "class=^" + szClass + "^ " + szStyle + szTabIndex + " wrap=^wrap^>" +
+                  szWriteBuffer = "<textarea" + szHTMLCtrlID + "class=^" + szClass + "^ maxlength=^" + szMaxStringLength + "^ " + szTitleHTML + szStyle + szTabIndex + " wrap=^wrap^>" +
                                   "<%=strErrorMapValue%></textarea>"
                ELSE
                   zAppendQuotedString( szStyle, "text-overflow:hidden;background-color:lightgray;", "style=", "^" )
@@ -2685,12 +2683,13 @@ GenJSPJ_CrteEditBox( VIEW vDialog BASED ON LOD TZWDLGSO,
       szWriteBuffer = "            {"
       WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
 
-      IF vDialog.CtrlMapER_Domain.MaxStringLth > 254
-         lMaxStringLength = vDialog.CtrlMapER_Domain.MaxStringLth
-         szMaxStringLength = lMaxStringLength
-      ELSE
+      lMaxStringLength = vDialog.CtrlMapER_Domain.MaxStringLth
+      IF lMaxStringLength <= 0
          szMaxStringLength = "254"
+      ELSE
+         szMaxStringLength = lMaxStringLength
       END
+
       szWriteBuffer = "               strErrorMapValue = " +
                       vDialog.CtrlMapView.Name + ".cursor( ^" +
                       vDialog.CtrlMapRelatedEntity.Name + "^ ).getAttribute( ^" +
@@ -2911,7 +2910,13 @@ GenJSPJ_CrteEditBox( VIEW vDialog BASED ON LOD TZWDLGSO,
    END
 
    CreateDisabledString( vDialog, szDisabled )
-   szWriteBuffer = "<input" + szClass + " name=^" + szCtrlTag + szRepeatGrpKey + "^ id=^" + szCtrlTag + szRepeatGrpKey + "^ " + szDisabled +
+   IF lMaxStringLength <= 0
+      szMaxStringLength = "20"
+   ELSE
+      szMaxStringLength = lMaxStringLength
+   END
+
+   szWriteBuffer = "<input" + szClass + " name=^" + szCtrlTag + szRepeatGrpKey + "^ id=^" + szCtrlTag + szRepeatGrpKey + "^ maxlength=^" + szMaxStringLength + "^ " +  szDisabled +
                    szAutoCompleteOff + szTitleHTML + szPlaceholder + szStyle + szType + szValue + szEditActionCode + " >"
    WL_QC( vDialog, lFile, szWriteBuffer, "^", 1 )
 
@@ -3141,11 +3146,11 @@ GenJSPJ_CrteText( VIEW vDialog      BASED ON LOD TZWDLGSO,
                          vDialog.CtrlMapER_Attribute.Name + "^ ).getString( ^" +
                          szContextName + "^ );"
       ELSE
-         IF vDialog.CtrlMapER_Domain.MaxStringLth > 254
-            lMaxStringLength = vDialog.CtrlMapER_Domain.MaxStringLth
-            szMaxStringLength = lMaxStringLength
-         ELSE
+         lMaxStringLength = vDialog.CtrlMapER_Domain.MaxStringLth
+         IF lMaxStringLength <= 0
             szMaxStringLength = "254"
+         ELSE
+            szMaxStringLength = lMaxStringLength
          END
 
          szWriteBuffer = "         strTextDisplayValue = " +
@@ -3191,7 +3196,7 @@ GenJSPJ_CrteText( VIEW vDialog      BASED ON LOD TZWDLGSO,
       IF vDialogRoot.Dialog.wWebUsesLanguageConversion = "Y"
          szText = "<%=LangConv.getLanguageText(strTextDisplayValue)%>" 
       ELSE
-      szText = "<%=strTextDisplayValue%>"
+         szText = "<%=strTextDisplayValue%>"
       END
 
    END
@@ -3235,11 +3240,11 @@ GenJSPJ_CrteText( VIEW vDialog      BASED ON LOD TZWDLGSO,
                                vDialog.CtrlMapER_Attribute.Name + "^ ).getString( ^" +
                                szContextName + "^ );"
             ELSE
-               IF vDialog.CtrlMapER_Domain.MaxStringLth > 254
-                  lMaxStringLength = vDialog.CtrlMapER_Domain.MaxStringLth
-                  szMaxStringLength = lMaxStringLength
-               ELSE
+               lMaxStringLength = vDialog.CtrlMapER_Domain.MaxStringLth
+               IF lMaxStringLength <= 0
                   szMaxStringLength = "254"
+               ELSE
+                  szMaxStringLength = lMaxStringLength
                END
 
                szWriteBuffer = "         strTextURL_Value = " +
@@ -3630,13 +3635,12 @@ GenJSPJ_CrteListBox( VIEW vDialog,
                szContextName = vDialog.CtrlMapContext.Name
             END
 
-            IF vDialog.CtrlMapER_Domain.MaxStringLth > 254
-               lMaxStringLength = vDialog.CtrlMapER_Domain.MaxStringLth
-               szMaxStringLength = lMaxStringLength
-            ELSE
+            lMaxStringLength = vDialog.CtrlMapER_Domain.MaxStringLth
+            IF lMaxStringLength <= 0
                szMaxStringLength = "254"
+            ELSE
+               szMaxStringLength = lMaxStringLength
             END
-
 
             szWriteBuffer = "         strComboCurrentValue = " + vDialog.CtrlMapView.Name +
                      ".cursor( ^" +
@@ -4166,11 +4170,11 @@ GenJSPJ_CrteMLEdit( VIEW vDialog BASED ON LOD TZWDLGSO,
          szContextName = ""
       END
 
-      IF vDialog.CtrlMapER_Domain.MaxStringLth > 254
-         lMaxStringLength = vDialog.CtrlMapER_Domain.MaxStringLth
-         szMaxStringLength = lMaxStringLength
-      ELSE
+      lMaxStringLength = vDialog.CtrlMapER_Domain.MaxStringLth
+      IF lMaxStringLength <= 0
          szMaxStringLength = "254"
+      ELSE
+         szMaxStringLength = lMaxStringLength
       END
 
       szWriteBuffer = "            strErrorMapValue = " +
@@ -4298,7 +4302,6 @@ GenJSPJ_CrteMLEdit( VIEW vDialog BASED ON LOD TZWDLGSO,
    // CreateAbsolStyleString( vDialog, szAbsoluteStyle, lOffsetX, lOffsetY, "" )
    // szAbsoluteStyle = szAbsoluteStyle + szTabIndex
 
-
       szClass = vDialog.Control.CSS_Class
       IF szClass = ""
          GetViewByName( vLPLR, "TaskLPLR", vDialog, zLEVEL_TASK )
@@ -4333,7 +4336,7 @@ GenJSPJ_CrteMLEdit( VIEW vDialog BASED ON LOD TZWDLGSO,
       lTemp = vDialog.Control.Subtype
       lTemp = IsFlagSequenceSet( lTemp, zCONTROL_DISABLED )
       IF lTemp = 0
-         szWriteBuffer = "<textarea name=^" + szCtrlTag + szRepeatGrpKey + "^ id=^" + szCtrlTag + szRepeatGrpKey + "^ " + szTitleHTML +
+         szWriteBuffer = "<textarea name=^" + szCtrlTag + szRepeatGrpKey + "^ id=^" + szCtrlTag + szRepeatGrpKey + "^ maxlength=^" + szMaxStringLength + "^ " + szTitleHTML +
                          szAbsoluteStyle + szTabIndex + szClass + szActionCode + " wrap=^wrap^>" + "<%=strErrorMapValue%></textarea>"
       ELSE
          zAppendQuotedString( szAbsoluteStyle, "text-overflow:hidden;background-color:lightgray;", "style=", "^" )
@@ -4469,12 +4472,13 @@ GenJSPJ_CrtePushButton( VIEW vDialog BASED ON LOD TZWDLGSO,
       szWriteBuffer = "            {"
       WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
 
-      IF vDialog.CtrlMapER_Domain.MaxStringLth > 254
-         lMaxStringLength = vDialog.CtrlMapER_Domain.MaxStringLth
-         szMaxStringLength = lMaxStringLength
-      ELSE
+      lMaxStringLength = vDialog.CtrlMapER_Domain.MaxStringLth
+      IF lMaxStringLength <= 0
          szMaxStringLength = "254"
+      ELSE
+         szMaxStringLength = lMaxStringLength
       END
+
       szWriteBuffer = "               strErrorMapValue = " +
                       vDialog.CtrlMapView.Name + ".cursor( ^" +
                       vDialog.CtrlMapRelatedEntity.Name + "^ ).getAttribute( ^" +

@@ -5912,8 +5912,12 @@ GenJSP_InputMapRecurs( zVIEW     vDialog,
                               ZeidonStringCopy( szWriteBuffer, 1, 0, "            }", 1, 0, 10001 );
                               //:WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
                               WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 );
-                              //:szWriteBuffer = "            if ( strQuestionType.equals(^Multiple Choice Single Response^) || strQuestionType.equals(^Multiple Choice Multiple Response^) )"
-                              ZeidonStringCopy( szWriteBuffer, 1, 0, "            if ( strQuestionType.equals(^Multiple Choice Single Response^) | strQuestionType.equals(^Multiple Choice Multiple Response^) )", 1, 0, 10001 );
+                              //:szWriteBuffer = "            if ( strQuestionType.equals(^Multiple Choice Single Response^) ||"
+                              ZeidonStringCopy( szWriteBuffer, 1, 0, "            if ( strQuestionType.equals(^Multiple Choice Single Response^) |", 1, 0, 10001 );
+                              //:WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
+                              WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 );
+                              //:szWriteBuffer = "                 strQuestionType.equals(^Multiple Choice Multiple Response^) )"
+                              ZeidonStringCopy( szWriteBuffer, 1, 0, "                 strQuestionType.equals(^Multiple Choice Multiple Response^) )", 1, 0, 10001 );
                               //:WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 )
                               WL_QC( vDialog, lFile, szWriteBuffer, "^", 0 );
                               //:szWriteBuffer = "            {"
