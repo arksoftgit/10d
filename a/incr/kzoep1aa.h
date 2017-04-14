@@ -530,6 +530,9 @@ SysFreeLibrary( zVIEW lpTaskView, LPLIBRARY hLibrary );
 zLONG OPERATION
 SysFreeMemory( zLONG hMemory );
 
+zLONG OPERATION
+SysGetEpochTime();
+
 void OPERATION
 SysGetDateTime( zPCHAR pchReturnDateTime, zLONG lMaxLth );
 
@@ -596,6 +599,9 @@ SysGetProcessID( zPLONG plThreadID );
 
 zLONG OPERATION
 SysGetTaskFromView( zVIEW lpView );
+
+zULONG OPERATION
+SysGetRandomLong();
 
 //zLONG OPERATION
 //SetTaskAsTransient( zVIEW vSubtask, zLONG lFlag );

@@ -35,6 +35,7 @@ zLONG  lStructSize;
    zCHAR wWebEditControlProperties[ 33 ];
    zCHAR wWebPushControlProperties[ 33 ];
    zCHAR wWebTextControlProperties[ 33 ];
+   zCHAR wWebUsesLanguageConversion[ 2 ];
    zCHAR wMapTypeGridColumnControl[ 33 ];
    zCHAR wMapTypeTextControl[ 33 ];
    zCHAR wOriginalClassName[ 255 ];

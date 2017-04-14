@@ -7257,8 +7257,8 @@ fnWriteOI_ToTextStream( zVIEW          lpView,
             // the same OI.
             if ( lpLinked->hViewOI == lpEntityInstance->hViewOI )
                lpLinked->u.nInd.bWritten = TRUE;
+            }
          }
-      }
 
       lpEntityInstance->u.nInd.bWritten = TRUE;
 
@@ -10714,24 +10714,24 @@ fnActivateOI_FromTextStream( zVIEW          lpView,
                                       &pchLine, 0, 0 )) == 1 )
    {
       lLineCount++;
-      if ( pRelinkBufferPtr == pRelinkBufferEnd )
-      {
-         k = lEntityCnt / 160000;  // moved up from 16000 dks/don 2007.01.04
-
-         // If we've loaded 160000 * 10 entities then bomb.
-         if ( k >= 10 )
+         if ( pRelinkBufferPtr == pRelinkBufferEnd )
          {
-            // if the relink entity pointer is at the end of the
-            // space allocated, issue an error
-            //  "KZOEE090 - Maximum number of entities in portable file exceeded "
-            (*lpfnStreamFunc)( lpView, lpvData, 0, 0, 90 );
-            nRC = zCALL_ERROR;
-            break;
-         }
+            k = lEntityCnt / 160000;  // moved up from 16000 dks/don 2007.01.04
 
-         pRelinkBufferTable[ k ] = SysMalloc( 640000L );
-         pRelinkBufferEnd = pRelinkBufferTable[ k ] + 640000 / 4;  // Space for 160000 entities ... moved up from 16000 dks/don 2007.01.04
-         pRelinkBufferPtr = pRelinkBufferTable[ k ];
+            // If we've loaded 160000 * 10 entities then bomb.
+            if ( k >= 10 )
+            {
+               // if the relink entity pointer is at the end of the
+               // space allocated, issue an error
+               //  "KZOEE090 - Maximum number of entities in portable file exceeded "
+               (*lpfnStreamFunc)( lpView, lpvData, 0, 0, 90 );
+               nRC = zCALL_ERROR;
+               break;
+            }
+
+            pRelinkBufferTable[ k ] = SysMalloc( 640000L );
+            pRelinkBufferEnd = pRelinkBufferTable[ k ] + 640000 / 4;  // Space for 160000 entities ... moved up from 16000 dks/don 2007.01.04
+            pRelinkBufferPtr = pRelinkBufferTable[ k ];
 
       }
 
@@ -10748,8 +10748,8 @@ fnActivateOI_FromTextStream( zVIEW          lpView,
             if ( nLevel > nErrorEntityLvl )
                pchLine[ 0 ] = ' ';
 
-            *pRelinkBufferPtr = 0;
-            pRelinkBufferPtr++;
+               *pRelinkBufferPtr = 0;
+               pRelinkBufferPtr++;
             lEntityCnt++;
          }
          else
@@ -11024,7 +11024,7 @@ fnActivateOI_FromTextStream( zVIEW          lpView,
 
             // Set lpEntityInstance to instance just created.
             lpEntityInstance = zGETPTR( lpViewEntityCsr->hEntityInstance );
-            *pRelinkBufferPtr = (zLONG) lpEntityInstance;
+               *pRelinkBufferPtr = (zLONG) lpEntityInstance;
             lEntityCnt++;
 
 #if 0  // debugging
@@ -11056,8 +11056,8 @@ fnActivateOI_FromTextStream( zVIEW          lpView,
          }
          else
          {
-            *pRelinkBufferPtr = 0;
-            pRelinkBufferPtr++;
+               *pRelinkBufferPtr = 0;
+               pRelinkBufferPtr++;
             lEntityCnt++;
 
             // If we're ignoring errors then set the error code back to 0
@@ -11715,8 +11715,8 @@ fnActivateOI_FromTextStream( zVIEW          lpView,
 
    } // while ( (nEOF = (*lpfnStreamFunc)( ... )) == 1 )
 
-   for ( lEntityCnt = 0; pRelinkBufferTable[ lEntityCnt ]; lEntityCnt++ )
-      SysFree( pRelinkBufferTable[ lEntityCnt ] );
+      for ( lEntityCnt = 0; pRelinkBufferTable[ lEntityCnt ]; lEntityCnt++ )
+         SysFree( pRelinkBufferTable[ lEntityCnt ] );
 
    if ( nEOF == zCALL_ERROR )
       nRC = zCALL_ERROR;
