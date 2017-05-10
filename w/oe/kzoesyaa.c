@@ -27,145 +27,6 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-/*
-CHANGE LOG
-
-2001.08.07  DGC  10b
-   Doubled the valid length of a mutex name.
-
-2002.08.15  RR
-   Replace function WinHelp with function Htmlhelp in SysStartHelp( ) to call
-   compiled online help files.
-
-2002.04.10  DGC
-   Fixed possible bug reported by Jeff with SysSetFileTime( ) giving huge dates.
-
-2002.03.29  DGC
-   Added SysCreateTempFileName( ).
-
-2002.01.28  HH
-   support decimal round.
-
-2002.01.17  HH
-   Free Probe Area.
-
-2002.01.07  HH/DKS
-   Change signature of SysValidDirOrFile so that it can be called from VML.
-
-2001.11.28  DGC
-   Added the ability to use mutexes instead of metered sections.
-
-2001.09.24  DGC
-   Added support for critical sections for server mode.
-
-2001.08.22  DGC
-   Added FRC (French-Canadian) language.
-
-   Started adding stuff for local memory version of Core.
-
-2001.08.21  HH
-   SysSendTaskMsg: fixed bug resulting in "out of memory pages" in a
-   multithreaded environment. The "SendMessage" did not work, when
-   being sent to its own process. That was the case for the "current"
-   task being a thread task.
-
-2001.07.26  DGC
-   Changed OE to use a Win32 event to signal when OE was up.
-   Changed SysRead/WriteZeidonIni( ) to automatically add the '[]' if not there.
-
-2001.07.01  BL
-   Modified SysValidDirOrFile for remove leading spaces
-
-2001.06.03  BL
-   Modified SysGetEnvVar for init Return String
-
-2001.04.17  US
-   Replace funcionality of SysAllocMem( ) and SysFreeMem( ) with SysMalloc( )
-   and SysFree( ) but keep the 'old' interface.
-
-2001.04.09  US
-   Added two new functions SysMalloc( ) and SysFree( )
-   This two functions should replace the win16 based functions
-   SysAllocMemory( ) and SysFreeMemory( ) with the handle overhead
-
-2001.04.03  tmv
-   Initilize local in InitializeAnchorBlock. Now we get an error message
-   if Zeidon environment variable is not defined
-
-2001.03.29  DGC
-   Fixed bug reported by Phil.  SysWriteLineLth( ) wasn't using the passed-in lth.
-
-2001.03.12  US
-   Call of fnTraceSharedMemory( ) only if the define SHARED_MEM_TRACE
-   is set. The call caused a delay when starting and shutting down
-   all zeidon applications especially in release versions, because
-   the call causes the system to search the disk for debug files
-
-2001.01.23  HH
-   SysParseLine: 3. parameter is not const.
-
-2000.12.05 DGC
-   Made a change so that if the local temp directory is not specified in
-   ZEIDON.APP we try to get it from the enviornment vars TEMP or TMP.
-
-   Changed SysMessageBox( ) so that we don't check Zeidon.ini everytime we
-   try to pop up a message.
-
-2000.11.28  HH
-   const char change SysCopyFile, SysParseLine, SysStartHelp.
-
-2000.11.06  DGC Z10
-   Fixed bug reported by Udo/Doug.  Multi-server was causing a crash because
-   in a very special case we weren't sending a message to the other tasks to
-   share memory.
-
-2000.11.01  SR  Z2000
-   - Increase the size of zTRACE_LTH because message texts are getting larger
-     since the size of ExecDir, MetaSrcDir and PgmSrcDir is increased.
-     The attributes are printed in several message boxes.
-   - Modify length of path variables in SysOpenFile, because size of some
-     path variables (ExecDir, MetaSrcDir and PgmSrcDir) was changed in datamodel
-
-2000.10.12  BL  Z10
-   Modified SysValidDirOrFile for create multiple directory layers
-
-2000.05.24  DGC
-   Added COREFILE_CREATE_NEW flag to SysOpenFile( ).
-
-2000.05.24  US
-   Always trace the dll name in case of load failure
-
-2000.03.16  US all
-   prototype of SysCheckTaskMemory( void ) "void" added due to compiler warnings
-
-2000.02.03  HH
-   Fixed several erroneous zUSHORT casts (SysReadLineLth).
-
-1999.10.04  DGC  10a
-   Each task is flagged as 'bDisable' until it is fully initialized.
-
-1999.09.24  DGC  10a
-   Put in a check to make sure that core isn't in the process of shutting down.
-
-1999.05.17  DGC  10a
-   Changed Win32 to use malloc( ) instead of GlobalAlloc( ).
-
-1999.04.02  DGC  All
-   We now use WM_COPYDATA instead of LB_ADDSTRING to send traces to the
-   OE trace window.
-
-1999.03.02  DGC
-   Added SysConvertEnvironmentString( ) as an exported operation.
-
-1999.02.05  HH/DGC
-   Made minor change to RegisterClassEx( ) call (we made the same change at
-   the exact same time).
-
-   Added functionality to SysLoadLibraryWithErrFlag( ) to allow loading of
-   DLLs as resources.
-
-*/
-
 //#define _CRT_SECURE_NO_WARNINGS 0
 
 #include <windows.h>
@@ -6697,6 +6558,29 @@ SysGetFileDateTime( zLONG  hFile,
       strcpy_s( pchDateTime, lMaxLth, "???????????????" );
 }
 
+//./ ADD NAME=SysGetEpochTime
+/////////////////////////////////////////////////////////////////////////////
+//
+//   FUNCTION:   SysGetEpochTime
+//
+//   PROTOTYPE:
+//      zLONG  OPERATION
+//      SysGetEpochTime()
+//
+//   RETURNS:    Time since 1970 in seconds.
+//
+//   PURPOSE: Return Posix epoch time.
+//
+/////////////////////////////////////////////////////////////////////////////
+//./ END + 2
+zLONG OPERATION
+SysGetEpochTime()
+{
+   time_t ltime;
+   time( &ltime );
+   return( (zLONG) ltime );
+}
+
 //./ ADD NAME=SysGetDateTime
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -9329,6 +9213,16 @@ SysGetClientMessage( )
    return( g_wClientMessage );
 }
 
+zULONG OPERATION
+SysGetRandomLong()
+{
+   zULONG x = rand() & 0xff;
+   x |= (rand() & 0xff) << 8;
+   x |= (rand() & 0xff) << 16;
+   x |= (rand() & 0xff) << 24;
+   return x;
+}
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // DLLs, Processes, and Threads Technical Articles
@@ -10260,6 +10154,11 @@ DllMain( HINSTANCE hDLL, DWORD dwReason, LPVOID lpReserved )
          zCHAR         szFileName[ zMAX_FILENAME_LTH + 1 ];
          zCHAR         szServerMode[ 10 ];
 
+         /* Seed the random-number generator with current time so that
+             * the numbers will be different every time we run.
+             */
+         srand( (unsigned)time( NULL ) );
+
          g_lCurrentProcessID = SysGetProcessID( 0 );
          g_hInstance = hDLL;
 
@@ -10278,7 +10177,11 @@ DllMain( HINSTANCE hDLL, DWORD dwReason, LPVOID lpReserved )
 
             // {2,"KZOEE002 - ZEIDON environment variable not set"},
             SysGetBaseMessage( szMessage, KZOEE002, zsizeof( szMessage ) );
-            SysMessageBox( 0, szlOE_SystemError, szMessage, -1 );
+
+            // We can't use SysMessageBox because it will try to read from
+            // Zeidon INI and will bomb because AnchorBlock isn't set.
+            MessageBox( GetActiveWindow( ), szMessage, szlOE_SystemError,
+                        MB_ICONSTOP | MB_OK | MB_TASKMODAL );
 
             return( 1 );
          }

@@ -1,4 +1,4 @@
-z1000-Zeidon    ZEIDON   TZCMLPLO                         02/01/17   10:14:45 1.0a2   
+z1000-Zeidon    ZEIDON   TZCMLPLO                         04/24/17   16:14:46 1.0a2   
 eLPLR      1
 aName      Zeidon
 aZKey      4106137
@@ -6290,8 +6290,8 @@ aStatus    1
 aUpdateInd 2
 aName      TZZOLODD
 aDesc      LOD (Logical Object Defn) Maint.
-aLastSyncDate 20161108201719323
-aLastUpdateDate 20161108201719323
+aLastSyncDate 20170424161431112
+aLastUpdateDate 20170424161431112
 
 eW_MetaDef 3
 aCPLR_ZKey 91076285
