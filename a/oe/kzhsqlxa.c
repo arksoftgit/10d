@@ -6078,6 +6078,8 @@ RetrieveSchema( zVIEW  vDTE, zPVIEW pvDB )
             default:
                TraceLineS( "Unknown datatype = ", szDataTypeName );
                TraceLineI( "Datatype number = ", sDataType );
+               TraceLineS( "Table Name = ", szTableName );
+               TraceLineS( "ColumnName = ", szColumnName );
                SysMessageBox( vDTE, "DGC", "Unhandled data type", 1 );
                break;
          }

@@ -100,8 +100,7 @@ oTZWDLGSO_GenerateJSP( zVIEW     vDialog,
    zCHAR     szInsertPrebuildJavascriptInline[ 2 ] = { 0 }; 
    //:STRING ( 1 )     WorkFlag
    zCHAR     WorkFlag[ 2 ] = { 0 }; 
-   //:STRING ( 100 )   szSizeF
-   zCHAR     szSizeF[ 101 ] = { 0 }; 
+   //:// STRING ( 1024 )  szSizeF
    //:STRING ( 1024 )  szStyle
    zCHAR     szStyle[ 1025 ] = { 0 }; 
    //:STRING ( 1024 )  szFileName
@@ -6270,7 +6269,7 @@ oTZWDLGSO_GenerateJSP( zVIEW     vDialog,
    WL_QC( vDialog, lFileJSP, szWriteBuffer, "^", 0 );
 
    //:// Generate FORM
-   //://CreateSizeString( vDialog, szSize )
+   //://CreateSizeString( vDialog, szSizeF )
    //:PIX_PER_DU( vDialog, DLUnits )
    PIX_PER_DU( vDialog, &DLUnits );
 

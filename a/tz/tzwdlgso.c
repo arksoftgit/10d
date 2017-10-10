@@ -1767,258 +1767,113 @@ oTZWDLGSO_MergeWebMenus( zVIEW     vNewW,
    zVIEW     TZWND_List = 0; 
    //:INTEGER nRC
    zLONG     nRC = 0; 
-   zSHORT    lTempInteger_0; 
-   zSHORT    lTempInteger_1; 
-   zCHAR     szTempString_0[ 33 ]; 
-   zSHORT    lTempInteger_2; 
-   zSHORT    lTempInteger_3; 
-   zSHORT    lTempInteger_4; 
-   zSHORT    lTempInteger_5; 
 
    RESULT = GetViewByName( &TZDLG_List, "TZCMLPLO", vNewW, zLEVEL_TASK );
 
-   //:// Merge the following Web Menus only if they don't already exist.
-   //://  ReusableSideMenu
-   //://  ReusableMainMenu
-   //:IF vOrigW.ReusableSideWindow EXISTS AND vNewW.ReusableSideWindow DOES NOT EXIST
-   lTempInteger_0 = CheckExistenceOfEntity( vOrigW, "ReusableSideWindow" );
-   lTempInteger_1 = CheckExistenceOfEntity( vNewW, "ReusableSideWindow" );
-   if ( lTempInteger_0 == 0 && lTempInteger_1 != 0 )
-   { 
-      //:IF vOrigW.ReusableSideDialog.Tag = vNewW.Dialog.Tag
-      if ( CompareAttributeToAttribute( vOrigW, "ReusableSideDialog", "Tag", vNewW, "Dialog", "Tag" ) == 0 )
-      { 
-         //:// The Reusable Menu IS in this Dialog, so find the correct Window and include it.
-         //:CreateViewFromView( TZWND_List, vNewW )
-         CreateViewFromView( &TZWND_List, vNewW );
-         //:SET CURSOR FIRST TZWND_List.Window
-         //:           WHERE TZWND_List.Window.Tag = vOrigW.ReusableSideWindow.Tag
-         GetStringFromAttribute( szTempString_0, zsizeof( szTempString_0 ), vOrigW, "ReusableSideWindow", "Tag" );
-         RESULT = SetCursorFirstEntityByString( TZWND_List, "Window", "Tag", szTempString_0, "" );
-         //:IF RESULT >= zCURSOR_SET
-         if ( RESULT >= zCURSOR_SET )
-         { 
-            //:INCLUDE vNewW.ReusableSideWindow FROM TZWND_List.Window
-            RESULT = IncludeSubobjectFromSubobject( vNewW, "ReusableSideWindow", TZWND_List, "Window", zPOS_AFTER );
-         } 
-
-         //:END
-         //:DropView( TZWND_List )
-         DropView( TZWND_List );
-         //:ELSE
-      } 
-      else
-      { 
-         //:// The Reusable Menu is not in this Dialog, so look for an external Dialog.
-         //:SET CURSOR FIRST TZDLG_List.W_MetaDef
-         //:           WHERE TZDLG_List.W_MetaDef.Name = vOrigW.ReusableSideDialog.Tag
-         GetStringFromAttribute( szTempString_0, zsizeof( szTempString_0 ), vOrigW, "ReusableSideDialog", "Tag" );
-         RESULT = SetCursorFirstEntityByString( TZDLG_List, "W_MetaDef", "Name", szTempString_0, "" );
-         //:IF RESULT >= zCURSOR_SET
-         if ( RESULT >= zCURSOR_SET )
-         { 
-            //:// Make sure that any left over ReusableDialogSelection entity is removed and then
-            //:// include new Dialog.
-            //:IF vNewW.ReusableDialogSelection EXISTS
-            lTempInteger_2 = CheckExistenceOfEntity( vNewW, "ReusableDialogSelection" );
-            if ( lTempInteger_2 == 0 )
-            { 
-               //:EXCLUDE vNewW.ReusableDialogSelection
-               RESULT = ExcludeEntity( vNewW, "ReusableDialogSelection", zREPOS_AFTER );
-            } 
-
-            //:END
-            //:INCLUDE vNewW.ReusableDialogSelection FROM TZDLG_List.W_MetaDef
-            RESULT = IncludeSubobjectFromSubobject( vNewW, "ReusableDialogSelection", TZDLG_List, "W_MetaDef", zPOS_AFTER );
-
-            //:// Make sure the Dialog to be included is active in view TZWND_List.
-            //:// Then find the Window and include it.
-            //:GET VIEW TZWND_List NAMED "TZWND_List"
-            RESULT = GetViewByName( &TZWND_List, "TZWND_List", vNewW, zLEVEL_TASK );
-            //:IF RESULT >= 0
-            if ( RESULT >= 0 )
-            { 
-               //:IF TZWND_List.Dialog.Tag != vOrigW.ReusableSideDialog.Tag
-               if ( CompareAttributeToAttribute( TZWND_List, "Dialog", "Tag", vOrigW, "ReusableSideDialog", "Tag" ) != 0 )
-               { 
-                  //:DropMetaOI( vSubtask, TZWND_List )
-                  DropMetaOI( vSubtask, TZWND_List );
-                  //:TZWND_List = 0
-                  TZWND_List = 0;
-               } 
-
-               //:END
-               //:ELSE
-            } 
-            else
-            { 
-               //:TZWND_List = 0
-               TZWND_List = 0;
-            } 
-
-            //:END
-
-            //:IF TZWND_List = 0
-            if ( TZWND_List == 0 )
-            { 
-               //:ActivateMetaOI( vSubtask, TZWND_List, TZDLG_List, zREFER_DIALOG_META, zSINGLE )
-               ActivateMetaOI( vSubtask, &TZWND_List, TZDLG_List, zREFER_DIALOG_META, zSINGLE );
-               //:NAME VIEW TZWND_List "TZWND_List"
-               SetNameForView( TZWND_List, "TZWND_List", 0, zLEVEL_TASK );
-            } 
-
-            //:END
-
-            //:IF TZWND_List != 0
-            if ( TZWND_List != 0 )
-            { 
-               //:SET CURSOR FIRST TZWND_List.Window
-               //:           WHERE TZWND_List.Window.Tag = vOrigW.ReusableSideWindow.Tag
-               GetStringFromAttribute( szTempString_0, zsizeof( szTempString_0 ), vOrigW, "ReusableSideWindow", "Tag" );
-               RESULT = SetCursorFirstEntityByString( TZWND_List, "Window", "Tag", szTempString_0, "" );
-               //:IF RESULT >= zCURSOR_SET
-               if ( RESULT >= zCURSOR_SET )
-               { 
-                  //:INCLUDE vNewW.ReusableSideWindow FROM TZWND_List.Window
-                  RESULT = IncludeSubobjectFromSubobject( vNewW, "ReusableSideWindow", TZWND_List, "Window", zPOS_AFTER );
-               } 
-
-               //:END
-               //:DropView( TZWND_List )
-               DropView( TZWND_List );
-            } 
-
-            //:END
-         } 
-
-         //:END
-      } 
-
-      //:END
-   } 
-
-   //:END
-
-   //:IF vOrigW.ReusableMainWindow EXISTS AND vNewW.ReusableMainWindow DOES NOT EXIST
-   lTempInteger_3 = CheckExistenceOfEntity( vOrigW, "ReusableMainWindow" );
-   lTempInteger_4 = CheckExistenceOfEntity( vNewW, "ReusableMainWindow" );
-   if ( lTempInteger_3 == 0 && lTempInteger_4 != 0 )
-   { 
-      //:IF vOrigW.ReusableMainDialog.Tag = vNewW.Dialog.Tag
-      if ( CompareAttributeToAttribute( vOrigW, "ReusableMainDialog", "Tag", vNewW, "Dialog", "Tag" ) == 0 )
-      { 
-         //:// The Reusable Menu IS in this Dialog, so find the correct Window and include it.
-         //:CreateViewFromView( TZWND_List, vNewW )
-         CreateViewFromView( &TZWND_List, vNewW );
-         //:SET CURSOR FIRST TZWND_List.Window
-         //:           WHERE TZWND_List.Window.Tag = vOrigW.ReusableMainWindow.Tag
-         GetStringFromAttribute( szTempString_0, zsizeof( szTempString_0 ), vOrigW, "ReusableMainWindow", "Tag" );
-         RESULT = SetCursorFirstEntityByString( TZWND_List, "Window", "Tag", szTempString_0, "" );
-         //:IF RESULT >= zCURSOR_SET
-         if ( RESULT >= zCURSOR_SET )
-         { 
-            //:INCLUDE vNewW.ReusableMainWindow FROM TZWND_List.Window
-            RESULT = IncludeSubobjectFromSubobject( vNewW, "ReusableMainWindow", TZWND_List, "Window", zPOS_AFTER );
-         } 
-
-         //:END
-         //:DropView( TZWND_List )
-         DropView( TZWND_List );
-         //:ELSE
-      } 
-      else
-      { 
-         //:SET CURSOR FIRST TZDLG_List.W_MetaDef
-         //:           WHERE TZDLG_List.W_MetaDef.Name = vOrigW.ReusableMainDialog.Tag
-         GetStringFromAttribute( szTempString_0, zsizeof( szTempString_0 ), vOrigW, "ReusableMainDialog", "Tag" );
-         RESULT = SetCursorFirstEntityByString( TZDLG_List, "W_MetaDef", "Name", szTempString_0, "" );
-         //:IF RESULT >= zCURSOR_SET
-         if ( RESULT >= zCURSOR_SET )
-         { 
-            //:// Make sure that any left over ReusableDialogSelection entity is removed and then
-            //:// include new Dialog.
-            //:IF vNewW.ReusableDialogSelection EXISTS
-            lTempInteger_5 = CheckExistenceOfEntity( vNewW, "ReusableDialogSelection" );
-            if ( lTempInteger_5 == 0 )
-            { 
-               //:EXCLUDE vNewW.ReusableDialogSelection
-               RESULT = ExcludeEntity( vNewW, "ReusableDialogSelection", zREPOS_AFTER );
-            } 
-
-            //:END
-            //:INCLUDE vNewW.ReusableDialogSelection FROM TZDLG_List.W_MetaDef
-            RESULT = IncludeSubobjectFromSubobject( vNewW, "ReusableDialogSelection", TZDLG_List, "W_MetaDef", zPOS_AFTER );
-
-            //:// Make sure the Dialog to be included is active in view TZWND_List.
-            //:// Then find the Window and include it.
-            //:GET VIEW TZWND_List NAMED "TZWND_List"
-            RESULT = GetViewByName( &TZWND_List, "TZWND_List", vNewW, zLEVEL_TASK );
-            //:IF RESULT >= 0
-            if ( RESULT >= 0 )
-            { 
-               //:IF TZWND_List.Dialog.Tag != vOrigW.ReusableMainDialog.Tag
-               if ( CompareAttributeToAttribute( TZWND_List, "Dialog", "Tag", vOrigW, "ReusableMainDialog", "Tag" ) != 0 )
-               { 
-                  //:DropMetaOI( vSubtask, TZWND_List )
-                  DropMetaOI( vSubtask, TZWND_List );
-                  //:TZWND_List = 0
-                  TZWND_List = 0;
-               } 
-
-               //:END
-               //:ELSE
-            } 
-            else
-            { 
-               //:TZWND_List = 0
-               TZWND_List = 0;
-            } 
-
-            //:END
-
-            //:IF TZWND_List = 0
-            if ( TZWND_List == 0 )
-            { 
-               //:ActivateMetaOI( vSubtask, TZWND_List, TZDLG_List, zREFER_DIALOG_META, zSINGLE )
-               ActivateMetaOI( vSubtask, &TZWND_List, TZDLG_List, zREFER_DIALOG_META, zSINGLE );
-               //:NAME VIEW TZWND_List "TZWND_List"
-               SetNameForView( TZWND_List, "TZWND_List", 0, zLEVEL_TASK );
-            } 
-
-            //:END
-
-            //:IF TZWND_List != 0
-            if ( TZWND_List != 0 )
-            { 
-               //:SET CURSOR FIRST TZWND_List.Window
-               //:           WHERE TZWND_List.Window.Tag = vOrigW.ReusableMainWindow.Tag
-               GetStringFromAttribute( szTempString_0, zsizeof( szTempString_0 ), vOrigW, "ReusableMainWindow", "Tag" );
-               RESULT = SetCursorFirstEntityByString( TZWND_List, "Window", "Tag", szTempString_0, "" );
-               //:IF RESULT >= zCURSOR_SET
-               if ( RESULT >= zCURSOR_SET )
-               { 
-                  //:INCLUDE vNewW.ReusableMainWindow FROM TZWND_List.Window
-                  RESULT = IncludeSubobjectFromSubobject( vNewW, "ReusableMainWindow", TZWND_List, "Window", zPOS_AFTER );
-               } 
-
-               //:END
-               //:DropView( TZWND_List )
-               DropView( TZWND_List );
-            } 
-
-            //:END
-         } 
-
-         //:END
-      } 
-
-      //:END
-   } 
-
-   //:END
-
+   //:// KJS 11/28/16 - This code does not seem to work correctly. First the above registered TZCMLPLO doesn't exist, but if
+   //:// I change it to "TZDLG_List" then I go into code below that drops views it shouldn't and I get even more errors. I am thinking
+   //:// that this never works correctly so I am returning.
    //:RETURN 0
    return( 0 );
+// /*
+//    // Merge the following Web Menus only if they don't already exist.
+//    //  ReusableSideMenu
+//    //  ReusableMainMenu
+//    IF vOrigW.ReusableSideWindow EXISTS AND vNewW.ReusableSideWindow DOES NOT EXIST
+//       IF vOrigW.ReusableSideDialog.Tag = vNewW.Dialog.Tag
+//          // The Reusable Menu IS in this Dialog, so find the correct Window and include it.
+//          CreateViewFromView( TZWND_List, vNewW )
+//          SET CURSOR FIRST TZWND_List.Window
+//                     WHERE TZWND_List.Window.Tag = vOrigW.ReusableSideWindow.Tag
+//          IF RESULT >= zCURSOR_SET
+//             INCLUDE vNewW.ReusableSideWindow FROM TZWND_List.Window
+//          END
+//          DropView( TZWND_List )
+//       ELSE
+//          // The Reusable Menu is not in this Dialog, so look for an external Dialog.
+//          SET CURSOR FIRST TZDLG_List.W_MetaDef
+//                     WHERE TZDLG_List.W_MetaDef.Name = vOrigW.ReusableSideDialog.Tag
+//          IF RESULT >= zCURSOR_SET
+//             // Make sure that any left over ReusableDialogSelection entity is removed and then
+//             // include new Dialog.
+//             IF vNewW.ReusableDialogSelection EXISTS
+//                EXCLUDE vNewW.ReusableDialogSelection
+//             END
+//             INCLUDE vNewW.ReusableDialogSelection FROM TZDLG_List.W_MetaDef
+//             // Make sure the Dialog to be included is active in view TZWND_List.
+//             // Then find the Window and include it.
+//             GET VIEW TZWND_List NAMED "TZWND_List"
+//             IF RESULT >= 0
+//                IF TZWND_List.Dialog.Tag != vOrigW.ReusableSideDialog.Tag
+//                   DropMetaOI( vSubtask, TZWND_List )
+//                   TZWND_List = 0
+//                END
+//             ELSE
+//                TZWND_List = 0
+//             END
+//             IF TZWND_List = 0
+//                ActivateMetaOI( vSubtask, TZWND_List, TZDLG_List, zREFER_DIALOG_META, zSINGLE )
+//                NAME VIEW TZWND_List "TZWND_List"
+//             END
+//             IF TZWND_List != 0
+//                SET CURSOR FIRST TZWND_List.Window
+//                           WHERE TZWND_List.Window.Tag = vOrigW.ReusableSideWindow.Tag
+//                IF RESULT >= zCURSOR_SET
+//                   INCLUDE vNewW.ReusableSideWindow FROM TZWND_List.Window
+//                END
+//                DropView( TZWND_List )
+//             END
+//          END
+//       END
+//    END
+//    IF vOrigW.ReusableMainWindow EXISTS AND vNewW.ReusableMainWindow DOES NOT EXIST
+//       IF vOrigW.ReusableMainDialog.Tag = vNewW.Dialog.Tag
+//          // The Reusable Menu IS in this Dialog, so find the correct Window and include it.
+//          CreateViewFromView( TZWND_List, vNewW )
+//          SET CURSOR FIRST TZWND_List.Window
+//                     WHERE TZWND_List.Window.Tag = vOrigW.ReusableMainWindow.Tag
+//          IF RESULT >= zCURSOR_SET
+//             INCLUDE vNewW.ReusableMainWindow FROM TZWND_List.Window
+//          END
+//          DropView( TZWND_List )
+//       ELSE
+//          SET CURSOR FIRST TZDLG_List.W_MetaDef
+//                     WHERE TZDLG_List.W_MetaDef.Name = vOrigW.ReusableMainDialog.Tag
+//          IF RESULT >= zCURSOR_SET
+//             // Make sure that any left over ReusableDialogSelection entity is removed and then
+//             // include new Dialog.
+//             IF vNewW.ReusableDialogSelection EXISTS
+//                EXCLUDE vNewW.ReusableDialogSelection
+//             END
+//             INCLUDE vNewW.ReusableDialogSelection FROM TZDLG_List.W_MetaDef
+//             // Make sure the Dialog to be included is active in view TZWND_List.
+//             // Then find the Window and include it.
+//             GET VIEW TZWND_List NAMED "TZWND_List"
+//             IF RESULT >= 0
+//                IF TZWND_List.Dialog.Tag != vOrigW.ReusableMainDialog.Tag
+//                   DropMetaOI( vSubtask, TZWND_List )
+//                   TZWND_List = 0
+//                END
+//             ELSE
+//                TZWND_List = 0
+//             END
+//             IF TZWND_List = 0
+//                ActivateMetaOI( vSubtask, TZWND_List, TZDLG_List, zREFER_DIALOG_META, zSINGLE )
+//                NAME VIEW TZWND_List "TZWND_List"
+//             END
+//             IF TZWND_List != 0
+//                SET CURSOR FIRST TZWND_List.Window
+//                           WHERE TZWND_List.Window.Tag = vOrigW.ReusableMainWindow.Tag
+//                IF RESULT >= zCURSOR_SET
+//                   INCLUDE vNewW.ReusableMainWindow FROM TZWND_List.Window
+//                END
+//                DropView( TZWND_List )
+//             END
+//          END
+//       END
+//    END
+//    RETURN 0
+// */
 // END
 } 
 

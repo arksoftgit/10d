@@ -23,6 +23,54 @@
 /*
 CHANGE LOG
 
+2002.05.07  DKS
+   ZDr Tracing changed to permit value other than 'Y' to turn trace on,
+   so that an application call cannot override the setting.
+
+2001.08.22  DGC
+   Started adding stuff for local memory version of Core.
+
+2001.8.07   TMV   R55580
+   Dynamicly change the number of menu items for trace window
+
+2001.7.30   DGC   2000
+   Changed OE to use a Win32 event to signal when OE was up.
+   Added Application Update code.
+
+2001.5.21   TMV   2000   R55248
+   Changed context menu of systray to have an entry to hide the trace window
+
+2001.4.9   TMV   2000
+   add functions/changes to hide OE Service Window or make it appear in systray
+   additional ini settings in [ObjectEngine]
+   WindowStartup=Hidden or SysTray
+
+2001.04.02  TMV  10a
+   Added code to evaluate the commandline so that it is possible to specify
+   the Zeidon environment using KZOENGWA.EXE -Zeidon=[SOME Directory]
+   check AnchorBlock against zCALL_ERROR to avoid chrash if Environment Variable
+   is not defined ( InitInstance call to InitializeAchorBlock )
+
+2001.01.03  DGC  10a
+   Added a way to pop up a message when core starts.  This is mostly used
+   to verify the INI file.
+
+1999.09.24  DGC  10a
+   Fixed bug from previous change--we now drop the mutex if the close is aborted.
+
+1999.09.24  DGC  10a
+   When shutting down we now create a system-wide mutex that RegisterZeidonApp( )
+   can check to see if core is shutting down.
+
+1999.04.02  DGC  All
+   Added tracing flags stuff.
+
+1999.04.02  DGC  All
+   We now use WM_COPYDATA instead of LB_ADDSTRING to send traces to the OE trace window.
+
+1999.02.02  DKS
+   Changed the name of the runtime ini file from oe.ini to ZeidonRT.ini.
+
 Running the Object Engine as a Service
 
 Preliminaries

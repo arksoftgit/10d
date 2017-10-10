@@ -1,6 +1,7 @@
-z1000-Zeidon    TZOPSIGK TZOPGRPO 06/08/15   15:52:20 1.0a2    
+z1000-Zeidon    TZOPSIGK TZOPGRPO 06/08/17   12:02:56 1.0a2    
 eOPERSIG   1
 aName      TZKZ8C
+aNextZKeyToAssign 190006496
 
 eOperation 2
 aName      AcceptAllTemporalSubobjects
@@ -16892,6 +16893,89 @@ eHeaderFile_Oper 3
 
 eOperation 2
 aName      SetEntityCursor
+aZKey      92727189
+aDesc      does alot
+aType      Z
+aReturnDesc nReturnCode
+aReturnDataType N
+aGenerationType C
+
+eParameter 3
+aShortDesc zView
+aDataType  V
+aPFlag     N
+aUFlag     N
+aZKey      92727190
+
+eParameter 3
+aShortDesc EntityName
+aDataType  S
+aPFlag     N
+aUFlag     N
+aZKey      92727191
+
+eParameter 3
+aShortDesc AttributeName
+aDataType  S
+aPFlag     N
+aUFlag     N
+aZKey      92727192
+
+eParameter 3
+aShortDesc lControl
+aDataType  L
+aPFlag     N
+aUFlag     N
+aZKey      92727194
+
+eParameter 3
+aShortDesc Void Qual Value
+aDataType  O
+aPFlag     Y
+aUFlag     N
+aZKey      92727195
+
+eParameter 3
+aShortDesc SrcEntityName
+aDataType  S
+aPFlag     N
+aUFlag     N
+aZKey      92727196
+
+eParameter 3
+aShortDesc SrcAttributeName
+aDataType  S
+aPFlag     N
+aUFlag     N
+aZKey      92727197
+
+eParameter 3
+aShortDesc RelPosition
+aDataType  N
+aPFlag     N
+aUFlag     N
+aZKey      92727198
+
+eParameter 3
+aShortDesc ScopingEntityName
+aDataType  S
+aPFlag     N
+aUFlag     N
+aZKey      92727199
+
+eParameter 3
+aShortDesc ContextName
+aDataType  S
+aPFlag     N
+aUFlag     N
+aZKey      92727200
+
+eSourceFile 3
+
+eHeaderFile_Oper 3
+
+eOperation 2
+aName      SetEntityCursor
 aZKey      8023342
 aDesc      does alot
 aType      Z
@@ -16969,89 +17053,6 @@ aDataType  S
 aPFlag     N
 aUFlag     N
 aZKey      8023352
-
-eSourceFile 3
-
-eHeaderFile_Oper 3
-
-eOperation 2
-aName      SetEntityCursor
-aZKey      92727189
-aDesc      does alot
-aType      Z
-aReturnDesc nReturnCode
-aReturnDataType N
-aGenerationType C
-
-eParameter 3
-aShortDesc zView
-aDataType  V
-aPFlag     N
-aUFlag     N
-aZKey      92727190
-
-eParameter 3
-aShortDesc EntityName
-aDataType  S
-aPFlag     N
-aUFlag     N
-aZKey      92727191
-
-eParameter 3
-aShortDesc AttributeName
-aDataType  S
-aPFlag     N
-aUFlag     N
-aZKey      92727192
-
-eParameter 3
-aShortDesc lControl
-aDataType  L
-aPFlag     N
-aUFlag     N
-aZKey      92727194
-
-eParameter 3
-aShortDesc Void Qual Value
-aDataType  O
-aPFlag     Y
-aUFlag     N
-aZKey      92727195
-
-eParameter 3
-aShortDesc SrcEntityName
-aDataType  S
-aPFlag     N
-aUFlag     N
-aZKey      92727196
-
-eParameter 3
-aShortDesc SrcAttributeName
-aDataType  S
-aPFlag     N
-aUFlag     N
-aZKey      92727197
-
-eParameter 3
-aShortDesc RelPosition
-aDataType  N
-aPFlag     N
-aUFlag     N
-aZKey      92727198
-
-eParameter 3
-aShortDesc ScopingEntityName
-aDataType  S
-aPFlag     N
-aUFlag     N
-aZKey      92727199
-
-eParameter 3
-aShortDesc ContextName
-aDataType  S
-aPFlag     N
-aUFlag     N
-aZKey      92727200
 
 eSourceFile 3
 
@@ -19743,54 +19744,6 @@ eHeaderFile_Oper 3
 
 eOperation 2
 aName      StoreValueInRecord
-aZKey      92727183
-aDesc      used to store attribute values in a zeidon record
-aType      Z
-aReturnDesc nReturnCode
-aReturnDataType N
-aGenerationType J
-
-eParameter 3
-aShortDesc View
-aDataType  V
-aPFlag     N
-aUFlag     N
-aZKey      92727184
-
-eParameter 3
-aShortDesc View Entity String
-aDataType  S
-aPFlag     N
-aUFlag     N
-aZKey      92727185
-
-eParameter 3
-aShortDesc View Attribute String
-aDataType  S
-aPFlag     N
-aUFlag     N
-aZKey      92727186
-
-eParameter 3
-aShortDesc Void Value
-aDataType  O
-aPFlag     N
-aUFlag     N
-aZKey      92727187
-
-eParameter 3
-aShortDesc uLength
-aDataType  L
-aPFlag     N
-aUFlag     N
-aZKey      92727188
-
-eSourceFile 3
-
-eHeaderFile_Oper 3
-
-eOperation 2
-aName      StoreValueInRecord
 aZKey      8023436
 aDesc      used to store attribute values in a zeidon record
 aType      Z
@@ -19833,6 +19786,54 @@ aDataType  L
 aPFlag     N
 aUFlag     Y
 aZKey      8023441
+
+eSourceFile 3
+
+eHeaderFile_Oper 3
+
+eOperation 2
+aName      StoreValueInRecord
+aZKey      92727183
+aDesc      used to store attribute values in a zeidon record
+aType      Z
+aReturnDesc nReturnCode
+aReturnDataType N
+aGenerationType J
+
+eParameter 3
+aShortDesc View
+aDataType  V
+aPFlag     N
+aUFlag     N
+aZKey      92727184
+
+eParameter 3
+aShortDesc View Entity String
+aDataType  S
+aPFlag     N
+aUFlag     N
+aZKey      92727185
+
+eParameter 3
+aShortDesc View Attribute String
+aDataType  S
+aPFlag     N
+aUFlag     N
+aZKey      92727186
+
+eParameter 3
+aShortDesc Void Value
+aDataType  O
+aPFlag     N
+aUFlag     N
+aZKey      92727187
+
+eParameter 3
+aShortDesc uLength
+aDataType  L
+aPFlag     N
+aUFlag     N
+aZKey      92727188
 
 eSourceFile 3
 
@@ -20024,6 +20025,38 @@ eHeaderFile_Oper 3
 
 eOperation 2
 aName      SysConvertDecimalToString
+aZKey      1592220
+aDesc      Convert a Decimal to a String
+aType      Z
+aReturnDesc nRC
+aReturnDataType N
+aGenerationType J
+
+eParameter 3
+aShortDesc pDecimal
+aDataType  M
+aPFlag     N
+aUFlag     N
+aZKey      1592221
+
+eParameter 3
+aShortDesc ReturnString
+aDataType  S
+aPFlag     Y
+aUFlag     N
+aZKey      1592222
+
+eParameter 3
+aShortDesc nPrecision
+aDataType  N
+aZKey      1592223
+
+eSourceFile 3
+
+eHeaderFile_Oper 3
+
+eOperation 2
+aName      SysConvertDecimalToString
 aZKey      92727201
 aDesc      Convert a Decimal to a String
 aType      Z
@@ -20051,38 +20084,6 @@ aDataType  N
 aPFlag     N
 aUFlag     N
 aZKey      92727204
-
-eSourceFile 3
-
-eHeaderFile_Oper 3
-
-eOperation 2
-aName      SysConvertDecimalToString
-aZKey      1592220
-aDesc      Convert a Decimal to a String
-aType      Z
-aReturnDesc nRC
-aReturnDataType N
-aGenerationType J
-
-eParameter 3
-aShortDesc pDecimal
-aDataType  M
-aPFlag     N
-aUFlag     N
-aZKey      1592221
-
-eParameter 3
-aShortDesc ReturnString
-aDataType  S
-aPFlag     Y
-aUFlag     N
-aZKey      1592222
-
-eParameter 3
-aShortDesc nPrecision
-aDataType  N
-aZKey      1592223
 
 eSourceFile 3
 
@@ -20861,6 +20862,7 @@ aType      Z
 aReturnDesc nReturnCode
 aReturnDataType N
 aOrdinalValue 15
+aThrowsException Y
 
 eParameter 3
 aShortDesc TaskView
@@ -27529,68 +27531,1466 @@ aZKey      11276381
 eHeaderFile 2
 
 eDefinedItem 3
-aExternalValue zBUTTONS_ABORTRETRYIGNORE
-aZKey      4010993
-aInternalValue 6
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zBUTTONS_OK
-aZKey      4010990
-aInternalValue 3
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zBUTTONS_OKCANCEL
-aZKey      4010991
-aInternalValue 4
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zBUTTONS_RETRYCANCEL
-aZKey      4010992
+aExternalValue zWND_STATE_WELL_FORMED
+aZKey      8023790
 aInternalValue 5
 aDataType  N
 
 eDefinedItem 3
-aExternalValue zBUTTONS_YESNO
-aZKey      4010988
+aExternalValue zWND_STATE_PREBUILD_PRECODE
+aZKey      8023786
 aInternalValue 1
 aDataType  N
 
 eDefinedItem 3
-aExternalValue zBUTTONS_YESNOCANCEL
-aZKey      4010989
+aExternalValue zWND_STATE_PREBUILD_POSTCODE
+aZKey      8023787
 aInternalValue 2
 aDataType  N
 
 eDefinedItem 3
-aExternalValue zCHECKBUTTON_CONTROL
-aZKey      4010965
-aInternalValue 1040
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCOLLAPSE
-aZKey      127037366
+aExternalValue zWND_STATE_POSTBUILD_PRECODE
+aZKey      8023788
 aInternalValue 3
 aDataType  N
 
 eDefinedItem 3
-aExternalValue zCOLLAPSEALL
-aZKey      127037367
+aExternalValue zWND_STATE_POSTBUILD_POSTCODE
+aZKey      8023789
 aInternalValue 4
 aDataType  N
 
 eDefinedItem 3
-aExternalValue zCOMBOBOX_CONTROL
-aZKey      4010966
-aInternalValue 1050
+aExternalValue zWND_STATE_INIT
+aZKey      8023785
+aInternalValue 0
 aDataType  N
 
 eDefinedItem 3
-aExternalValue zCOMBOBOX_DOMAIN_LIST
-aZKey      4010983
+aExternalValue zWND_STATE_DELETE
+aZKey      8023784
+aInternalValue -1
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWINDOW_STATUS_VISIBLE
+aZKey      8023780
+aInternalValue 2
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWINDOW_STATUS_UPDATE
+aZKey      90025031
+aInternalValue 7
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWINDOW_STATUS_STOP_EVENTS
+aZKey      1069959
+aInternalValue 11
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWINDOW_STATUS_SHOW_PARENT
+aZKey      1069958
+aInternalValue 10
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWINDOW_STATUS_SETFOCUS
+aZKey      1069956
+aInternalValue 8
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWINDOW_STATUS_SET_NO_ERROR_PROMPT
+aZKey      1069955
+aInternalValue 12
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWINDOW_STATUS_RESTORE
+aZKey      8023783
+aInternalValue 5
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWINDOW_STATUS_MINIMIZE
+aZKey      8023781
+aInternalValue 3
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWINDOW_STATUS_MAXIMIZE
+aZKey      8023782
+aInternalValue 4
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWINDOW_STATUS_ENABLED_VIEW
+aZKey      1027514
+aInternalValue 13
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWINDOW_STATUS_ENABLED
+aZKey      8023779
+aInternalValue 1
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWINDOW_STATUS_DESTROY
+aZKey      1069957
+aInternalValue 9
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWINDOW_STATUS_ASYNC
+aZKey      90025032
+aInternalValue 6
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWINDOW_STATUS
+aZKey      8023778
+aInternalValue 0
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_TerminateActionForError
+aZKey      1158713
+aInternalValue 9999
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_SwitchToAction
+aZKey      8023752
+aInternalValue -1
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_SuspendToDebugger
+aZKey      4010942
+aInternalValue 201
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StayOnWindowWithRefresh
+aZKey      4010927
+aInternalValue 2
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StayOnWindowWebRefresh
+aZKey      4274535
+aInternalValue 3
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StayOnWindowRefreshNP
+aZKey      190006493
+aInternalValue 4
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StayOnWindow
+aZKey      4010926
+aInternalValue 1
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartTopWindow
+aZKey      1666053
+aInternalValue 75
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartPopupMenu
+aZKey      1089786
+aInternalValue 40
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartOrFocusModelessWindow
+aZKey      90059826
+aInternalValue 38
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartOrFocusModelessSubwindow
+aZKey      90059828
+aInternalValue 39
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartOrFocusModelessDialog
+aZKey      10010158
+aInternalValue 30
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartOrFocusModelessApp
+aZKey      50001410
+aInternalValue 37
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartNewApp
+aZKey      8023753
+aInternalValue 35
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartModelessWindow
+aZKey      4010929
+aInternalValue 32
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartModelessWebPopup
+aZKey      1776394
+aInternalValue 79
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartModelessSubwindow
+aZKey      4010930
+aInternalValue 33
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartModalWindow
+aZKey      90059827
+aInternalValue 36
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartModalWebPopup
+aZKey      1776395
+aInternalValue 78
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartModalSubwindowNP
+aZKey      190006494
+aInternalValue 57
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartModalSubwindow
+aZKey      4010931
+aInternalValue 34
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartJasperPDF_Page
+aZKey      130000614
+aInternalValue 48
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartEmailClientCC
+aZKey      1142041
+aInternalValue 44
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartEmailClientBCC
+aZKey      1142040
+aInternalValue 43
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartEmailClient
+aZKey      1094794
+aInternalValue 42
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartDialogTask
+aZKey      4010928
+aInternalValue 31
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartBrowserPDF_Page
+aZKey      1775681
+aInternalValue 47
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartBrowserHTML_Page
+aZKey      1089785
+aInternalValue 41
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_StartAppFromInterp
+aZKey      4010944
+aInternalValue 220
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_ReturnToTopWindowWithRefresh
+aZKey      4010938
+aInternalValue 74
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_ReturnToTopWindow
+aZKey      4010937
+aInternalValue 73
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_ReturnToParentWithRefresh
+aZKey      4010936
+aInternalValue 72
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_ReturnToParent
+aZKey      4010935
+aInternalValue 71
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_ReturnFromWebPopupWithRefresh
+aZKey      4119159
+aInternalValue 85
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_ReturnFromWebPopupNoRefresh
+aZKey      4119158
+aInternalValue 84
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_ResumeFromDebugger
+aZKey      4010943
+aInternalValue 202
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_ResetTopWindow
+aZKey      1690989
+aInternalValue 76
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_ReplaceWindowWithModelessWindow
+aZKey      4010933
+aInternalValue 52
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_ReplaceWindowWithModalWindow
+aZKey      4010934
+aInternalValue 53
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_ReplaceDialogWithDialog
+aZKey      4010932
+aInternalValue 51
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_ReCAPTCHA
+aZKey      190006495
+aInternalValue 55
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_ProcessImmediateReturn
+aZKey      90059824
+aInternalValue 1073741824
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zWAB_ProcessImmediateAction
+aZKey      8023754
+aInternalValue 268435456
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zWAB_ProcessDownloadFile
+aZKey      68561436
+aInternalValue 46
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_OperatorError
+aZKey      4010941
+aInternalValue 102
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_NoDriverMessageOnError
+aZKey      90059825
+aInternalValue 536870912
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zWAB_LinkToHTML_Address
+aZKey      93165529
+aInternalValue 45
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_ExitDialogTask
+aZKey      4010939
+aInternalValue 99
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zWAB_DeterminedInDialogOperation
+aZKey      4010925
+aInternalValue 0
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zTOOLBOX_TOOLBAR
+aZKey      8023809
+aInternalValue 4
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zTOOLBOX_NOSTATE
+aZKey      8023808
+aInternalValue 2
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zTOOLBOX_MULTIPLESEL
+aZKey      8023807
+aInternalValue 1
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zTOOLBOX_CONTROL
+aZKey      8023766
+aInternalValue 2015
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zTEXT_CONTROL
+aZKey      4010959
+aInternalValue 1000
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zTABBINGGROUP_CONTROL
+aZKey      4010970
+aInternalValue 1210
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zSTRG
+aZKey      127082567
+aInternalValue 2
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zSS_SCOPE_OI
+aZKey      1159359
+aInternalValue 2097152
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zSPREADSHEET_TIME
+aZKey      8023818
+aInternalValue 8388608
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zSPREADSHEET_TEXT
+aZKey      8023817
+aInternalValue 4194304
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zSPREADSHEET_PICTURE
+aZKey      8023816
+aInternalValue 2097152
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zSPREADSHEET_PIC
+aZKey      8023815
+aInternalValue 1048576
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zSPREADSHEET_INTEGER
+aZKey      8023814
+aInternalValue 524288
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zSPREADSHEET_FLOAT
+aZKey      8023813
+aInternalValue 262144
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zSPREADSHEET_EDITBOX
+aZKey      8023810
+aInternalValue 0
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zSPREADSHEET_DATE
+aZKey      8023812
+aInternalValue 131072
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zSPREADSHEET_COMBOBOX
+aZKey      8023811
+aInternalValue 65536
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zSHIFT
+aZKey      127082566
+aInternalValue 1
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zRGE_RETURN_SUPPRESS
+aZKey      89389114
+aInternalValue 1
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zRGE_RETURN_NORMAL
+aZKey      1004080
+aInternalValue 0
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zRGE_RETURN_NEWPAGE
+aZKey      89389115
+aInternalValue 2
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zRGE_EVENT_PREPRINT
+aZKey      89389111
+aInternalValue 1
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zRGE_EVENT_POSTPRINT
+aZKey      89389113
+aInternalValue 4
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zRGE_EVENT_GROUP_SPLITTING
+aZKey      89389120
+aInternalValue 3
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zRGE_EVENT_GROUP_CONTINUE
+aZKey      89389112
+aInternalValue 2
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zRESPONSE_YES
+aZKey      4010994
+aInternalValue 1
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zRESPONSE_RETRY
+aZKey      4010999
+aInternalValue 6
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zRESPONSE_OK
+aZKey      4010997
+aInternalValue 4
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zRESPONSE_NO
+aZKey      4010995
+aInternalValue 2
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zRESPONSE_IGNORE
+aZKey      4011000
+aInternalValue 7
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zRESPONSE_CANCEL
+aZKey      4010996
+aInternalValue 3
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zRESPONSE_ABORT
+aZKey      4010998
+aInternalValue 5
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zREPORT_USEFOLDER
+aZKey      1118415
+aInternalValue 8388608
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zREPORT_RETURNNAME
+aZKey      1118414
+aInternalValue 524288
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zREPORT_PRINTREMOTE
+aZKey      1118416
+aInternalValue 131072
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zREPORT_CREATENAME
+aZKey      1118413
+aInternalValue 1048576
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zRCONTROL_STATUS_PRINTED
+aZKey      89389119
+aInternalValue 3
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zRCONTROL_STATUS_PARTIALPRINT
+aZKey      89389118
+aInternalValue 2
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zRCONTROL_STATUS_NOTPRINTED
+aZKey      89389117
+aInternalValue 1
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zRCONTROL_STATUS_GROUPINACTIVE
+aZKey      89389116
+aInternalValue 0
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zRADIOBUTTONGROUP_CONTROL
+aZKey      4010963
+aInternalValue 1030
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zRADIOBUTTON_DEFAULT
+aZKey      4010986
+aInternalValue 1
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zRADIOBUTTON_CONTROL
+aZKey      4010964
+aInternalValue 1031
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zPUSHBUTTON_CONTROL
+aZKey      4010962
+aInternalValue 1020
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zPAINTERTOOLBAR_CONTROL
+aZKey      4010971
+aInternalValue 2000
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zPAINTER_CONTROL
+aZKey      8023764
+aInternalValue 1999
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zOPTION_STATUS_ENABLED
+aZKey      8023776
+aInternalValue 1
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zOPTION_STATUS_CHECKED
+aZKey      8023777
+aInternalValue 2
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zOFN_SHOWHELP
+aZKey      130068949
+aInternalValue 32
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zOFN_SHAREAWARE
+aZKey      130068956
+aInternalValue 4096
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zOFN_SAVEAS
+aZKey      130068958
+aInternalValue 16384
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zOFN_READONLY
+aZKey      130068945
+aInternalValue 2
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zOFN_PATHMUSTEXIST
+aZKey      130068953
+aInternalValue 512
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zOFN_OVERWRITEPROMPT
+aZKey      130068946
+aInternalValue 4
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zOFN_NOVALIDATE
+aZKey      130068950
+aInternalValue 64
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zOFN_NOTESTFILECREATE
+aZKey      130068959
+aInternalValue 65536
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zOFN_NOREADONLYRETURN
+aZKey      130068957
+aInternalValue 8192
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zOFN_NONETWORKBUTTON
+aZKey      130068960
+aInternalValue 131072
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zOFN_NOLONGNAMES
+aZKey      130068961
+aInternalValue 262144
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zOFN_NODEREFERENCELINKS
+aZKey      130068962
+aInternalValue 1048576
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zOFN_NOCHANGEDIR
+aZKey      130068948
+aInternalValue 16
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zOFN_LONGNAMES
+aZKey      130068963
+aInternalValue 2097152
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zOFN_HIDEREADONLY
+aZKey      130068947
+aInternalValue 8
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zOFN_FILEMUSTEXIST
+aZKey      130068954
+aInternalValue 1024
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zOFN_EXTENSIONDIFFERENT
+aZKey      130068952
+aInternalValue 256
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zOFN_CREATEPROMPT
+aZKey      130068955
+aInternalValue 2048
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zOFN_ALLOWMULTISELECT
+aZKey      130068951
+aInternalValue 128
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zMSG_StartTask
+aZKey      8023755
+aInternalValue 110
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zMSG_SetWindowCaptionTitle
+aZKey      4010946
+aInternalValue 200
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zMSG_SetWindowActionBehavior
+aZKey      4010945
+aInternalValue 100
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zMSG_SetOptionState
+aZKey      8023759
+aInternalValue 308
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zMSG_SetNewApplicationSubtask
+aZKey      8023756
+aInternalValue 111
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zMSG_SetDIL_Message
+aZKey      4010954
+aInternalValue 900
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zMSG_SetControlText
+aZKey      4010949
+aInternalValue 302
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zMSG_SetControlState
+aZKey      4010953
+aInternalValue 306
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zMSG_ResumeFromDebugger
+aZKey      8023761
+aInternalValue 995
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zMSG_RefreshWindow
+aZKey      8023757
+aInternalValue 203
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zMSG_RefreshControl
+aZKey      4010951
+aInternalValue 304
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zMSG_InitInterpretor
+aZKey      4010955
+aInternalValue 990
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zMSG_HiliteControlItem
+aZKey      4010950
+aInternalValue 303
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zMSG_GetOptionState
+aZKey      8023758
+aInternalValue 307
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zMSG_GetControlText
+aZKey      4010948
+aInternalValue 301
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zMSG_GetControlState
+aZKey      4010952
+aInternalValue 305
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zMSG_EnableAction
+aZKey      8023760
+aInternalValue 309
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zMSG_ActivateWindow
+aZKey      4010947
+aInternalValue 201
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zMOUSE_RIGHT
+aZKey      127082561
+aInternalValue 2
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zMOUSE_LEFT
+aZKey      127082560
+aInternalValue 1
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zMLE_CONTROL
+aZKey      4010961
+aInternalValue 1015
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zLISTCTL_CONTROL
+aZKey      4010968
+aInternalValue 1081
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zLISTBOX_SINGLESEL
+aZKey      8023769
+aInternalValue 0
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zLISTBOX_SCOPE_OI
+aZKey      1159360
+aInternalValue 16384
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zLISTBOX_NOINTEGRALHEIGHT
+aZKey      8023771
+aInternalValue 64
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zLISTBOX_MULTIPLESEL
+aZKey      4010977
+aInternalValue 1
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zLISTBOX_LISTWHENPARENTSEL
+aZKey      8023772
+aInternalValue 4096
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zLISTBOX_HILITEATPOSITION
+aZKey      8023773
+aInternalValue 8192
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zLISTBOX_FIXEDFONT
+aZKey      8023770
+aInternalValue 32
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zLISTBOX_EXTENDMULTIPLESEL
+aZKey      4010978
+aInternalValue 3
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zLISTBOX_CONTROL
+aZKey      4010967
+aInternalValue 1080
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zLBN_NEWENTITY
+aZKey      8023819
+aInternalValue 256
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zICON_STOP
+aZKey      90008983
+aInternalValue 5
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zICON_QUESTION
+aZKey      4011002
+aInternalValue 2
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zICON_INFORMATION
+aZKey      4011001
+aInternalValue 1
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zICON_EXCLAMATION
+aZKey      4011003
+aInternalValue 3
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zICON_ERROR
+aZKey      4011004
+aInternalValue 4
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zGROUPBOX_CONTROL
+aZKey      4010969
+aInternalValue 1090
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zEXPANDALL
+aZKey      127037365
+aInternalValue 2
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zEXPAND
+aZKey      127037364
+aInternalValue 1
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zER_DIAGRAM_CONTROL
+aZKey      8023765
+aInternalValue 2005
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zEDITBOX_UPPERCASE
+aZKey      4010975
+aInternalValue 2
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zEDITBOX_PIC
+aZKey      8023767
+aInternalValue 8
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zEDITBOX_PASSWORD
+aZKey      4010976
+aInternalValue 4
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zEDITBOX_MONEY
+aZKey      8023768
+aInternalValue 16
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zEDITBOX_LOWERCASE
+aZKey      4010974
+aInternalValue 1
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zEDIT_CONTROL
+aZKey      4010960
+aInternalValue 1010
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zDILITEM_CONTROL
+aZKey      4010973
+aInternalValue 2021
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zDIL_CONTROL
+aZKey      4010972
+aInternalValue 2020
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCONTROLX_PREFILL
+aZKey      1158825
+aInternalValue 134217728
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_VISIBLE
+aZKey      4010958
+aInternalValue 3
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_TEXT_COLOR
+aZKey      8023763
+aInternalValue 5
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_SINGLEEXPAND
+aZKey      127024536
+aInternalValue 29
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_SELECT_ALL
+aZKey      1081793
+aInternalValue 33
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_RESET
+aZKey      1078343
+aInternalValue 34
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_NOSHOW_ENTITY
+aZKey      127024533
+aInternalValue 26
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_MULTISELECT
+aZKey      127024535
+aInternalValue 28
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_MULTIPLEROOT
+aZKey      127024534
+aInternalValue 27
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_MAPPED
+aZKey      1117535
+aInternalValue 36
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_MAP_ERROR
+aZKey      89843098
+aInternalValue 32
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_LINESATROOT
+aZKey      127024248
+aInternalValue 24
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_HASLINES
+aZKey      127024247
+aInternalValue 23
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_HASBUTTONS
+aZKey      127024246
+aInternalValue 22
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_FONT
+aZKey      92000227
+aInternalValue 6
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_EXPANDALL
+aZKey      127024538
+aInternalValue 31
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_EXPAND
+aZKey      127024537
+aInternalValue 30
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_ERROR
+aZKey      123029006
+aInternalValue 8
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_ENABLED
+aZKey      4010956
+aInternalValue 1
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_DISABLEDRAGDROP
+aZKey      127024249
+aInternalValue 25
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_DISABLE_READONLY
+aZKey      90422024
+aInternalValue 15
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_CREATED
+aZKey      1117534
+aInternalValue 35
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_CHECKED
+aZKey      4010957
+aInternalValue 2
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_STATUS_BACKGROUND_COLOR
+aZKey      8023762
+aInternalValue 4
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_SIZEABLEBORDER
+aZKey      8023792
+aInternalValue 1073741824
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCONTROL_RIGHTJUSTIFY
+aZKey      1158824
+aInternalValue 16777216
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCONTROL_RESERVED_2
+aZKey      8023799
+aInternalValue 16777216
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCONTROL_RESERVED_1
+aZKey      8023798
+aInternalValue 33554432
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCONTROL_RELATIVE_SIZE_Y
+aZKey      8023806
+aInternalValue 1048576
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCONTROL_RELATIVE_SIZE_X
+aZKey      8023805
+aInternalValue 2097152
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCONTROL_RELATIVE_SIZE
+aZKey      8023804
+aInternalValue 3145728
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCONTROL_RELATIVE_POSITION
+aZKey      8023801
+aInternalValue 12582912
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCONTROL_RELATIVE_POS_Y
+aZKey      8023803
+aInternalValue 4194304
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCONTROL_RELATIVE_POS_X
+aZKey      8023802
+aInternalValue 8388608
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCONTROL_RELATIVE
+aZKey      8023800
+aInternalValue 15728640
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCONTROL_PROPERTY_TAG
+aZKey      89843106
+aInternalValue 8
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_PROPERTY_SUBCTRL_JUSTIFY
+aZKey      89843105
+aInternalValue 7
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_PROPERTY_STRING_DATA
+aZKey      89843104
+aInternalValue 2
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_PROPERTY_INTEGER_DATA
+aZKey      89843103
+aInternalValue 1
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_PROPERTY_FONT
+aZKey      89843102
+aInternalValue 6
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_PROPERTY_COLUMN_COUNT
+aZKey      89843101
+aInternalValue 9
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_PROPERTY_COLOR_TEXT
+aZKey      89843100
+aInternalValue 3
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_PROPERTY_COLOR_BACKGROUND
+aZKey      89843099
+aInternalValue 4
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zCONTROL_NOTABSTOP
+aZKey      8023791
+aInternalValue -2147483648
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCONTROL_INVISIBLE
+aZKey      8023796
+aInternalValue 134217728
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCONTROL_GRAYBACKGROUND
+aZKey      8023795
+aInternalValue 268435456
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCONTROL_DISABLED
+aZKey      8023797
+aInternalValue 67108864
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCONTROL_CENTERJUSTIFY
+aZKey      1158823
+aInternalValue 33554432
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCONTROL_BORDERON
+aZKey      8023793
+aInternalValue 0
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCONTROL_BORDEROFF
+aZKey      8023794
+aInternalValue 536870912
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCOMBOBOX_SORT
+aZKey      4010982
+aInternalValue 16
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCOMBOBOX_SIMPLE
+aZKey      4010981
+aInternalValue 2
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCOMBOBOX_SELECT
+aZKey      4010985
+aInternalValue 8192
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCOMBOBOX_SCOPE_OI
+aZKey      1159361
+aInternalValue 256
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCOMBOBOX_POSITION_ONLY
+aZKey      8023774
+aInternalValue 4096
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCOMBOBOX_INCLUDE
+aZKey      4010984
+aInternalValue 16384
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCOMBOBOX_FOREIGN_KEY
+aZKey      8023775
+aInternalValue 32768
+aDataType  L
+
+eDefinedItem 3
+aExternalValue zCOMBOBOX_DROPDOWN_LIST
+aZKey      4010979
 aInternalValue 0
 aDataType  L
 
@@ -27601,1449 +29001,69 @@ aInternalValue 1
 aDataType  L
 
 eDefinedItem 3
-aExternalValue zCOMBOBOX_DROPDOWN_LIST
-aZKey      4010979
+aExternalValue zCOMBOBOX_DOMAIN_LIST
+aZKey      4010983
 aInternalValue 0
 aDataType  L
 
 eDefinedItem 3
-aExternalValue zCOMBOBOX_FOREIGN_KEY
-aZKey      8023775
-aInternalValue 32768
-aDataType  L
+aExternalValue zCOMBOBOX_CONTROL
+aZKey      4010966
+aInternalValue 1050
+aDataType  N
 
 eDefinedItem 3
-aExternalValue zCOMBOBOX_INCLUDE
-aZKey      4010984
-aInternalValue 16384
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCOMBOBOX_POSITION_ONLY
-aZKey      8023774
-aInternalValue 4096
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCOMBOBOX_SCOPE_OI
-aZKey      1159361
-aInternalValue 256
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCOMBOBOX_SELECT
-aZKey      4010985
-aInternalValue 8192
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCOMBOBOX_SIMPLE
-aZKey      4010981
-aInternalValue 2
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCOMBOBOX_SORT
-aZKey      4010982
-aInternalValue 16
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCONTROL_BORDEROFF
-aZKey      8023794
-aInternalValue 536870912
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCONTROL_BORDERON
-aZKey      8023793
-aInternalValue 0
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCONTROL_CENTERJUSTIFY
-aZKey      1158823
-aInternalValue 33554432
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCONTROL_DISABLED
-aZKey      8023797
-aInternalValue 67108864
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCONTROL_GRAYBACKGROUND
-aZKey      8023795
-aInternalValue 268435456
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCONTROL_INVISIBLE
-aZKey      8023796
-aInternalValue 134217728
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCONTROL_NOTABSTOP
-aZKey      8023791
-aInternalValue -2147483648
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCONTROL_PROPERTY_COLOR_BACKGROUND
-aZKey      89843099
+aExternalValue zCOLLAPSEALL
+aZKey      127037367
 aInternalValue 4
 aDataType  N
 
 eDefinedItem 3
-aExternalValue zCONTROL_PROPERTY_COLOR_TEXT
-aZKey      89843100
+aExternalValue zCOLLAPSE
+aZKey      127037366
 aInternalValue 3
 aDataType  N
 
 eDefinedItem 3
-aExternalValue zCONTROL_PROPERTY_COLUMN_COUNT
-aZKey      89843101
-aInternalValue 9
+aExternalValue zCHECKBUTTON_CONTROL
+aZKey      4010965
+aInternalValue 1040
 aDataType  N
 
 eDefinedItem 3
-aExternalValue zCONTROL_PROPERTY_FONT
-aZKey      89843102
+aExternalValue zBUTTONS_YESNOCANCEL
+aZKey      4010989
+aInternalValue 2
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zBUTTONS_YESNO
+aZKey      4010988
+aInternalValue 1
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zBUTTONS_RETRYCANCEL
+aZKey      4010992
+aInternalValue 5
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zBUTTONS_OKCANCEL
+aZKey      4010991
+aInternalValue 4
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zBUTTONS_OK
+aZKey      4010990
+aInternalValue 3
+aDataType  N
+
+eDefinedItem 3
+aExternalValue zBUTTONS_ABORTRETRYIGNORE
+aZKey      4010993
 aInternalValue 6
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_PROPERTY_INTEGER_DATA
-aZKey      89843103
-aInternalValue 1
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_PROPERTY_STRING_DATA
-aZKey      89843104
-aInternalValue 2
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_PROPERTY_SUBCTRL_JUSTIFY
-aZKey      89843105
-aInternalValue 7
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_PROPERTY_TAG
-aZKey      89843106
-aInternalValue 8
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_RELATIVE
-aZKey      8023800
-aInternalValue 15728640
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCONTROL_RELATIVE_POS_X
-aZKey      8023802
-aInternalValue 8388608
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCONTROL_RELATIVE_POS_Y
-aZKey      8023803
-aInternalValue 4194304
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCONTROL_RELATIVE_POSITION
-aZKey      8023801
-aInternalValue 12582912
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCONTROL_RELATIVE_SIZE
-aZKey      8023804
-aInternalValue 3145728
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCONTROL_RELATIVE_SIZE_X
-aZKey      8023805
-aInternalValue 2097152
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCONTROL_RELATIVE_SIZE_Y
-aZKey      8023806
-aInternalValue 1048576
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCONTROL_RESERVED_1
-aZKey      8023798
-aInternalValue 33554432
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCONTROL_RESERVED_2
-aZKey      8023799
-aInternalValue 16777216
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCONTROL_RIGHTJUSTIFY
-aZKey      1158824
-aInternalValue 16777216
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCONTROL_SIZEABLEBORDER
-aZKey      8023792
-aInternalValue 1073741824
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_BACKGROUND_COLOR
-aZKey      8023762
-aInternalValue 4
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_CHECKED
-aZKey      4010957
-aInternalValue 2
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_CREATED
-aZKey      1117534
-aInternalValue 35
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_DISABLE_READONLY
-aZKey      90422024
-aInternalValue 15
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_DISABLEDRAGDROP
-aZKey      127024249
-aInternalValue 25
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_ENABLED
-aZKey      4010956
-aInternalValue 1
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_ERROR
-aZKey      123029006
-aInternalValue 8
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_EXPAND
-aZKey      127024537
-aInternalValue 30
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_EXPANDALL
-aZKey      127024538
-aInternalValue 31
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_FONT
-aZKey      92000227
-aInternalValue 6
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_HASBUTTONS
-aZKey      127024246
-aInternalValue 22
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_HASLINES
-aZKey      127024247
-aInternalValue 23
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_LINESATROOT
-aZKey      127024248
-aInternalValue 24
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_MAP_ERROR
-aZKey      89843098
-aInternalValue 32
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_MAPPED
-aZKey      1117535
-aInternalValue 36
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_MULTIPLEROOT
-aZKey      127024534
-aInternalValue 27
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_MULTISELECT
-aZKey      127024535
-aInternalValue 28
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_NOSHOW_ENTITY
-aZKey      127024533
-aInternalValue 26
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_RESET
-aZKey      1078343
-aInternalValue 34
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_SELECT_ALL
-aZKey      1081793
-aInternalValue 33
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_SINGLEEXPAND
-aZKey      127024536
-aInternalValue 29
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_TEXT_COLOR
-aZKey      8023763
-aInternalValue 5
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROL_STATUS_VISIBLE
-aZKey      4010958
-aInternalValue 3
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zCONTROLX_PREFILL
-aZKey      1158825
-aInternalValue 134217728
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zDIL_CONTROL
-aZKey      4010972
-aInternalValue 2020
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zDILITEM_CONTROL
-aZKey      4010973
-aInternalValue 2021
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zEDIT_CONTROL
-aZKey      4010960
-aInternalValue 1010
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zEDITBOX_LOWERCASE
-aZKey      4010974
-aInternalValue 1
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zEDITBOX_MONEY
-aZKey      8023768
-aInternalValue 16
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zEDITBOX_PASSWORD
-aZKey      4010976
-aInternalValue 4
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zEDITBOX_PIC
-aZKey      8023767
-aInternalValue 8
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zEDITBOX_UPPERCASE
-aZKey      4010975
-aInternalValue 2
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zER_DIAGRAM_CONTROL
-aZKey      8023765
-aInternalValue 2005
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zEXPAND
-aZKey      127037364
-aInternalValue 1
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zEXPANDALL
-aZKey      127037365
-aInternalValue 2
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zGROUPBOX_CONTROL
-aZKey      4010969
-aInternalValue 1090
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zICON_ERROR
-aZKey      4011004
-aInternalValue 4
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zICON_EXCLAMATION
-aZKey      4011003
-aInternalValue 3
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zICON_INFORMATION
-aZKey      4011001
-aInternalValue 1
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zICON_QUESTION
-aZKey      4011002
-aInternalValue 2
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zICON_STOP
-aZKey      90008983
-aInternalValue 5
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zLBN_NEWENTITY
-aZKey      8023819
-aInternalValue 256
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zLISTBOX_CONTROL
-aZKey      4010967
-aInternalValue 1080
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zLISTBOX_EXTENDMULTIPLESEL
-aZKey      4010978
-aInternalValue 3
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zLISTBOX_FIXEDFONT
-aZKey      8023770
-aInternalValue 32
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zLISTBOX_HILITEATPOSITION
-aZKey      8023773
-aInternalValue 8192
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zLISTBOX_LISTWHENPARENTSEL
-aZKey      8023772
-aInternalValue 4096
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zLISTBOX_MULTIPLESEL
-aZKey      4010977
-aInternalValue 1
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zLISTBOX_NOINTEGRALHEIGHT
-aZKey      8023771
-aInternalValue 64
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zLISTBOX_SCOPE_OI
-aZKey      1159360
-aInternalValue 16384
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zLISTBOX_SINGLESEL
-aZKey      8023769
-aInternalValue 0
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zLISTCTL_CONTROL
-aZKey      4010968
-aInternalValue 1081
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zMLE_CONTROL
-aZKey      4010961
-aInternalValue 1015
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zMOUSE_LEFT
-aZKey      127082560
-aInternalValue 1
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zMOUSE_RIGHT
-aZKey      127082561
-aInternalValue 2
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zMSG_ActivateWindow
-aZKey      4010947
-aInternalValue 201
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zMSG_EnableAction
-aZKey      8023760
-aInternalValue 309
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zMSG_GetControlState
-aZKey      4010952
-aInternalValue 305
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zMSG_GetControlText
-aZKey      4010948
-aInternalValue 301
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zMSG_GetOptionState
-aZKey      8023758
-aInternalValue 307
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zMSG_HiliteControlItem
-aZKey      4010950
-aInternalValue 303
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zMSG_InitInterpretor
-aZKey      4010955
-aInternalValue 990
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zMSG_RefreshControl
-aZKey      4010951
-aInternalValue 304
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zMSG_RefreshWindow
-aZKey      8023757
-aInternalValue 203
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zMSG_ResumeFromDebugger
-aZKey      8023761
-aInternalValue 995
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zMSG_SetControlState
-aZKey      4010953
-aInternalValue 306
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zMSG_SetControlText
-aZKey      4010949
-aInternalValue 302
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zMSG_SetDIL_Message
-aZKey      4010954
-aInternalValue 900
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zMSG_SetNewApplicationSubtask
-aZKey      8023756
-aInternalValue 111
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zMSG_SetOptionState
-aZKey      8023759
-aInternalValue 308
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zMSG_SetWindowActionBehavior
-aZKey      4010945
-aInternalValue 100
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zMSG_SetWindowCaptionTitle
-aZKey      4010946
-aInternalValue 200
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zMSG_StartTask
-aZKey      8023755
-aInternalValue 110
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zOFN_ALLOWMULTISELECT
-aZKey      130068951
-aInternalValue 128
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zOFN_CREATEPROMPT
-aZKey      130068955
-aInternalValue 2048
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zOFN_EXTENSIONDIFFERENT
-aZKey      130068952
-aInternalValue 256
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zOFN_FILEMUSTEXIST
-aZKey      130068954
-aInternalValue 1024
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zOFN_HIDEREADONLY
-aZKey      130068947
-aInternalValue 8
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zOFN_LONGNAMES
-aZKey      130068963
-aInternalValue 2097152
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zOFN_NOCHANGEDIR
-aZKey      130068948
-aInternalValue 16
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zOFN_NODEREFERENCELINKS
-aZKey      130068962
-aInternalValue 1048576
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zOFN_NOLONGNAMES
-aZKey      130068961
-aInternalValue 262144
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zOFN_NONETWORKBUTTON
-aZKey      130068960
-aInternalValue 131072
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zOFN_NOREADONLYRETURN
-aZKey      130068957
-aInternalValue 8192
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zOFN_NOTESTFILECREATE
-aZKey      130068959
-aInternalValue 65536
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zOFN_NOVALIDATE
-aZKey      130068950
-aInternalValue 64
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zOFN_OVERWRITEPROMPT
-aZKey      130068946
-aInternalValue 4
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zOFN_PATHMUSTEXIST
-aZKey      130068953
-aInternalValue 512
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zOFN_READONLY
-aZKey      130068945
-aInternalValue 2
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zOFN_SAVEAS
-aZKey      130068958
-aInternalValue 16384
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zOFN_SHAREAWARE
-aZKey      130068956
-aInternalValue 4096
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zOFN_SHOWHELP
-aZKey      130068949
-aInternalValue 32
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zOPTION_STATUS_CHECKED
-aZKey      8023777
-aInternalValue 2
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zOPTION_STATUS_ENABLED
-aZKey      8023776
-aInternalValue 1
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zPAINTER_CONTROL
-aZKey      8023764
-aInternalValue 1999
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zPAINTERTOOLBAR_CONTROL
-aZKey      4010971
-aInternalValue 2000
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zPUSHBUTTON_CONTROL
-aZKey      4010962
-aInternalValue 1020
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zRADIOBUTTON_CONTROL
-aZKey      4010964
-aInternalValue 1031
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zRADIOBUTTON_DEFAULT
-aZKey      4010986
-aInternalValue 1
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zRADIOBUTTONGROUP_CONTROL
-aZKey      4010963
-aInternalValue 1030
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zRCONTROL_STATUS_GROUPINACTIVE
-aZKey      89389116
-aInternalValue 0
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zRCONTROL_STATUS_NOTPRINTED
-aZKey      89389117
-aInternalValue 1
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zRCONTROL_STATUS_PARTIALPRINT
-aZKey      89389118
-aInternalValue 2
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zRCONTROL_STATUS_PRINTED
-aZKey      89389119
-aInternalValue 3
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zREPORT_CREATENAME
-aZKey      1118413
-aInternalValue 1048576
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zREPORT_PRINTREMOTE
-aZKey      1118416
-aInternalValue 131072
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zREPORT_RETURNNAME
-aZKey      1118414
-aInternalValue 524288
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zREPORT_USEFOLDER
-aZKey      1118415
-aInternalValue 8388608
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zRESPONSE_ABORT
-aZKey      4010998
-aInternalValue 5
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zRESPONSE_CANCEL
-aZKey      4010996
-aInternalValue 3
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zRESPONSE_IGNORE
-aZKey      4011000
-aInternalValue 7
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zRESPONSE_NO
-aZKey      4010995
-aInternalValue 2
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zRESPONSE_OK
-aZKey      4010997
-aInternalValue 4
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zRESPONSE_RETRY
-aZKey      4010999
-aInternalValue 6
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zRESPONSE_YES
-aZKey      4010994
-aInternalValue 1
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zRGE_EVENT_GROUP_CONTINUE
-aZKey      89389112
-aInternalValue 2
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zRGE_EVENT_GROUP_SPLITTING
-aZKey      89389120
-aInternalValue 3
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zRGE_EVENT_POSTPRINT
-aZKey      89389113
-aInternalValue 4
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zRGE_EVENT_PREPRINT
-aZKey      89389111
-aInternalValue 1
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zRGE_RETURN_NEWPAGE
-aZKey      89389115
-aInternalValue 2
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zRGE_RETURN_NORMAL
-aZKey      1004080
-aInternalValue 0
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zRGE_RETURN_SUPPRESS
-aZKey      89389114
-aInternalValue 1
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zSHIFT
-aZKey      127082566
-aInternalValue 1
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zSPREADSHEET_COMBOBOX
-aZKey      8023811
-aInternalValue 65536
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zSPREADSHEET_DATE
-aZKey      8023812
-aInternalValue 131072
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zSPREADSHEET_EDITBOX
-aZKey      8023810
-aInternalValue 0
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zSPREADSHEET_FLOAT
-aZKey      8023813
-aInternalValue 262144
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zSPREADSHEET_INTEGER
-aZKey      8023814
-aInternalValue 524288
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zSPREADSHEET_PIC
-aZKey      8023815
-aInternalValue 1048576
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zSPREADSHEET_PICTURE
-aZKey      8023816
-aInternalValue 2097152
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zSPREADSHEET_TEXT
-aZKey      8023817
-aInternalValue 4194304
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zSPREADSHEET_TIME
-aZKey      8023818
-aInternalValue 8388608
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zSS_SCOPE_OI
-aZKey      1159359
-aInternalValue 2097152
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zSTRG
-aZKey      127082567
-aInternalValue 2
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zTABBINGGROUP_CONTROL
-aZKey      4010970
-aInternalValue 1210
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zTEXT_CONTROL
-aZKey      4010959
-aInternalValue 1000
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zTOOLBOX_CONTROL
-aZKey      8023766
-aInternalValue 2015
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zTOOLBOX_MULTIPLESEL
-aZKey      8023807
-aInternalValue 1
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zTOOLBOX_NOSTATE
-aZKey      8023808
-aInternalValue 2
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zTOOLBOX_TOOLBAR
-aZKey      8023809
-aInternalValue 4
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zWAB_DeterminedInDialogOperation
-aZKey      4010925
-aInternalValue 0
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_ExitDialogTask
-aZKey      4010939
-aInternalValue 99
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_LinkToHTML_Address
-aZKey      93165529
-aInternalValue 45
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_NoDriverMessageOnError
-aZKey      90059825
-aInternalValue 536870912
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zWAB_OperatorError
-aZKey      4010941
-aInternalValue 102
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_ProcessDownloadFile
-aZKey      68561436
-aInternalValue 46
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_ProcessImmediateAction
-aZKey      8023754
-aInternalValue 268435456
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zWAB_ProcessImmediateReturn
-aZKey      90059824
-aInternalValue 1073741824
-aDataType  L
-
-eDefinedItem 3
-aExternalValue zWAB_ReplaceDialogWithDialog
-aZKey      4010932
-aInternalValue 51
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_ReplaceWindowWithModalWindow
-aZKey      4010934
-aInternalValue 53
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_ReplaceWindowWithModelessWindow
-aZKey      4010933
-aInternalValue 52
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_ResetTopWindow
-aZKey      1690989
-aInternalValue 76
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_ResumeFromDebugger
-aZKey      4010943
-aInternalValue 202
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_ReturnFromWebPopupNoRefresh
-aZKey      4119158
-aInternalValue 84
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_ReturnFromWebPopupWithRefresh
-aZKey      4119159
-aInternalValue 85
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_ReturnToParent
-aZKey      4010935
-aInternalValue 71
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_ReturnToParentWithRefresh
-aZKey      4010936
-aInternalValue 72
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_ReturnToTopWindow
-aZKey      4010937
-aInternalValue 73
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_ReturnToTopWindowWithRefresh
-aZKey      4010938
-aInternalValue 74
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartAppFromInterp
-aZKey      4010944
-aInternalValue 220
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartBrowserHTML_Page
-aZKey      1089785
-aInternalValue 41
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartBrowserPDF_Page
-aZKey      1775681
-aInternalValue 47
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartDialogTask
-aZKey      4010928
-aInternalValue 31
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartEmailClient
-aZKey      1094794
-aInternalValue 42
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartEmailClientBCC
-aZKey      1142040
-aInternalValue 43
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartEmailClientCC
-aZKey      1142041
-aInternalValue 44
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartJasperPDF_Page
-aZKey      130000614
-aInternalValue 48
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartModalSubwindow
-aZKey      4010931
-aInternalValue 34
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartModalWebPopup
-aZKey      1776395
-aInternalValue 78
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartModalWindow
-aZKey      90059827
-aInternalValue 36
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartModelessSubwindow
-aZKey      4010930
-aInternalValue 33
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartModelessWebPopup
-aZKey      1776394
-aInternalValue 79
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartModelessWindow
-aZKey      4010929
-aInternalValue 32
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartNewApp
-aZKey      8023753
-aInternalValue 35
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartOrFocusModelessApp
-aZKey      50001410
-aInternalValue 37
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartOrFocusModelessDialog
-aZKey      10010158
-aInternalValue 30
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartOrFocusModelessSubwindow
-aZKey      90059828
-aInternalValue 39
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartOrFocusModelessWindow
-aZKey      90059826
-aInternalValue 38
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartPopupMenu
-aZKey      1089786
-aInternalValue 40
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StartTopWindow
-aZKey      1666053
-aInternalValue 75
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StayOnWindow
-aZKey      4010926
-aInternalValue 1
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StayOnWindowWebRefresh
-aZKey      4274535
-aInternalValue 3
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_StayOnWindowWithRefresh
-aZKey      4010927
-aInternalValue 2
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_SuspendToDebugger
-aZKey      4010942
-aInternalValue 201
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_SwitchToAction
-aZKey      8023752
-aInternalValue -1
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWAB_TerminateActionForError
-aZKey      1158713
-aInternalValue 9999
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWINDOW_STATUS
-aZKey      8023778
-aInternalValue 0
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWINDOW_STATUS_ASYNC
-aZKey      90025032
-aInternalValue 6
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWINDOW_STATUS_DESTROY
-aZKey      1069957
-aInternalValue 9
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWINDOW_STATUS_ENABLED
-aZKey      8023779
-aInternalValue 1
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWINDOW_STATUS_ENABLED_VIEW
-aZKey      1027514
-aInternalValue 13
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWINDOW_STATUS_MAXIMIZE
-aZKey      8023782
-aInternalValue 4
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWINDOW_STATUS_MINIMIZE
-aZKey      8023781
-aInternalValue 3
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWINDOW_STATUS_RESTORE
-aZKey      8023783
-aInternalValue 5
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWINDOW_STATUS_SET_NO_ERROR_PROMPT
-aZKey      1069955
-aInternalValue 12
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWINDOW_STATUS_SETFOCUS
-aZKey      1069956
-aInternalValue 8
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWINDOW_STATUS_SHOW_PARENT
-aZKey      1069958
-aInternalValue 10
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWINDOW_STATUS_STOP_EVENTS
-aZKey      1069959
-aInternalValue 11
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWINDOW_STATUS_UPDATE
-aZKey      90025031
-aInternalValue 7
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWINDOW_STATUS_VISIBLE
-aZKey      8023780
-aInternalValue 2
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWND_STATE_DELETE
-aZKey      8023784
-aInternalValue -1
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWND_STATE_INIT
-aZKey      8023785
-aInternalValue 0
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWND_STATE_POSTBUILD_POSTCODE
-aZKey      8023789
-aInternalValue 4
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWND_STATE_POSTBUILD_PRECODE
-aZKey      8023788
-aInternalValue 3
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWND_STATE_PREBUILD_POSTCODE
-aZKey      8023787
-aInternalValue 2
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWND_STATE_PREBUILD_PRECODE
-aZKey      8023786
-aInternalValue 1
-aDataType  N
-
-eDefinedItem 3
-aExternalValue zWND_STATE_WELL_FORMED
-aZKey      8023790
-aInternalValue 5
 aDataType  N
 
 eHeaderFile 2
@@ -30539,21 +30559,21 @@ i4680      4
 i4880      3286
 i4897      3513
 i4899      16
-i5153      519
-i5155      567
-i5157      951
-i5159      8
-i5161      313
-i5163      3
-i5165      22
-i5167      1195
-i5169      15
-i5171      1249
-i5173      228
-i5175      518
-i5177      3898
-i5179      198
-i5181      950
-i5183      1882
-i5185      566
-i5187      3285
+i5156      519
+i5158      567
+i5160      951
+i5162      8
+i5164      313
+i5166      3
+i5168      22
+i5170      1195
+i5172      15
+i5174      1249
+i5176      228
+i5178      518
+i5180      3898
+i5182      198
+i5184      950
+i5186      1882
+i5188      566
+i5190      3285

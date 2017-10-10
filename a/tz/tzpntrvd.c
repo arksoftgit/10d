@@ -84,6 +84,14 @@ REMOVE_ReusableMainMenu( zVIEW     vSubtask );
 
 
 zOPER_EXPORT zSHORT OPERATION
+CONVERT_SubControlsForDialog( zVIEW     ViewToWindow );
+
+
+static zSHORT
+o_FixCtrlCtrlAttribsRecursive( zVIEW     vDialog );
+
+
+zOPER_EXPORT zSHORT OPERATION
 CONVERT_ControlClassForWindow( zVIEW     ViewToWindow );
 
 
@@ -1397,6 +1405,193 @@ REMOVE_ReusableMainMenu( zVIEW     vSubtask )
    { 
       //:EXCLUDE TZWINDOWL.ReusableMainWindow
       RESULT = ExcludeEntity( TZWINDOWL, "ReusableMainWindow", zREPOS_AFTER );
+   } 
+
+   //:END
+   return( 0 );
+// END
+} 
+
+
+//:DIALOG OPERATION
+//:CONVERT_SubControlsForDialog( VIEW ViewToWindow )
+
+//:   VIEW TZWINDOWL REGISTERED AS TZWINDOWL
+zOPER_EXPORT zSHORT OPERATION
+CONVERT_SubControlsForDialog( zVIEW     ViewToWindow )
+{
+   zVIEW     TZWINDOWL = 0; 
+   zSHORT    RESULT; 
+   //:VIEW vDialog   BASED ON LOD  TZWDLGSO
+   zVIEW     vDialog = 0; 
+   zSHORT    lTempInteger_0; 
+   zSHORT    lTempInteger_1; 
+
+   RESULT = GetViewByName( &TZWINDOWL, "TZWINDOWL", ViewToWindow, zLEVEL_TASK );
+
+   //:IF OperatorPrompt( ViewToWindow, "Generate JSP",
+   //:                     "Are you sure you want to continue??. Do not if you don't know what this is!!", 1, zBUTTONS_YESNO,
+   //:                     zRESPONSE_YES, zICON_QUESTION ) = zRESPONSE_NO
+   lTempInteger_0 = OperatorPrompt( ViewToWindow, "Generate JSP", "Are you sure you want to continue??. Do not if you don't know what this is!!", 1, zBUTTONS_YESNO, zRESPONSE_YES, zICON_QUESTION );
+   if ( lTempInteger_0 == zRESPONSE_NO )
+   { 
+      //: RETURN -1
+      return( -1 );
+   } 
+
+   //:END
+
+
+   //:// Based on the Convert Type, convert Class Names for either the Dialog of the Window.
+   //:CreateViewFromView( vDialog, TZWINDOWL )
+   CreateViewFromView( &vDialog, TZWINDOWL );
+
+   //:IF vDialog.Dialog.Converted = ""
+   if ( CompareAttributeToString( vDialog, "Dialog", "Converted", "" ) == 0 )
+   { 
+
+      //:// Indicate that the Class Conversion is for all Windows in the Dialog.
+      //:FOR EACH vDialog.Window
+      RESULT = SetCursorFirstEntity( vDialog, "Window", "" );
+      while ( RESULT > zCURSOR_UNCHANGED )
+      { 
+
+         //:// Process each Control
+         //:FOR EACH vDialog.Control
+         RESULT = SetCursorFirstEntity( vDialog, "Control", "" );
+         while ( RESULT > zCURSOR_UNCHANGED )
+         { 
+
+            //:IF vDialog.CtrlCtrl EXISTS
+            lTempInteger_1 = CheckExistenceOfEntity( vDialog, "CtrlCtrl" );
+            if ( lTempInteger_1 == 0 )
+            { 
+               //:// Create view for Group as a parent. This will be used in processing subcontrols to check for WebControlProperty.
+               //:SetViewToSubobject( vDialog, "CtrlCtrl" )
+               SetViewToSubobject( vDialog, "CtrlCtrl" );
+               //:FixCtrlCtrlAttribsRecursive( vDialog )
+               o_FixCtrlCtrlAttribsRecursive( vDialog );
+               //:ResetViewFromSubobject( vDialog )
+               ResetViewFromSubobject( vDialog );
+            } 
+
+            RESULT = SetCursorNextEntity( vDialog, "Control", "" );
+            //:END
+         } 
+
+         RESULT = SetCursorNextEntity( vDialog, "Window", "" );
+
+         //:END
+      } 
+
+      //:END
+      //:vDialog.Dialog.Converted = "Y"
+      SetAttributeFromString( vDialog, "Dialog", "Converted", "Y" );
+   } 
+
+   //:END
+   //:DropView( vDialog )
+   DropView( vDialog );
+   return( 0 );
+// END
+} 
+
+
+//:LOCAL OPERATION
+static zSHORT
+o_FixCtrlCtrlAttribsRecursive( zVIEW     vDialog )
+{
+   zSHORT    RESULT; 
+   zSHORT    lTempInteger_0; 
+
+   //:FixCtrlCtrlAttribsRecursive( VIEW vDialog BASED ON LOD  TZWDLGSO )
+
+   //:// Process each Control
+   //:// Converting the fields to the correct field.
+   //:// I realize this is only for applications that have been built since I made
+   //:// changes to tzwdlgso adding WebHTML5 attriutes etc. Like ZENCAS files that
+   //:// are older would not have this issue!
+   //:FOR EACH vDialog.Control
+   RESULT = SetCursorFirstEntity( vDialog, "Control", "" );
+   while ( RESULT > zCURSOR_UNCHANGED )
+   { 
+
+      //:IF vDialog.Control.WebCtrlLabelLink != ""
+      if ( CompareAttributeToString( vDialog, "Control", "WebCtrlLabelLink", "" ) != 0 )
+      { 
+         //:vDialog.Control.WebPlaceholder = vDialog.Control.WebCtrlLabelLink
+         SetAttributeFromAttribute( vDialog, "Control", "WebPlaceholder", vDialog, "Control", "WebCtrlLabelLink" );
+         //:vDialog.Control.WebCtrlLabelLink = ""
+         SetAttributeFromString( vDialog, "Control", "WebCtrlLabelLink", "" );
+      } 
+
+      //:END
+      //:IF vDialog.Control.WebNoGridDataMessage != ""
+      if ( CompareAttributeToString( vDialog, "Control", "WebNoGridDataMessage", "" ) != 0 )
+      { 
+         //:vDialog.Control.WebCtrlLabelLink = vDialog.Control.WebNoGridDataMessage
+         SetAttributeFromAttribute( vDialog, "Control", "WebCtrlLabelLink", vDialog, "Control", "WebNoGridDataMessage" );
+         //:vDialog.Control.WebNoGridDataMessage = ""
+         SetAttributeFromString( vDialog, "Control", "WebNoGridDataMessage", "" );
+      } 
+
+      //:END
+      //:IF vDialog.Control.WebNoGridDataMsgClass != ""
+      if ( CompareAttributeToString( vDialog, "Control", "WebNoGridDataMsgClass", "" ) != 0 )
+      { 
+         //:vDialog.Control.WebSelectSetName = vDialog.Control.WebNoGridDataMsgClass
+         SetAttributeFromAttribute( vDialog, "Control", "WebSelectSetName", vDialog, "Control", "WebNoGridDataMsgClass" );
+         //:vDialog.Control.WebNoGridDataMsgClass = ""
+         SetAttributeFromString( vDialog, "Control", "WebNoGridDataMsgClass", "" );
+      } 
+
+      //:END
+      //:IF vDialog.Control.WebreCAPTCHAPublicKey != ""
+      if ( CompareAttributeToString( vDialog, "Control", "WebreCAPTCHAPublicKey", "" ) != 0 )
+      { 
+         //:vDialog.Control.WebNoGridDataMessage = vDialog.Control.WebreCAPTCHAPublicKey
+         SetAttributeFromAttribute( vDialog, "Control", "WebNoGridDataMessage", vDialog, "Control", "WebreCAPTCHAPublicKey" );
+         //:vDialog.Control.WebreCAPTCHAPublicKey = ""
+         SetAttributeFromString( vDialog, "Control", "WebreCAPTCHAPublicKey", "" );
+      } 
+
+      //:END
+      //:IF vDialog.Control.WebreCAPTCHAPrivateKey  != ""
+      if ( CompareAttributeToString( vDialog, "Control", "WebreCAPTCHAPrivateKey", "" ) != 0 )
+      { 
+         //:vDialog.Control.WebNoGridDataMsgClass = vDialog.Control.WebreCAPTCHAPrivateKey
+         SetAttributeFromAttribute( vDialog, "Control", "WebNoGridDataMsgClass", vDialog, "Control", "WebreCAPTCHAPrivateKey" );
+         //:vDialog.Control.WebreCAPTCHAPrivateKey = ""
+         SetAttributeFromString( vDialog, "Control", "WebreCAPTCHAPrivateKey", "" );
+      } 
+
+      //:END
+      //:IF vDialog.Control.NLS_DIL_Text != ""
+      if ( CompareAttributeToString( vDialog, "Control", "NLS_DIL_Text", "" ) != 0 )
+      { 
+         //:vDialog.Control.WebHTML5Attribute = vDialog.Control.NLS_DIL_Text
+         SetAttributeFromAttribute( vDialog, "Control", "WebHTML5Attribute", vDialog, "Control", "NLS_DIL_Text" );
+         //:vDialog.Control.NLS_DIL_Text = ""
+         SetAttributeFromString( vDialog, "Control", "NLS_DIL_Text", "" );
+      } 
+
+      //:END
+
+      //:IF vDialog.CtrlCtrl EXISTS
+      lTempInteger_0 = CheckExistenceOfEntity( vDialog, "CtrlCtrl" );
+      if ( lTempInteger_0 == 0 )
+      { 
+         //:// Create view for Group as a parent. This will be used in processing subcontrols to check for WebControlProperty.
+         //:SetViewToSubobject( vDialog, "CtrlCtrl" )
+         SetViewToSubobject( vDialog, "CtrlCtrl" );
+         //:FixCtrlCtrlAttribsRecursive( vDialog )
+         o_FixCtrlCtrlAttribsRecursive( vDialog );
+         //:ResetViewFromSubobject( vDialog )
+         ResetViewFromSubobject( vDialog );
+      } 
+
+      RESULT = SetCursorNextEntity( vDialog, "Control", "" );
+      //:END
    } 
 
    //:END

@@ -1,4 +1,4 @@
-z1000-Zeidon    ZEIDON   TZDMXGPO 11/17/16   15:59:10 1.0a2   
+z1000-Zeidon    ZEIDON   TZDMXGPO                         07/14/17   11:06:46 1.0a2   
 eDomainGroup 1
 aName      Zeidon9B
 
@@ -5698,6 +5698,11 @@ aExternalValue Same Window / Refresh
 aInternalValue 2
 
 eTableEntry 4
+aZKey      130069835
+aExternalValue Same Window / No Position
+aInternalValue 4
+
+eTableEntry 4
 aZKey      4274542
 aExternalValue Same Window / Web Refresh
 aInternalValue 3
@@ -5726,6 +5731,11 @@ eTableEntry 4
 aZKey      1320477
 aExternalValue Subwindow / Modal
 aInternalValue 34
+
+eTableEntry 4
+aZKey      130069836
+aExternalValue Subwindow / No Position
+aInternalValue 57
 
 eTableEntry 4
 aZKey      90790802
@@ -6625,24 +6635,14 @@ aExternalValue Autocomplete Off
 aInternalValue Autocomplete Off
 
 eTableEntry 4
-aZKey      130069822
-aExternalValue Number
-aInternalValue Number
+aZKey      130069831
+aExternalValue No Height
+aInternalValue No Height
 
 eTableEntry 4
-aZKey      92656445
-aExternalValue Create Session Variable
-aInternalValue Create Session Variable
-
-eTableEntry 4
-aZKey      92656446
-aExternalValue XSS Encode
-aInternalValue XSS
-
-eTableEntry 4
-aZKey      92656447
-aExternalValue No Output Mapping
-aInternalValue No Output Mapping
+aZKey      130069826
+aExternalValue No Width
+aInternalValue No Width
 
 eTableEntry 4
 aZKey      92741377
@@ -6653,6 +6653,26 @@ eTableEntry 4
 aZKey      130000003
 aExternalValue Browse File
 aInternalValue Browse File
+
+eTableEntry 4
+aZKey      130069822
+aExternalValue Number
+aInternalValue Number
+
+eTableEntry 4
+aZKey      92656447
+aExternalValue No Output Mapping
+aInternalValue No Output Mapping
+
+eTableEntry 4
+aZKey      92656445
+aExternalValue Create Session Variable
+aInternalValue Create Session Variable
+
+eTableEntry 4
+aZKey      92656446
+aExternalValue XSS Encode
+aInternalValue XSS
 
 eDomain    2
 aJavaClass com.quinsoft.zeidon.domains.StaticTableDomain
@@ -6730,6 +6750,11 @@ aExternalValue Number (Used with Edit)
 aInternalValue Number
 
 eTableEntry 4
+aZKey      130069834
+aExternalValue Language Conv
+aInternalValue Language Conv
+
+eTableEntry 4
 aZKey      90249868
 aExternalValue Wrap
 aInternalValue WRAP
@@ -6775,24 +6800,9 @@ aExternalValue Div
 aInternalValue Div
 
 eTableEntry 4
-aZKey      68304368
-aExternalValue Span
-aInternalValue Span
-
-eTableEntry 4
 aZKey      89582614
 aExternalValue Table
 aInternalValue Table
-
-eTableEntry 4
-aZKey      4634994
-aExternalValue Fieldset
-aInternalValue Container
-
-eTableEntry 4
-aZKey      4634995
-aExternalValue Fieldset Absolute Pos
-aInternalValue Container Absolute Size
 
 eTableEntry 4
 aZKey      89853394
@@ -6810,16 +6820,6 @@ aExternalValue Include File
 aInternalValue Include File
 
 eTableEntry 4
-aZKey      130000001
-aExternalValue Absolute Pos
-aInternalValue Absolute Pos
-
-eTableEntry 4
-aZKey      90754211
-aExternalValue Grid Grouping
-aInternalValue Grid Grouping
-
-eTableEntry 4
 aZKey      92656449
 aExternalValue Show/Hide Toggle
 aInternalValue Show/Hide Toggle
@@ -6830,9 +6830,9 @@ aExternalValue Show/Hide Toggle2
 aInternalValue Show/Hide Toggle2
 
 eTableEntry 4
-aZKey      130069818
-aExternalValue Menu Action List
-aInternalValue Menu Action List
+aZKey      68544987
+aExternalValue File Transfer to Server
+aInternalValue File Transfer to Server
 
 eTableEntry 4
 aZKey      68304372
@@ -6840,14 +6840,44 @@ aExternalValue Repeating Group
 aInternalValue Repeating Group
 
 eTableEntry 4
+aZKey      130069833
+aExternalValue Chart
+aInternalValue Chart
+
+eTableEntry 4
+aZKey      68304368
+aExternalValue Span
+aInternalValue Span
+
+eTableEntry 4
+aZKey      4634994
+aExternalValue Fieldset
+aInternalValue Container
+
+eTableEntry 4
+aZKey      4634995
+aExternalValue Fieldset Absolute Pos
+aInternalValue Container Absolute Size
+
+eTableEntry 4
+aZKey      130000001
+aExternalValue Absolute Pos
+aInternalValue Absolute Pos
+
+eTableEntry 4
+aZKey      90754211
+aExternalValue Grid Grouping
+aInternalValue Grid Grouping
+
+eTableEntry 4
+aZKey      130069818
+aExternalValue Menu Action List
+aInternalValue Menu Action List
+
+eTableEntry 4
 aZKey      130069814
 aExternalValue Select Set (Repeat Grp)
 aInternalValue Select Set (Repeat Grp)
-
-eTableEntry 4
-aZKey      68544987
-aExternalValue File Transfer to Server
-aInternalValue File Transfer to Server
 
 eTableEntry 4
 aZKey      92741379
@@ -6919,6 +6949,16 @@ aName      WD_WebPushControlProperties
 aIsDefault Y
 
 eTableEntry 4
+aZKey      130069827
+aExternalValue No Height
+aInternalValue No Height
+
+eTableEntry 4
+aZKey      130069828
+aExternalValue No Width
+aInternalValue No Width
+
+eTableEntry 4
 aZKey      68544964
 aExternalValue Button (Not Submit)
 aInternalValue Button (Not Submit)
@@ -6976,6 +7016,21 @@ eTableEntry 4
 aZKey      92709482
 aExternalValue Label
 aInternalValue Label
+
+eTableEntry 4
+aZKey      130069829
+aExternalValue No Height
+aInternalValue No Height
+
+eTableEntry 4
+aZKey      130069830
+aExternalValue No Width
+aInternalValue No Width
+
+eTableEntry 4
+aZKey      130069832
+aExternalValue Text Only
+aInternalValue Text Only
 
 eDomain    2
 aJavaClass com.quinsoft.zeidon.domains.StaticTableDomain

@@ -246,7 +246,7 @@ GenerateJSP( VIEW vDialog BASED ON LOD TZWDLGSO,
    STRING ( 1 )     InsertBlankFlag
    STRING ( 1 )     szInsertPrebuildJavascriptInline
    STRING ( 1 )     WorkFlag
-   STRING ( 100 )   szSizeF
+// STRING ( 1024 )  szSizeF
    STRING ( 1024 )  szStyle
    STRING ( 1024 )  szFileName
    STRING ( 1 )     szBorder
@@ -3296,7 +3296,7 @@ DKS_TRACE_END */
    WL_QC( vDialog, lFileJSP, szWriteBuffer, "^", 0 )
 
    // Generate FORM
-   //CreateSizeString( vDialog, szSize )
+   //CreateSizeString( vDialog, szSizeF )
    PIX_PER_DU( vDialog, DLUnits )
 
    // For Popups, we will use the Width from the Window. Otherwise we won't.

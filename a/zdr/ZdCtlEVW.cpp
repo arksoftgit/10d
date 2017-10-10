@@ -295,7 +295,7 @@ ZCrystalEditView::ZCrystalEditView( ZSubtask *pZSubtask,
    m_nCharWidth = -1;
 
    // Text attributes
-   m_nTabSize = 0;
+   m_nTabSize = 3;
    m_bViewTabs = FALSE;
    m_bSelMargin = FALSE;
 
@@ -1215,11 +1215,8 @@ void ZCrystalEditView::OnEditDeleteBack()
    return;
 }
 
-void ZCrystalEditView::OnEditTab()
+void ZCrystalEditView::Tab()
 {
-#ifdef DEBUG_ALL
-   TraceLineS( "OnEditTab", "");
-#endif
    if (! QueryEditable())
       return;
 
@@ -1328,11 +1325,16 @@ void ZCrystalEditView::OnEditTab()
    m_pTextBuffer->FlushUndoGroup(this);
 }
 
-void ZCrystalEditView::OnEditUntab()
+void ZCrystalEditView::OnEditTab()
 {
 #ifdef DEBUG_ALL
-   TraceLineS( "OnEditUntab", "");
+   TraceLineS( "OnEditTab", "");
 #endif
+   Tab();
+}
+
+void ZCrystalEditView::Untab()
+{
    if (! QueryEditable())
       return;
 
@@ -1441,6 +1443,14 @@ void ZCrystalEditView::OnEditUntab()
          EnsureVisible(ptCursorPos);
       }
    }
+}
+
+void ZCrystalEditView::OnEditUntab()
+{
+#ifdef DEBUG_ALL
+   TraceLineS( "OnEditUntab", "");
+#endif
+   Untab();
 }
 
 void ZCrystalEditView::OnUpdateIndicatorCol(CCmdUI *pCmdUI)
@@ -2899,7 +2909,7 @@ void ZCrystalEditView::ResetView()
    m_nHoldArrowXPos = -1;
    m_nLineHeight = -1;
    m_nCharWidth = -1;
-   m_nTabSize = 4;
+   m_nTabSize = 3;
    m_nMaxLineLength = -1;
    m_nScreenLines = -1;
    m_nScreenChars = -1;
@@ -8267,6 +8277,46 @@ EDT_CutText( zVIEW vSubtask )
       }
 
       TraceLineS( "drvr - Invalid control type for EDT_CutText ", EDIT_CONTROL_NAME );
+   }
+   return( FALSE );
+}
+
+zOPER_EXPORT zBOOL OPERATION
+EDT_TabText( zVIEW vSubtask )
+{
+   ZSubtask *pZSubtask;
+   ZMapAct  *pzma;
+
+   if ( GetWindowAndCtrl( &pZSubtask, &pzma, vSubtask, EDIT_CONTROL_NAME ) == 0 )
+   {
+      ZCrystalEditView *pED_Crystal = DYNAMIC_DOWNCAST( ZCrystalEditView, pzma->m_pCtrl );
+      if ( pED_Crystal )
+      {
+         pED_Crystal->Tab();
+         return( TRUE );
+      }
+
+      TraceLineS( "drvr - Invalid control type for EDT_TabText ", EDIT_CONTROL_NAME );
+   }
+   return( FALSE );
+}
+
+zOPER_EXPORT zBOOL OPERATION
+EDT_UntabText( zVIEW vSubtask )
+{
+   ZSubtask *pZSubtask;
+   ZMapAct  *pzma;
+
+   if ( GetWindowAndCtrl( &pZSubtask, &pzma, vSubtask, EDIT_CONTROL_NAME ) == 0 )
+   {
+      ZCrystalEditView *pED_Crystal = DYNAMIC_DOWNCAST( ZCrystalEditView, pzma->m_pCtrl );
+      if ( pED_Crystal )
+      {
+         pED_Crystal->Untab();
+         return( TRUE );
+      }
+
+      TraceLineS( "drvr - Invalid control type for EDT_UntabText ", EDIT_CONTROL_NAME );
    }
    return( FALSE );
 }

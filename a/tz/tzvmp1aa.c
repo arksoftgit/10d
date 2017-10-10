@@ -3208,12 +3208,16 @@ OperationNameValid( zPCHAR szToken )
 
    if ( zstrcmp( g_szSourceMetaObjectName, "TZZOLODO" ) == 0 )
    {
-      zCHAR szLodName[ 9 ] = { 0 };
+      //zCHAR szLodName[ 9 ] = { 0 };
+      // KJS 01/30/17
+      zCHAR szLodName[ 33 ] = { 0 };
 
       // The source meta is a LOD.  For a LOD Operation, the length is restricted to 22 chars to
       // allow for a LOD name length of 8 characters. (o_LODNAME_).
       GetStringFromAttribute( szLodName, zsizeof( szLodName ), g_lpPIView, "VML_XSource", "MetaName" );
-      if ( zstrlen( szToken ) + zstrlen( szLodName ) > 30 )
+      //if ( zstrlen( szToken ) + zstrlen( szLodName ) > 30 )
+      // KJS 01/30/17
+      if ( zstrlen( szToken ) + zstrlen( szLodName ) > 54 )
          return( 0 );
    }
    else

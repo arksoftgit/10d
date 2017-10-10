@@ -700,7 +700,6 @@ zwfnTZCMLPLD_InitDialog( zVIEW vSubtask )
       if ( GetViewByName( &vTZCMWKSO, "TZCMWKSO", vZeidonCM, zLEVEL_SUBTASK ) >= 0 )
       {
          SetNameForView( vTZCMWKSO, "TZCMWKSO", vSubtask, zLEVEL_TASK );
-
          InitializeDefaultLPL( vSubtask );
          SetWindowActionBehavior( vSubtask, zWAB_StartModalSubwindow, "TZCMLPLD", "SignOn" );
          return( -1 );

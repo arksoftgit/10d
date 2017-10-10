@@ -96,6 +96,9 @@
 #define zMSG_CLIPBOARD_PASTE_MENU         60
 #define zMSG_GETWINDOWBYNAME              61
 #define zMSG_EMPTYALLPAINTERWINDOWS       62
+#define zMSG_GENERATEJAVAJSP              63
+#define zMSG_SAVEDIALOG                   64
+#define zMSG_GENERATEALLJAVAJSP           65
 
 #define zLISTBOX_SORTEDHEADERS            zCONTROL_SPECIFIC_2
 

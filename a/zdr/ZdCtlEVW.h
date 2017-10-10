@@ -287,6 +287,8 @@ public:
    void Cut();  // moved to public
    void Copy();  // moved to public
    void Paste();  // moved to public
+   void Tab();  // moved to public
+   void Untab();  // moved to public
    void SelectAllLines();  // moved to public
    virtual int GetLineCount();  // moved to public
    virtual int GetLineLength(int nLineIndex);  // moved to public

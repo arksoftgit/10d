@@ -486,15 +486,15 @@ GenerateNewExpression( zVIEW vSubtask, zPCHAR pchOutputString )
    zSHORT  nHoldExprIdx;          // keep original nExprIdx
    zSHORT  nFirstViewIdx = -1;
    zSHORT  nQualViewIdx = -1;     // index to qualifying view within Expression list (-1 ==> does not exist)
-   zSHORT  nReturnParmIdx[ 20 ];  // index to return parameter within Expression list
-   zLONG   lReturnParmType[ 20 ]; // type of return parameter within Expression list
+   zSHORT  nReturnParmIdx[ 200 ];  // index to return parameter within Expression list
+   zLONG   lReturnParmType[ 200 ]; // type of return parameter within Expression list
    zSHORT  nReturnParmCnt = 0;
    zSHORT  nReturnStringCnt = 0;
    zSHORT  nReturnIntCnt = 0;
    zSHORT  nReturnDecimalCnt = 0;
    zSHORT  nReturnUnknownCnt = 0;
    zSHORT  nReturnTotalCnt = 0;
-   zSHORT  nParmIdx[ 20 ];        // index to parameter within Expression list
+   zSHORT  nParmIdx[ 200 ];        // index to parameter within Expression list
    zSHORT  nParmCnt = 0;
    zSHORT  nStringCnt = 0;
    zSHORT  nIntCnt = 0;

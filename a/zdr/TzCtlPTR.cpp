@@ -4627,12 +4627,31 @@ TZPainterWindow::PreTranslateMessage( MSG *pMsg )
       }
 
       if ( pMsg->message == WM_KEYDOWN &&
-           (pMsg->wParam == 'Z' || pMsg->wParam == 'Y' ||
-            pMsg->wParam == 'C' || pMsg->wParam == 'V' || pMsg->wParam == 'X') &&
+           (pMsg->wParam == 'Z' || pMsg->wParam == 'Y' || pMsg->wParam == 'S' || pMsg->wParam == 'J' ||
+            pMsg->wParam == 'C' || pMsg->wParam == 'V' || pMsg->wParam == 'X' || pMsg->wParam == 'A') &&
            (GetKeyState( VK_CONTROL ) < 0) &&
            (GetKeyState( VK_MENU ) >= 0) &&
            (GetKeyState( VK_SHIFT ) >= 0) )
       {
+         if (pMsg->wParam == 'S')
+         {
+            // KJS 5/23/17 - Ctrl+S, Saves the Dialog
+            PainterCall(zMSG_SAVEDIALOG, 0, m_pBar, 0, 0, 0);
+            return(TRUE); // the message was translated and should not be dispatched
+         }
+         if (pMsg->wParam == 'J')
+         {
+            // KJS 5/23/17 - Ctrl+J, calls GenerateJSPJava, generates the current window.
+            PainterCall(zMSG_GENERATEJAVAJSP, 0, m_pBar, 0, 0, 0);
+            return(TRUE); // the message was translated and should not be dispatched
+         }
+         if (pMsg->wParam == 'A')
+         {
+            // KJS 5/23/17 - Ctrl+A, calls GenerateAllJSPJava, generates all windows.
+            PainterCall(zMSG_GENERATEALLJAVAJSP, 0, m_pBar, 0, 0, 0);
+            return(TRUE); // the message was translated and should not be dispatched
+         }
+
          if ( (pMsg->wParam == 'Z' || pMsg->wParam == 'Y') )
          {
          // TraceLineS( "tzctlptr Undo/Redo", "" );

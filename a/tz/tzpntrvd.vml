@@ -334,6 +334,100 @@ END
 **
 *************************************************************************************************/
 DIALOG OPERATION
+CONVERT_SubControlsForDialog( VIEW ViewToWindow )
+
+   VIEW TZWINDOWL REGISTERED AS TZWINDOWL
+   VIEW vDialog   BASED ON LOD  TZWDLGSO
+
+   IF OperatorPrompt( ViewToWindow, "Generate JSP",
+                        "Are you sure you want to continue??. Do not if you don't know what this is!!", 1, zBUTTONS_YESNO,
+                        zRESPONSE_YES, zICON_QUESTION ) = zRESPONSE_NO
+       RETURN -1
+   END
+
+
+   // Based on the Convert Type, convert Class Names for either the Dialog of the Window.
+   CreateViewFromView( vDialog, TZWINDOWL )
+
+   IF vDialog.Dialog.Converted = ""
+
+      // Indicate that the Class Conversion is for all Windows in the Dialog.
+      FOR EACH vDialog.Window
+
+         // Process each Control
+         FOR EACH vDialog.Control
+
+            IF vDialog.CtrlCtrl EXISTS
+               // Create view for Group as a parent. This will be used in processing subcontrols to check for WebControlProperty.
+               SetViewToSubobject( vDialog, "CtrlCtrl" )
+               FixCtrlCtrlAttribsRecursive( vDialog )
+               ResetViewFromSubobject( vDialog )
+            END
+
+         END
+      END
+      vDialog.Dialog.Converted = "Y"
+   END
+   DropView( vDialog )
+
+END
+
+/*************************************************************************************************
+**
+**    OPERATION: CONVERT_ClassNamesRecursive
+**
+*************************************************************************************************/
+LOCAL OPERATION
+FixCtrlCtrlAttribsRecursive( VIEW vDialog BASED ON LOD  TZWDLGSO )
+
+   // Process each Control
+   // Converting the fields to the correct field.
+   // I realize this is only for applications that have been built since I made
+   // changes to tzwdlgso adding WebHTML5 attriutes etc. Like ZENCAS files that
+   // are older would not have this issue!
+   FOR EACH vDialog.Control
+
+      IF vDialog.Control.WebCtrlLabelLink != ""
+         vDialog.Control.WebPlaceholder = vDialog.Control.WebCtrlLabelLink
+         vDialog.Control.WebCtrlLabelLink = ""
+      END
+      IF vDialog.Control.WebNoGridDataMessage != ""
+         vDialog.Control.WebCtrlLabelLink = vDialog.Control.WebNoGridDataMessage
+         vDialog.Control.WebNoGridDataMessage = ""
+      END
+      IF vDialog.Control.WebNoGridDataMsgClass != ""
+         vDialog.Control.WebSelectSetName = vDialog.Control.WebNoGridDataMsgClass
+         vDialog.Control.WebNoGridDataMsgClass = ""
+      END
+      IF vDialog.Control.WebreCAPTCHAPublicKey != ""
+         vDialog.Control.WebNoGridDataMessage = vDialog.Control.WebreCAPTCHAPublicKey
+         vDialog.Control.WebreCAPTCHAPublicKey = ""
+      END
+      IF vDialog.Control.WebreCAPTCHAPrivateKey  != ""
+         vDialog.Control.WebNoGridDataMsgClass = vDialog.Control.WebreCAPTCHAPrivateKey
+         vDialog.Control.WebreCAPTCHAPrivateKey = ""
+      END
+      IF vDialog.Control.NLS_DIL_Text != ""
+         vDialog.Control.WebHTML5Attribute = vDialog.Control.NLS_DIL_Text
+         vDialog.Control.NLS_DIL_Text = ""
+      END
+
+      IF vDialog.CtrlCtrl EXISTS
+         // Create view for Group as a parent. This will be used in processing subcontrols to check for WebControlProperty.
+         SetViewToSubobject( vDialog, "CtrlCtrl" )
+         FixCtrlCtrlAttribsRecursive( vDialog )
+         ResetViewFromSubobject( vDialog )
+      END
+   END
+
+END
+
+/*************************************************************************************************
+**
+**    OPERATION: CONVERT_ControlClassForDialog
+**
+*************************************************************************************************/
+DIALOG OPERATION
 CONVERT_ControlClassForDialog( VIEW ViewToWindow )
 
    VIEW TZWINDOWL REGISTERED AS TZWINDOWL

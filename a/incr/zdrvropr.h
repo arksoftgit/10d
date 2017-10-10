@@ -190,6 +190,7 @@ extern "C"
 #define zWAB_StayOnWindow                      1   // PREVENT ACTION
 #define zWAB_StayOnWindowWithRefresh           2
 #define zWAB_StayOnWindowWebRefresh            3
+#define zWAB_StayOnWindowRefreshNP             4  // Same Window / No Position
 
 #define zWAB_StartOrFocusModelessDialog       30
 #define zWAB_StartDialogTask                  31
@@ -200,7 +201,7 @@ extern "C"
 #define zWAB_StartOrFocusModelessSubwindow    39
 #define zWAB_StartModalSubwindow              34
 #define zWAB_StartOrFocusModelessApp          37
-#define zWAB_StartNewApp                      35
+#define zWAB_StartNewApp                      35  // ReCAPTCHA Subwindow  
 
 #define zWAB_StartPopupMenu                   40
 #define zWAB_StartBrowserHTML_Page            41
@@ -211,12 +212,17 @@ extern "C"
 #define zWAB_ProcessDownloadFile              46
 #define zWAB_StartBrowserPDF_Page             47
 #define zWAB_StartJasperPDF_Page              48
+#define zWAB_StartJasperXLS_Page              49
 
 #define zWAB_ReplaceDialogWithDialog          51
 #define zWAB_ReplaceWindowWithModelessWindow  52
 #define zWAB_ReplaceWindowWithModalWindow     53
 #define zWAB_ReplaceCurrentAppWithApp         54
+#define zWAB_ReCAPTCHA			      55  // ReCAPTCHA Replace Window
 
+#define zWAB_StartModalSubwindowNP	      57  // Subwindow / No Position
+
+#define zWAB_PrintWindow	              60  // Print Window
 #define zWAB_StartSplitWindow                 61
 #define zWAB_ReplaceSplitWindow               62
 #define zWAB_DeleteSplitWindow                63

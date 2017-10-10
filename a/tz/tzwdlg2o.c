@@ -447,11 +447,11 @@ oTZWDLGSO_ControlRelinkDelete( zVIEW     vDialog,
                } 
                else
                { 
-                  //:szMsg = "DKS2 Deleting Control Mapping for:|   " + szWindowReportName +
+                  //:szMsg = "Deleting Control Mapping for:|   " + szWindowReportName +
                   //:        "|   Control: " + vControl.Control.Tag +
                   //:        "|   because of missing Attribute: " + vControl.CtrlMapER_Attribute.Name +
                   //:        "|   in LOD: " + vControl.CtrlMapView.Name
-                  ZeidonStringCopy( szMsg, 1, 0, "DKS2 Deleting Control Mapping for:\n  ", 1, 0, 256 );
+                  ZeidonStringCopy( szMsg, 1, 0, "Deleting Control Mapping for:\n  ", 1, 0, 256 );
                   ZeidonStringConcat( szMsg, 1, 0, szWindowReportName, 1, 0, 256 );
                   ZeidonStringConcat( szMsg, 1, 0, "\n  Control: ", 1, 0, 256 );
                   GetVariableFromAttribute( szTempString_7, 0, 'S', 33, vControl, "Control", "Tag", "", 0 );

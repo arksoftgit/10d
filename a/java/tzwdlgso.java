@@ -45,6 +45,7 @@ public class DialogImpl implements Dialog
    protected String  WEB_NoAutoLogOut;
    protected String  WEB_ImportInclude;
    protected String  WEB_Logout;
+   protected String  Converted;
    protected String  LastSyncDate;
    protected String  wOriginalViewName;
    protected String  wNewViewName;
@@ -55,6 +56,7 @@ public class DialogImpl implements Dialog
    protected String  wWebEditControlProperties;
    protected String  wWebPushControlProperties;
    protected String  wWebTextControlProperties;
+   protected String  wWebUsesLanguageConversion;
    protected String  wMapTypeGridColumnControl;
    protected String  wMapTypeTextControl;
    protected String  wOriginalClassName;
@@ -357,6 +359,22 @@ public class DialogImpl implements Dialog
    }
 
    /**
+    * @return the Converted
+    */
+   public String getConverted( )
+   {
+      return Converted;
+   }
+
+   /**
+    * @param Converted to set 
+    */
+   public void setConverted( String Converted )
+   {
+      this.Converted = Converted;
+   }
+
+   /**
     * @return the LastSyncDate
     */
    public String getLastSyncDate( )
@@ -517,6 +535,22 @@ public class DialogImpl implements Dialog
    }
 
    /**
+    * @return the wWebUsesLanguageConversion
+    */
+   public String getwWebUsesLanguageConversion( )
+   {
+      return wWebUsesLanguageConversion;
+   }
+
+   /**
+    * @param wWebUsesLanguageConversion to set 
+    */
+   public void setwWebUsesLanguageConversion( String wWebUsesLanguageConversion )
+   {
+      this.wWebUsesLanguageConversion = wWebUsesLanguageConversion;
+   }
+
+   /**
     * @return the wMapTypeGridColumnControl
     */
    public String getwMapTypeGridColumnControl( )
@@ -616,6 +650,7 @@ public class DialogImpl implements Dialog
       WEB_NoAutoLogOut = cursor.getStringFromAttribute( "WEB_NoAutoLogOut" );  if ( WEB_NoAutoLogOut == null ) WEB_NoAutoLogOut = "";
       WEB_ImportInclude = cursor.getStringFromAttribute( "WEB_ImportInclude" );  if ( WEB_ImportInclude == null ) WEB_ImportInclude = "";
       WEB_Logout = cursor.getStringFromAttribute( "WEB_Logout" );  if ( WEB_Logout == null ) WEB_Logout = "";
+      Converted = cursor.getStringFromAttribute( "Converted" );  if ( Converted == null ) Converted = "";
       LastSyncDate = cursor.getStringFromAttribute( "LastSyncDate" );  if ( LastSyncDate == null ) LastSyncDate = "";
       wOriginalViewName = cursor.getStringFromAttribute( "wOriginalViewName" );  if ( wOriginalViewName == null ) wOriginalViewName = "";
       wNewViewName = cursor.getStringFromAttribute( "wNewViewName" );  if ( wNewViewName == null ) wNewViewName = "";
@@ -626,6 +661,7 @@ public class DialogImpl implements Dialog
       wWebEditControlProperties = cursor.getStringFromAttribute( "wWebEditControlProperties" );  if ( wWebEditControlProperties == null ) wWebEditControlProperties = "";
       wWebPushControlProperties = cursor.getStringFromAttribute( "wWebPushControlProperties" );  if ( wWebPushControlProperties == null ) wWebPushControlProperties = "";
       wWebTextControlProperties = cursor.getStringFromAttribute( "wWebTextControlProperties" );  if ( wWebTextControlProperties == null ) wWebTextControlProperties = "";
+      wWebUsesLanguageConversion = cursor.getStringFromAttribute( "wWebUsesLanguageConversion" );  if ( wWebUsesLanguageConversion == null ) wWebUsesLanguageConversion = "";
       wMapTypeGridColumnControl = cursor.getStringFromAttribute( "wMapTypeGridColumnControl" );  if ( wMapTypeGridColumnControl == null ) wMapTypeGridColumnControl = "";
       wMapTypeTextControl = cursor.getStringFromAttribute( "wMapTypeTextControl" );  if ( wMapTypeTextControl == null ) wMapTypeTextControl = "";
       wOriginalClassName = cursor.getStringFromAttribute( "wOriginalClassName" );  if ( wOriginalClassName == null ) wOriginalClassName = "";
@@ -1820,6 +1856,7 @@ public class ControlImpl implements Control
    protected String  DIL_Inherited;
    protected String  NLS_Text;
    protected String  NLS_DIL_Text;
+   protected String  LangID;
    protected Integer FontSize;
    protected String  TextBold;
    protected String  TextItalic;
@@ -2777,6 +2814,22 @@ public class ControlImpl implements Control
    }
 
    /**
+    * @return the LangID
+    */
+   public String getLangID( )
+   {
+      return LangID;
+   }
+
+   /**
+    * @param LangID to set 
+    */
+   public void setLangID( String LangID )
+   {
+      this.LangID = LangID;
+   }
+
+   /**
     * @return the FontSize
     */
    public Integer getFontSize( )
@@ -2901,6 +2954,7 @@ public class ControlImpl implements Control
       DIL_Inherited = cursor.getStringFromAttribute( "DIL_Inherited" );  if ( DIL_Inherited == null ) DIL_Inherited = "";
       NLS_Text = cursor.getStringFromAttribute( "NLS_Text" );  if ( NLS_Text == null ) NLS_Text = "";
       NLS_DIL_Text = cursor.getStringFromAttribute( "NLS_DIL_Text" );  if ( NLS_DIL_Text == null ) NLS_DIL_Text = "";
+      LangID = cursor.getStringFromAttribute( "LangID" );  if ( LangID == null ) LangID = "";
       FontSize = cursor.getIntegerFromAttribute( "FontSize" );  if ( FontSize == null ) FontSize = 0;
       TextBold = cursor.getStringFromAttribute( "TextBold" );  if ( TextBold == null ) TextBold = "";
       TextItalic = cursor.getStringFromAttribute( "TextItalic" );  if ( TextItalic == null ) TextItalic = "";
@@ -2964,6 +3018,13 @@ public class CtrlCtrlImpl implements CtrlCtrl
    protected String  GUID;
    protected Blob    Properties;
    protected Blob    LKey;
+   protected Integer BorderWidth;
+   protected Integer BorderStyle;
+   protected Integer BorderTop;
+   protected Integer BorderBottom;
+   protected Integer BorderLeft;
+   protected Integer BorderRight;
+   protected String  TextAlignHorizontal;
    protected String  VisibleBorder;
    protected String  CenterJustify;
    protected String  RightJustify;
@@ -2976,6 +3037,8 @@ public class CtrlCtrlImpl implements CtrlCtrl
    protected String  JavaScript;
    protected String  RadioOrCheckboxValue;
    protected String  WebFileName;
+   protected String  WebCtrlLabelLink;
+   protected String  WebSelectSetName;
    protected String  WebCtrlType;
    protected String  WebColumnSpan;
    protected String  WebWrap;
@@ -2983,25 +3046,17 @@ public class CtrlCtrlImpl implements CtrlCtrl
    protected String  WebNoGridDataMsgClass;
    protected String  WebreCAPTCHAPublicKey;
    protected String  WebreCAPTCHAPrivateKey;
+   protected String  WebHTML5Attribute;
+   protected String  WebPlaceholder;
+   protected String  MenuName;
    protected String  DIL_Inherited;
    protected String  NLS_Text;
    protected String  NLS_DIL_Text;
-   protected Integer BorderWidth;
-   protected Integer BorderStyle;
-   protected Integer BorderTop;
-   protected Integer BorderBottom;
-   protected Integer BorderLeft;
-   protected Integer BorderRight;
-   protected String  TextAlignHorizontal;
+   protected String  LangID;
    protected Integer FontSize;
    protected String  TextBold;
    protected String  TextItalic;
    protected String  TextUnderline;
-   protected String  WebCtrlLabelLink;
-   protected String  WebSelectSetName;
-   protected String  WebHTML5Attribute;
-   protected String  WebPlaceholder;
-   protected String  MenuName;
 
 
    // ctor
@@ -3411,6 +3466,118 @@ public class CtrlCtrlImpl implements CtrlCtrl
    }
 
    /**
+    * @return the BorderWidth
+    */
+   public Integer getBorderWidth( )
+   {
+      return BorderWidth;
+   }
+
+   /**
+    * @param BorderWidth to set 
+    */
+   public void setBorderWidth( Integer BorderWidth )
+   {
+      this.BorderWidth = BorderWidth;
+   }
+
+   /**
+    * @return the BorderStyle
+    */
+   public Integer getBorderStyle( )
+   {
+      return BorderStyle;
+   }
+
+   /**
+    * @param BorderStyle to set 
+    */
+   public void setBorderStyle( Integer BorderStyle )
+   {
+      this.BorderStyle = BorderStyle;
+   }
+
+   /**
+    * @return the BorderTop
+    */
+   public Integer getBorderTop( )
+   {
+      return BorderTop;
+   }
+
+   /**
+    * @param BorderTop to set 
+    */
+   public void setBorderTop( Integer BorderTop )
+   {
+      this.BorderTop = BorderTop;
+   }
+
+   /**
+    * @return the BorderBottom
+    */
+   public Integer getBorderBottom( )
+   {
+      return BorderBottom;
+   }
+
+   /**
+    * @param BorderBottom to set 
+    */
+   public void setBorderBottom( Integer BorderBottom )
+   {
+      this.BorderBottom = BorderBottom;
+   }
+
+   /**
+    * @return the BorderLeft
+    */
+   public Integer getBorderLeft( )
+   {
+      return BorderLeft;
+   }
+
+   /**
+    * @param BorderLeft to set 
+    */
+   public void setBorderLeft( Integer BorderLeft )
+   {
+      this.BorderLeft = BorderLeft;
+   }
+
+   /**
+    * @return the BorderRight
+    */
+   public Integer getBorderRight( )
+   {
+      return BorderRight;
+   }
+
+   /**
+    * @param BorderRight to set 
+    */
+   public void setBorderRight( Integer BorderRight )
+   {
+      this.BorderRight = BorderRight;
+   }
+
+   /**
+    * @return the TextAlignHorizontal
+    */
+   public String getTextAlignHorizontal( )
+   {
+      return TextAlignHorizontal;
+   }
+
+   /**
+    * @param TextAlignHorizontal to set 
+    */
+   public void setTextAlignHorizontal( String TextAlignHorizontal )
+   {
+      this.TextAlignHorizontal = TextAlignHorizontal;
+   }
+
+   /**
     * @return the VisibleBorder
     */
    public String getVisibleBorder( )
@@ -3603,6 +3770,38 @@ public class CtrlCtrlImpl implements CtrlCtrl
    }
 
    /**
+    * @return the WebCtrlLabelLink
+    */
+   public String getWebCtrlLabelLink( )
+   {
+      return WebCtrlLabelLink;
+   }
+
+   /**
+    * @param WebCtrlLabelLink to set 
+    */
+   public void setWebCtrlLabelLink( String WebCtrlLabelLink )
+   {
+      this.WebCtrlLabelLink = WebCtrlLabelLink;
+   }
+
+   /**
+    * @return the WebSelectSetName
+    */
+   public String getWebSelectSetName( )
+   {
+      return WebSelectSetName;
+   }
+
+   /**
+    * @param WebSelectSetName to set 
+    */
+   public void setWebSelectSetName( String WebSelectSetName )
+   {
+      this.WebSelectSetName = WebSelectSetName;
+   }
+
+   /**
     * @return the WebCtrlType
     */
    public String getWebCtrlType( )
@@ -3715,6 +3914,54 @@ public class CtrlCtrlImpl implements CtrlCtrl
    }
 
    /**
+    * @return the WebHTML5Attribute
+    */
+   public String getWebHTML5Attribute( )
+   {
+      return WebHTML5Attribute;
+   }
+
+   /**
+    * @param WebHTML5Attribute to set 
+    */
+   public void setWebHTML5Attribute( String WebHTML5Attribute )
+   {
+      this.WebHTML5Attribute = WebHTML5Attribute;
+   }
+
+   /**
+    * @return the WebPlaceholder
+    */
+   public String getWebPlaceholder( )
+   {
+      return WebPlaceholder;
+   }
+
+   /**
+    * @param WebPlaceholder to set 
+    */
+   public void setWebPlaceholder( String WebPlaceholder )
+   {
+      this.WebPlaceholder = WebPlaceholder;
+   }
+
+   /**
+    * @return the MenuName
+    */
+   public String getMenuName( )
+   {
+      return MenuName;
+   }
+
+   /**
+    * @param MenuName to set 
+    */
+   public void setMenuName( String MenuName )
+   {
+      this.MenuName = MenuName;
+   }
+
+   /**
     * @return the DIL_Inherited
     */
    public String getDIL_Inherited( )
@@ -3763,115 +4010,19 @@ public class CtrlCtrlImpl implements CtrlCtrl
    }
 
    /**
-    * @return the BorderWidth
+    * @return the LangID
     */
-   public Integer getBorderWidth( )
+   public String getLangID( )
    {
-      return BorderWidth;
+      return LangID;
    }
 
    /**
-    * @param BorderWidth to set 
+    * @param LangID to set 
     */
-   public void setBorderWidth( Integer BorderWidth )
+   public void setLangID( String LangID )
    {
-      this.BorderWidth = BorderWidth;
-   }
-
-   /**
-    * @return the BorderStyle
-    */
-   public Integer getBorderStyle( )
-   {
-      return BorderStyle;
-   }
-
-   /**
-    * @param BorderStyle to set 
-    */
-   public void setBorderStyle( Integer BorderStyle )
-   {
-      this.BorderStyle = BorderStyle;
-   }
-
-   /**
-    * @return the BorderTop
-    */
-   public Integer getBorderTop( )
-   {
-      return BorderTop;
-   }
-
-   /**
-    * @param BorderTop to set 
-    */
-   public void setBorderTop( Integer BorderTop )
-   {
-      this.BorderTop = BorderTop;
-   }
-
-   /**
-    * @return the BorderBottom
-    */
-   public Integer getBorderBottom( )
-   {
-      return BorderBottom;
-   }
-
-   /**
-    * @param BorderBottom to set 
-    */
-   public void setBorderBottom( Integer BorderBottom )
-   {
-      this.BorderBottom = BorderBottom;
-   }
-
-   /**
-    * @return the BorderLeft
-    */
-   public Integer getBorderLeft( )
-   {
-      return BorderLeft;
-   }
-
-   /**
-    * @param BorderLeft to set 
-    */
-   public void setBorderLeft( Integer BorderLeft )
-   {
-      this.BorderLeft = BorderLeft;
-   }
-
-   /**
-    * @return the BorderRight
-    */
-   public Integer getBorderRight( )
-   {
-      return BorderRight;
-   }
-
-   /**
-    * @param BorderRight to set 
-    */
-   public void setBorderRight( Integer BorderRight )
-   {
-      this.BorderRight = BorderRight;
-   }
-
-   /**
-    * @return the TextAlignHorizontal
-    */
-   public String getTextAlignHorizontal( )
-   {
-      return TextAlignHorizontal;
-   }
-
-   /**
-    * @param TextAlignHorizontal to set 
-    */
-   public void setTextAlignHorizontal( String TextAlignHorizontal )
-   {
-      this.TextAlignHorizontal = TextAlignHorizontal;
+      this.LangID = LangID;
    }
 
    /**
@@ -3938,86 +4089,6 @@ public class CtrlCtrlImpl implements CtrlCtrl
       this.TextUnderline = TextUnderline;
    }
 
-   /**
-    * @return the WebCtrlLabelLink
-    */
-   public String getWebCtrlLabelLink( )
-   {
-      return WebCtrlLabelLink;
-   }
-
-   /**
-    * @param WebCtrlLabelLink to set 
-    */
-   public void setWebCtrlLabelLink( String WebCtrlLabelLink )
-   {
-      this.WebCtrlLabelLink = WebCtrlLabelLink;
-   }
-
-   /**
-    * @return the WebSelectSetName
-    */
-   public String getWebSelectSetName( )
-   {
-      return WebSelectSetName;
-   }
-
-   /**
-    * @param WebSelectSetName to set 
-    */
-   public void setWebSelectSetName( String WebSelectSetName )
-   {
-      this.WebSelectSetName = WebSelectSetName;
-   }
-
-   /**
-    * @return the WebHTML5Attribute
-    */
-   public String getWebHTML5Attribute( )
-   {
-      return WebHTML5Attribute;
-   }
-
-   /**
-    * @param WebHTML5Attribute to set 
-    */
-   public void setWebHTML5Attribute( String WebHTML5Attribute )
-   {
-      this.WebHTML5Attribute = WebHTML5Attribute;
-   }
-
-   /**
-    * @return the WebPlaceholder
-    */
-   public String getWebPlaceholder( )
-   {
-      return WebPlaceholder;
-   }
-
-   /**
-    * @param WebPlaceholder to set 
-    */
-   public void setWebPlaceholder( String WebPlaceholder )
-   {
-      this.WebPlaceholder = WebPlaceholder;
-   }
-
-   /**
-    * @return the MenuName
-    */
-   public String getMenuName( )
-   {
-      return MenuName;
-   }
-
-   /**
-    * @param MenuName to set 
-    */
-   public void setMenuName( String MenuName )
-   {
-      this.MenuName = MenuName;
-   }
-
    public int loadCtrlCtrlEntityStructure( EntityCursor cursor )
    {
       Tag = cursor.getStringFromAttribute( "Tag" );  if ( Tag == null ) Tag = "";
@@ -4045,6 +4116,13 @@ public class CtrlCtrlImpl implements CtrlCtrl
       GUID = cursor.getStringFromAttribute( "GUID" );  if ( GUID == null ) GUID = "";
       Properties = cursor.getBlobFromAttribute( "Properties" );
       LKey = cursor.getBlobFromAttribute( "LKey" );
+      BorderWidth = cursor.getIntegerFromAttribute( "BorderWidth" );  if ( BorderWidth == null ) BorderWidth = 0;
+      BorderStyle = cursor.getIntegerFromAttribute( "BorderStyle" );  if ( BorderStyle == null ) BorderStyle = 0;
+      BorderTop = cursor.getIntegerFromAttribute( "BorderTop" );  if ( BorderTop == null ) BorderTop = 0;
+      BorderBottom = cursor.getIntegerFromAttribute( "BorderBottom" );  if ( BorderBottom == null ) BorderBottom = 0;
+      BorderLeft = cursor.getIntegerFromAttribute( "BorderLeft" );  if ( BorderLeft == null ) BorderLeft = 0;
+      BorderRight = cursor.getIntegerFromAttribute( "BorderRight" );  if ( BorderRight == null ) BorderRight = 0;
+      TextAlignHorizontal = cursor.getStringFromAttribute( "TextAlignHorizontal" );  if ( TextAlignHorizontal == null ) TextAlignHorizontal = "";
       VisibleBorder = cursor.getStringFromAttribute( "VisibleBorder" );  if ( VisibleBorder == null ) VisibleBorder = "";
       CenterJustify = cursor.getStringFromAttribute( "CenterJustify" );  if ( CenterJustify == null ) CenterJustify = "";
       RightJustify = cursor.getStringFromAttribute( "RightJustify" );  if ( RightJustify == null ) RightJustify = "";
@@ -4057,6 +4135,8 @@ public class CtrlCtrlImpl implements CtrlCtrl
       JavaScript = cursor.getStringFromAttribute( "JavaScript" );  if ( JavaScript == null ) JavaScript = "";
       RadioOrCheckboxValue = cursor.getStringFromAttribute( "RadioOrCheckboxValue" );  if ( RadioOrCheckboxValue == null ) RadioOrCheckboxValue = "";
       WebFileName = cursor.getStringFromAttribute( "WebFileName" );  if ( WebFileName == null ) WebFileName = "";
+      WebCtrlLabelLink = cursor.getStringFromAttribute( "WebCtrlLabelLink" );  if ( WebCtrlLabelLink == null ) WebCtrlLabelLink = "";
+      WebSelectSetName = cursor.getStringFromAttribute( "WebSelectSetName" );  if ( WebSelectSetName == null ) WebSelectSetName = "";
       WebCtrlType = cursor.getStringFromAttribute( "WebCtrlType" );  if ( WebCtrlType == null ) WebCtrlType = "";
       WebColumnSpan = cursor.getStringFromAttribute( "WebColumnSpan" );  if ( WebColumnSpan == null ) WebColumnSpan = "";
       WebWrap = cursor.getStringFromAttribute( "WebWrap" );  if ( WebWrap == null ) WebWrap = "";
@@ -4064,25 +4144,17 @@ public class CtrlCtrlImpl implements CtrlCtrl
       WebNoGridDataMsgClass = cursor.getStringFromAttribute( "WebNoGridDataMsgClass" );  if ( WebNoGridDataMsgClass == null ) WebNoGridDataMsgClass = "";
       WebreCAPTCHAPublicKey = cursor.getStringFromAttribute( "WebreCAPTCHAPublicKey" );  if ( WebreCAPTCHAPublicKey == null ) WebreCAPTCHAPublicKey = "";
       WebreCAPTCHAPrivateKey = cursor.getStringFromAttribute( "WebreCAPTCHAPrivateKey" );  if ( WebreCAPTCHAPrivateKey == null ) WebreCAPTCHAPrivateKey = "";
+      WebHTML5Attribute = cursor.getStringFromAttribute( "WebHTML5Attribute" );  if ( WebHTML5Attribute == null ) WebHTML5Attribute = "";
+      WebPlaceholder = cursor.getStringFromAttribute( "WebPlaceholder" );  if ( WebPlaceholder == null ) WebPlaceholder = "";
+      MenuName = cursor.getStringFromAttribute( "MenuName" );  if ( MenuName == null ) MenuName = "";
       DIL_Inherited = cursor.getStringFromAttribute( "DIL_Inherited" );  if ( DIL_Inherited == null ) DIL_Inherited = "";
       NLS_Text = cursor.getStringFromAttribute( "NLS_Text" );  if ( NLS_Text == null ) NLS_Text = "";
       NLS_DIL_Text = cursor.getStringFromAttribute( "NLS_DIL_Text" );  if ( NLS_DIL_Text == null ) NLS_DIL_Text = "";
-      BorderWidth = cursor.getIntegerFromAttribute( "BorderWidth" );  if ( BorderWidth == null ) BorderWidth = 0;
-      BorderStyle = cursor.getIntegerFromAttribute( "BorderStyle" );  if ( BorderStyle == null ) BorderStyle = 0;
-      BorderTop = cursor.getIntegerFromAttribute( "BorderTop" );  if ( BorderTop == null ) BorderTop = 0;
-      BorderBottom = cursor.getIntegerFromAttribute( "BorderBottom" );  if ( BorderBottom == null ) BorderBottom = 0;
-      BorderLeft = cursor.getIntegerFromAttribute( "BorderLeft" );  if ( BorderLeft == null ) BorderLeft = 0;
-      BorderRight = cursor.getIntegerFromAttribute( "BorderRight" );  if ( BorderRight == null ) BorderRight = 0;
-      TextAlignHorizontal = cursor.getStringFromAttribute( "TextAlignHorizontal" );  if ( TextAlignHorizontal == null ) TextAlignHorizontal = "";
+      LangID = cursor.getStringFromAttribute( "LangID" );  if ( LangID == null ) LangID = "";
       FontSize = cursor.getIntegerFromAttribute( "FontSize" );  if ( FontSize == null ) FontSize = 0;
       TextBold = cursor.getStringFromAttribute( "TextBold" );  if ( TextBold == null ) TextBold = "";
       TextItalic = cursor.getStringFromAttribute( "TextItalic" );  if ( TextItalic == null ) TextItalic = "";
       TextUnderline = cursor.getStringFromAttribute( "TextUnderline" );  if ( TextUnderline == null ) TextUnderline = "";
-      WebCtrlLabelLink = cursor.getStringFromAttribute( "WebCtrlLabelLink" );  if ( WebCtrlLabelLink == null ) WebCtrlLabelLink = "";
-      WebSelectSetName = cursor.getStringFromAttribute( "WebSelectSetName" );  if ( WebSelectSetName == null ) WebSelectSetName = "";
-      WebHTML5Attribute = cursor.getStringFromAttribute( "WebHTML5Attribute" );  if ( WebHTML5Attribute == null ) WebHTML5Attribute = "";
-      WebPlaceholder = cursor.getStringFromAttribute( "WebPlaceholder" );  if ( WebPlaceholder == null ) WebPlaceholder = "";
-      MenuName = cursor.getStringFromAttribute( "MenuName" );  if ( MenuName == null ) MenuName = "";
 
       return 0;
    }
@@ -12957,6 +13029,7 @@ public class ActCtrlImpl implements ActCtrl
    protected String  TextBold;
    protected String  TextItalic;
    protected String  TextUnderline;
+   protected String  LangID;
 
 
    // ctor
@@ -13797,6 +13870,22 @@ public class ActCtrlImpl implements ActCtrl
       this.TextUnderline = TextUnderline;
    }
 
+   /**
+    * @return the LangID
+    */
+   public String getLangID( )
+   {
+      return LangID;
+   }
+
+   /**
+    * @param LangID to set 
+    */
+   public void setLangID( String LangID )
+   {
+      this.LangID = LangID;
+   }
+
    public int loadActCtrlEntityStructure( EntityCursor cursor )
    {
       Tag = cursor.getStringFromAttribute( "Tag" );  if ( Tag == null ) Tag = "";
@@ -13851,6 +13940,7 @@ public class ActCtrlImpl implements ActCtrl
       TextBold = cursor.getStringFromAttribute( "TextBold" );  if ( TextBold == null ) TextBold = "";
       TextItalic = cursor.getStringFromAttribute( "TextItalic" );  if ( TextItalic == null ) TextItalic = "";
       TextUnderline = cursor.getStringFromAttribute( "TextUnderline" );  if ( TextUnderline == null ) TextUnderline = "";
+      LangID = cursor.getStringFromAttribute( "LangID" );  if ( LangID == null ) LangID = "";
 
       return 0;
    }
@@ -13893,6 +13983,7 @@ public class ActOptImpl implements ActOpt
    protected String  Separator;
    protected Integer ZKey;
    protected Integer Underline;
+   protected String  LangID;
    protected String  DIL_Text;
    protected Integer SeqNo_Menu;
    protected Integer SeqNo_Option;
@@ -14033,6 +14124,22 @@ public class ActOptImpl implements ActOpt
    }
 
    /**
+    * @return the LangID
+    */
+   public String getLangID( )
+   {
+      return LangID;
+   }
+
+   /**
+    * @param LangID to set 
+    */
+   public void setLangID( String LangID )
+   {
+      this.LangID = LangID;
+   }
+
+   /**
     * @return the DIL_Text
     */
    public String getDIL_Text( )
@@ -14090,6 +14197,7 @@ public class ActOptImpl implements ActOpt
       Separator = cursor.getStringFromAttribute( "Separator" );  if ( Separator == null ) Separator = "";
       ZKey = cursor.getIntegerFromAttribute( "ZKey" );  if ( ZKey == null ) ZKey = 0;
       Underline = cursor.getIntegerFromAttribute( "Underline" );  if ( Underline == null ) Underline = 0;
+      LangID = cursor.getStringFromAttribute( "LangID" );  if ( LangID == null ) LangID = "";
       DIL_Text = cursor.getStringFromAttribute( "DIL_Text" );  if ( DIL_Text == null ) DIL_Text = "";
       SeqNo_Menu = cursor.getIntegerFromAttribute( "SeqNo_Menu" );  if ( SeqNo_Menu == null ) SeqNo_Menu = 0;
       SeqNo_Option = cursor.getIntegerFromAttribute( "SeqNo_Option" );  if ( SeqNo_Option == null ) SeqNo_Option = 0;
@@ -14993,6 +15101,7 @@ public class OptionImpl implements Option
    protected String  NLS_Text;
    protected String  CSS_Class;
    protected String  WebHTML5Attribute;
+   protected String  LangID;
 
 
    // ctor
@@ -15257,6 +15366,22 @@ public class OptionImpl implements Option
       this.WebHTML5Attribute = WebHTML5Attribute;
    }
 
+   /**
+    * @return the LangID
+    */
+   public String getLangID( )
+   {
+      return LangID;
+   }
+
+   /**
+    * @param LangID to set 
+    */
+   public void setLangID( String LangID )
+   {
+      this.LangID = LangID;
+   }
+
    public int loadOptionEntityStructure( EntityCursor cursor )
    {
       Tag = cursor.getStringFromAttribute( "Tag" );  if ( Tag == null ) Tag = "";
@@ -15275,6 +15400,7 @@ public class OptionImpl implements Option
       NLS_Text = cursor.getStringFromAttribute( "NLS_Text" );  if ( NLS_Text == null ) NLS_Text = "";
       CSS_Class = cursor.getStringFromAttribute( "CSS_Class" );  if ( CSS_Class == null ) CSS_Class = "";
       WebHTML5Attribute = cursor.getStringFromAttribute( "WebHTML5Attribute" );  if ( WebHTML5Attribute == null ) WebHTML5Attribute = "";
+      LangID = cursor.getStringFromAttribute( "LangID" );  if ( LangID == null ) LangID = "";
 
       return 0;
    }
@@ -15325,6 +15451,7 @@ public class OptOptImpl implements OptOpt
    protected String  NLS_Text;
    protected String  CSS_Class;
    protected String  WebHTML5Attribute;
+   protected String  LangID;
 
 
    // ctor
@@ -15589,6 +15716,22 @@ public class OptOptImpl implements OptOpt
       this.WebHTML5Attribute = WebHTML5Attribute;
    }
 
+   /**
+    * @return the LangID
+    */
+   public String getLangID( )
+   {
+      return LangID;
+   }
+
+   /**
+    * @param LangID to set 
+    */
+   public void setLangID( String LangID )
+   {
+      this.LangID = LangID;
+   }
+
    public int loadOptOptEntityStructure( EntityCursor cursor )
    {
       Tag = cursor.getStringFromAttribute( "Tag" );  if ( Tag == null ) Tag = "";
@@ -15607,6 +15750,7 @@ public class OptOptImpl implements OptOpt
       NLS_Text = cursor.getStringFromAttribute( "NLS_Text" );  if ( NLS_Text == null ) NLS_Text = "";
       CSS_Class = cursor.getStringFromAttribute( "CSS_Class" );  if ( CSS_Class == null ) CSS_Class = "";
       WebHTML5Attribute = cursor.getStringFromAttribute( "WebHTML5Attribute" );  if ( WebHTML5Attribute == null ) WebHTML5Attribute = "";
+      LangID = cursor.getStringFromAttribute( "LangID" );  if ( LangID == null ) LangID = "";
 
       return 0;
    }
@@ -23108,7 +23252,6 @@ public class ViewObjRefImpl implements ViewObjRef
    protected Integer Level;
    protected String  IsDrivingViewForReportFlag;
    protected String  wWindowUseFlag;
-   protected String  IsDrivingViewForReportFlag;
 
 
    // ctor
@@ -23229,22 +23372,6 @@ public class ViewObjRefImpl implements ViewObjRef
       this.wWindowUseFlag = wWindowUseFlag;
    }
 
-   /**
-    * @return the IsDrivingViewForReportFlag
-    */
-   public String getIsDrivingViewForReportFlag( )
-   {
-      return IsDrivingViewForReportFlag;
-   }
-
-   /**
-    * @param IsDrivingViewForReportFlag to set 
-    */
-   public void setIsDrivingViewForReportFlag( String IsDrivingViewForReportFlag )
-   {
-      this.IsDrivingViewForReportFlag = IsDrivingViewForReportFlag;
-   }
-
    public int loadViewObjRefEntityStructure( EntityCursor cursor )
    {
       ZKey = cursor.getIntegerFromAttribute( "ZKey" );  if ( ZKey == null ) ZKey = 0;
@@ -23254,7 +23381,6 @@ public class ViewObjRefImpl implements ViewObjRef
       Level = cursor.getIntegerFromAttribute( "Level" );  if ( Level == null ) Level = 0;
       IsDrivingViewForReportFlag = cursor.getStringFromAttribute( "IsDrivingViewForReportFlag" );  if ( IsDrivingViewForReportFlag == null ) IsDrivingViewForReportFlag = "";
       wWindowUseFlag = cursor.getStringFromAttribute( "wWindowUseFlag" );  if ( wWindowUseFlag == null ) wWindowUseFlag = "";
-      IsDrivingViewForReportFlag = cursor.getStringFromAttribute( "IsDrivingViewForReportFlag" );  if ( IsDrivingViewForReportFlag == null ) IsDrivingViewForReportFlag = "";
 
       return 0;
    }
@@ -26881,6 +27007,7 @@ public class NLS_ControlImpl implements NLS_Control
    protected String  TextBold;
    protected String  TextItalic;
    protected String  TextUnderline;
+   protected String  LangID;
 
 
    // ctor
@@ -27689,6 +27816,22 @@ public class NLS_ControlImpl implements NLS_Control
       this.TextUnderline = TextUnderline;
    }
 
+   /**
+    * @return the LangID
+    */
+   public String getLangID( )
+   {
+      return LangID;
+   }
+
+   /**
+    * @param LangID to set 
+    */
+   public void setLangID( String LangID )
+   {
+      this.LangID = LangID;
+   }
+
    public int loadNLS_ControlEntityStructure( EntityCursor cursor )
    {
       Tag = cursor.getStringFromAttribute( "Tag" );  if ( Tag == null ) Tag = "";
@@ -27741,6 +27884,7 @@ public class NLS_ControlImpl implements NLS_Control
       TextBold = cursor.getStringFromAttribute( "TextBold" );  if ( TextBold == null ) TextBold = "";
       TextItalic = cursor.getStringFromAttribute( "TextItalic" );  if ( TextItalic == null ) TextItalic = "";
       TextUnderline = cursor.getStringFromAttribute( "TextUnderline" );  if ( TextUnderline == null ) TextUnderline = "";
+      LangID = cursor.getStringFromAttribute( "LangID" );  if ( LangID == null ) LangID = "";
 
       return 0;
    }
@@ -27884,6 +28028,7 @@ public class NLS_OptionImpl implements NLS_Option
    protected String  DIL_Text;
    protected Integer SeqNo_Menu;
    protected Integer SeqNo_Option;
+   protected String  LangID;
 
 
    // ctor
@@ -28068,6 +28213,22 @@ public class NLS_OptionImpl implements NLS_Option
       this.SeqNo_Option = SeqNo_Option;
    }
 
+   /**
+    * @return the LangID
+    */
+   public String getLangID( )
+   {
+      return LangID;
+   }
+
+   /**
+    * @param LangID to set 
+    */
+   public void setLangID( String LangID )
+   {
+      this.LangID = LangID;
+   }
+
    public int loadNLS_OptionEntityStructure( EntityCursor cursor )
    {
       Tag = cursor.getStringFromAttribute( "Tag" );  if ( Tag == null ) Tag = "";
@@ -28081,6 +28242,7 @@ public class NLS_OptionImpl implements NLS_Option
       DIL_Text = cursor.getStringFromAttribute( "DIL_Text" );  if ( DIL_Text == null ) DIL_Text = "";
       SeqNo_Menu = cursor.getIntegerFromAttribute( "SeqNo_Menu" );  if ( SeqNo_Menu == null ) SeqNo_Menu = 0;
       SeqNo_Option = cursor.getIntegerFromAttribute( "SeqNo_Option" );  if ( SeqNo_Option == null ) SeqNo_Option = 0;
+      LangID = cursor.getStringFromAttribute( "LangID" );  if ( LangID == null ) LangID = "";
 
       return 0;
    }
@@ -28263,6 +28425,7 @@ public class NLS_DIL_ControlImpl implements NLS_DIL_Control
    protected String  TextBold;
    protected String  TextItalic;
    protected String  TextUnderline;
+   protected String  LangID;
 
 
    // ctor
@@ -29071,6 +29234,22 @@ public class NLS_DIL_ControlImpl implements NLS_DIL_Control
       this.TextUnderline = TextUnderline;
    }
 
+   /**
+    * @return the LangID
+    */
+   public String getLangID( )
+   {
+      return LangID;
+   }
+
+   /**
+    * @param LangID to set 
+    */
+   public void setLangID( String LangID )
+   {
+      this.LangID = LangID;
+   }
+
    public int loadNLS_DIL_ControlEntityStructure( EntityCursor cursor )
    {
       Tag = cursor.getStringFromAttribute( "Tag" );  if ( Tag == null ) Tag = "";
@@ -29123,6 +29302,7 @@ public class NLS_DIL_ControlImpl implements NLS_DIL_Control
       TextBold = cursor.getStringFromAttribute( "TextBold" );  if ( TextBold == null ) TextBold = "";
       TextItalic = cursor.getStringFromAttribute( "TextItalic" );  if ( TextItalic == null ) TextItalic = "";
       TextUnderline = cursor.getStringFromAttribute( "TextUnderline" );  if ( TextUnderline == null ) TextUnderline = "";
+      LangID = cursor.getStringFromAttribute( "LangID" );  if ( LangID == null ) LangID = "";
 
       return 0;
    }
@@ -29266,6 +29446,7 @@ public class NLS_DIL_OptionImpl implements NLS_DIL_Option
    protected String  DIL_Text;
    protected Integer SeqNo_Menu;
    protected Integer SeqNo_Option;
+   protected String  LangID;
 
 
    // ctor
@@ -29450,6 +29631,22 @@ public class NLS_DIL_OptionImpl implements NLS_DIL_Option
       this.SeqNo_Option = SeqNo_Option;
    }
 
+   /**
+    * @return the LangID
+    */
+   public String getLangID( )
+   {
+      return LangID;
+   }
+
+   /**
+    * @param LangID to set 
+    */
+   public void setLangID( String LangID )
+   {
+      this.LangID = LangID;
+   }
+
    public int loadNLS_DIL_OptionEntityStructure( EntityCursor cursor )
    {
       Tag = cursor.getStringFromAttribute( "Tag" );  if ( Tag == null ) Tag = "";
@@ -29463,6 +29660,7 @@ public class NLS_DIL_OptionImpl implements NLS_DIL_Option
       DIL_Text = cursor.getStringFromAttribute( "DIL_Text" );  if ( DIL_Text == null ) DIL_Text = "";
       SeqNo_Menu = cursor.getIntegerFromAttribute( "SeqNo_Menu" );  if ( SeqNo_Menu == null ) SeqNo_Menu = 0;
       SeqNo_Option = cursor.getIntegerFromAttribute( "SeqNo_Option" );  if ( SeqNo_Option == null ) SeqNo_Option = 0;
+      LangID = cursor.getStringFromAttribute( "LangID" );  if ( LangID == null ) LangID = "";
 
       return 0;
    }

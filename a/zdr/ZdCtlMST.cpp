@@ -782,9 +782,20 @@ ZMSTree::MapFromOI( WPARAM wFlag )
 
    GetViewByName( &vApp, m_csAppViewName,
                   m_pZSubtask->m_vDialog, zLEVEL_ANY );
-   if ( vApp != m_vApp )
+   // The outliner view in the painter that displays the views takes a long
+   // time to rebuild. If the vApp and m_vApp are the same and the
+   // outliner we are rebuilding is TZZOVEAO, then don't rebuild.
+   // This always rebuilds when opening a dialog, just not when drilling down
+   // for a control or window properties and then coming back.
+   // KJS 06/29/17 - change.
+   if (vApp == m_vApp && m_csAppViewName == "TZZOVEAO")
    {
-      m_szLastAccEntity[ 0 ] = 0;
+      // KJS 11/28/16 - Trying not to rebuild every time.
+      return (0);
+   }
+   else
+   {
+      m_szLastAccEntity[0] = 0;
       m_vApp = vApp;
    }
 

@@ -85,6 +85,8 @@ static char THIS_FILE[] = __FILE__;
 // #define zDEBUG_CTRL
 // #define zTEST_UPDATED_FLAG
 
+typedef zSHORT(POPERATION zFARPROC_PNTR)(zVIEW);
+
 zLONG  OPERATION
 PainterCall( zSHORT nMessage,
              zVIEW  vTZPNTROO,
@@ -1577,6 +1579,67 @@ PainterCall( zSHORT nMessage,
             *pulCommonFlags = 0;
 
          return( 0 );
+      }
+      case zMSG_SAVEDIALOG:
+      {
+         zFARPROC_PNTR lpfnDynRoutine;
+         LPLIBRARY lpLibrary = 0;
+
+         lpfnDynRoutine = (zFARPROC_PNTR)
+         GetOperationDynamicCallAddress( pPainterBar->m_vSubtask,
+                                         &lpLibrary,
+                                         "tzpntrad", "SaveDialogFile",
+                                         "(Save Dialog)" );
+         if ( lpfnDynRoutine )
+         {
+            zSHORT nRC;
+
+            nRC = (*lpfnDynRoutine)( pPainterBar->m_vSubtask );
+            return( nRC );
+         }
+         return( 0 );
+      }
+
+      case zMSG_GENERATEJAVAJSP:
+      {
+         zFARPROC_PNTR lpfnDynRoutine;
+         LPLIBRARY lpLibrary = 0;
+
+         lpfnDynRoutine = (zFARPROC_PNTR)
+         GetOperationDynamicCallAddress( pPainterBar->m_vSubtask,
+                                         &lpLibrary,
+                                         "tzpntrad", "GenerateJSPJava",
+                                         "(JSP Generation)" );
+         if ( lpfnDynRoutine )
+         {
+            zSHORT nRC;
+
+            nRC = (*lpfnDynRoutine)( pPainterBar->m_vSubtask );
+            return( nRC );
+         }
+         return( 0 );
+
+      }
+
+      case zMSG_GENERATEALLJAVAJSP:
+      {
+         zFARPROC_PNTR lpfnDynRoutine;
+         LPLIBRARY lpLibrary = 0;
+
+         lpfnDynRoutine = (zFARPROC_PNTR)
+         GetOperationDynamicCallAddress( pPainterBar->m_vSubtask,
+                                         &lpLibrary,
+                                         "tzpntrad", "GenerateAllJSPJava",
+                                         "(JSP Generation)" );
+         if ( lpfnDynRoutine )
+         {
+            zSHORT nRC;
+
+            nRC = (*lpfnDynRoutine)( pPainterBar->m_vSubtask );
+            return( nRC );
+         }
+         return( 0 );
+
       }
 
       case zMSG_UPDATE_COMMON_DETAIL:

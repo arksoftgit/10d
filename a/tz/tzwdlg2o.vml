@@ -417,7 +417,7 @@ ControlRelinkDelete( VIEW    vDialog     BASED ON LOD TZWDLGSO,
                   EXCLUDE vControl.CtrlMapLOD_Attribute
                   INCLUDE vControl.CtrlMapLOD_Attribute FROM vLastLOD.LOD_Attribute
                ELSE
-                  szMsg = "DKS2 Deleting Control Mapping for:|   " + szWindowReportName +
+                  szMsg = "Deleting Control Mapping for:|   " + szWindowReportName +
                           "|   Control: " + vControl.Control.Tag +
                           "|   because of missing Attribute: " + vControl.CtrlMapER_Attribute.Name +
                           "|   in LOD: " + vControl.CtrlMapView.Name

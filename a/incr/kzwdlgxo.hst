@@ -116,6 +116,7 @@ zLONG  lStructSize;
    zLONG LKey;
    zCHAR Script[ 33 ];
    zCHAR ScriptDLL[ 33 ];
+   zCHAR LangID[ 255 ];
 
 unsigned char CheckByte;
 
@@ -153,6 +154,7 @@ zLONG  lStructSize;
    zLONG LKey;
    zCHAR Script[ 33 ];
    zCHAR ScriptDLL[ 33 ];
+   zCHAR LangID[ 255 ];
 
 unsigned char CheckByte;
 
@@ -281,6 +283,7 @@ zLONG  lStructSize;
    zCHAR ChkOff[ 65 ];
    zCHAR Separator[ 2 ];
    zLONG DIL;
+   zCHAR LangID[ 255 ];
    zLONG NLS;
 
 unsigned char CheckByte;
@@ -329,6 +332,7 @@ zLONG  lStructSize;
    zLONG RELCNT_Y;
    zCHAR Placeholder[ 255 ];
    zLONG LKey;
+   zCHAR LangID[ 255 ];
 
 unsigned char CheckByte;
 
@@ -369,6 +373,7 @@ zLONG  lStructSize;
    zLONG DIL;
    zCHAR D_Text[ 33 ];
    zLONG NLS;
+   zCHAR LangID[ 255 ];
 
 unsigned char CheckByte;
 
@@ -386,6 +391,7 @@ zLONG  lStructSize;
    zCHAR Separator[ 2 ];
    zLONG DIL;
    zLONG NLS;
+   zCHAR LangID[ 255 ];
    zCHAR D_Text[ 33 ];
 
 unsigned char CheckByte;

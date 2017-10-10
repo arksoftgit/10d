@@ -71,7 +71,7 @@ PostGenerateJava( zVIEW lpSubtask,
 zPCHAR szMessageListGenerate[ ] =
 {
    "Profile Object could not be accessed, GenerateTerminating",
-   "XPG file could not be located. GenerateTerminating",
+   "XPG or XPJ file could not be located. GenerateTerminating",
    "Application's Global Operation List could not be accessed from Configuration Management, GenerateTerminating",
    "TaskLPLR could not be accessed, GenerateTerminating",
    "TZOPSIGK.XGO could not be accessed, GenerateTerminating",
@@ -195,11 +195,15 @@ Generate3GL( zVIEW   lpVSSubtask,        // pointer to the vml task
       SysReadZeidonIni( -1, szSystemIniApplName, "JavaGenDir", szMsg, zsizeof( szMsg ) );
       if ( szMsg[ 0 ] == 0 )
       {
-         strcpy_s( szCFileSpec, zsizeof( szCFileSpec ), szPgmSrcDir );
-         nLth = SysAppendcDirSep( szCFileSpec );
-         strcpy_s( szCFileSpec + nLth , zsizeof( szCFileSpec ) - nLth, "JavaProject\\src\\com\\quinsoft\\" );
-         nLth += 29;
-         strcpy_s( szCFileSpec + nLth , zsizeof( szCFileSpec ) - nLth, szLPLR_Name );
+         MessageSend( vSubtask, "VM02001", "VML Generator",
+                      "JavaGenDir is not defined in the ini file, the java cannot be built.",
+                      zMSGQ_OBJECT_CONSTRAINT_ERROR, 0);
+         return( -1 );
+       //strcpy_s( szCFileSpec, zsizeof( szCFileSpec ), szPgmSrcDir );
+       //nLth = SysAppendcDirSep( szCFileSpec );
+       //strcpy_s( szCFileSpec + nLth , zsizeof( szCFileSpec ) - nLth, "JavaProject\\src\\com\\quinsoft\\" );
+       //nLth += 29;
+       //strcpy_s( szCFileSpec + nLth , zsizeof( szCFileSpec ) - nLth, szLPLR_Name );
       }
       else
       {

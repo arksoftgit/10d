@@ -1159,6 +1159,7 @@ public class CtrlImpl implements Ctrl
    protected Blob    LKey;
    protected String  Script;
    protected String  ScriptDLL;
+   protected String  LangID;
 
 
    // ctor
@@ -1615,6 +1616,22 @@ public class CtrlImpl implements Ctrl
       this.ScriptDLL = ScriptDLL;
    }
 
+   /**
+    * @return the LangID
+    */
+   public String getLangID( )
+   {
+      return LangID;
+   }
+
+   /**
+    * @param LangID to set 
+    */
+   public void setLangID( String LangID )
+   {
+      this.LangID = LangID;
+   }
+
    public int loadCtrlEntityStructure( EntityCursor cursor )
    {
       Tag = cursor.getStringFromAttribute( "Tag" );  if ( Tag == null ) Tag = "";
@@ -1645,6 +1662,7 @@ public class CtrlImpl implements Ctrl
       LKey = cursor.getBlobFromAttribute( "LKey" );
       Script = cursor.getStringFromAttribute( "Script" );  if ( Script == null ) Script = "";
       ScriptDLL = cursor.getStringFromAttribute( "ScriptDLL" );  if ( ScriptDLL == null ) ScriptDLL = "";
+      LangID = cursor.getStringFromAttribute( "LangID" );  if ( LangID == null ) LangID = "";
 
       return 0;
    }
@@ -1707,6 +1725,7 @@ public class CtrlCtrlImpl implements CtrlCtrl
    protected Blob    LKey;
    protected String  Script;
    protected String  ScriptDLL;
+   protected String  LangID;
 
 
    // ctor
@@ -2163,6 +2182,22 @@ public class CtrlCtrlImpl implements CtrlCtrl
       this.ScriptDLL = ScriptDLL;
    }
 
+   /**
+    * @return the LangID
+    */
+   public String getLangID( )
+   {
+      return LangID;
+   }
+
+   /**
+    * @param LangID to set 
+    */
+   public void setLangID( String LangID )
+   {
+      this.LangID = LangID;
+   }
+
    public int loadCtrlCtrlEntityStructure( EntityCursor cursor )
    {
       Tag = cursor.getStringFromAttribute( "Tag" );  if ( Tag == null ) Tag = "";
@@ -2193,6 +2228,7 @@ public class CtrlCtrlImpl implements CtrlCtrl
       LKey = cursor.getBlobFromAttribute( "LKey" );
       Script = cursor.getStringFromAttribute( "Script" );  if ( Script == null ) Script = "";
       ScriptDLL = cursor.getStringFromAttribute( "ScriptDLL" );  if ( ScriptDLL == null ) ScriptDLL = "";
+      LangID = cursor.getStringFromAttribute( "LangID" );  if ( LangID == null ) LangID = "";
 
       return 0;
    }
@@ -3542,6 +3578,7 @@ public class ActOptImpl implements ActOpt
    protected String  ChkOff;
    protected String  Separator;
    protected Integer DIL;
+   protected String  LangID;
    protected Integer NLS;
 
 
@@ -3664,6 +3701,22 @@ public class ActOptImpl implements ActOpt
    }
 
    /**
+    * @return the LangID
+    */
+   public String getLangID( )
+   {
+      return LangID;
+   }
+
+   /**
+    * @param LangID to set 
+    */
+   public void setLangID( String LangID )
+   {
+      this.LangID = LangID;
+   }
+
+   /**
     * @return the NLS
     */
    public Integer getNLS( )
@@ -3688,6 +3741,7 @@ public class ActOptImpl implements ActOpt
       ChkOff = cursor.getStringFromAttribute( "ChkOff" );  if ( ChkOff == null ) ChkOff = "";
       Separator = cursor.getStringFromAttribute( "Separator" );  if ( Separator == null ) Separator = "";
       DIL = cursor.getIntegerFromAttribute( "DIL" );  if ( DIL == null ) DIL = 0;
+      LangID = cursor.getStringFromAttribute( "LangID" );  if ( LangID == null ) LangID = "";
       NLS = cursor.getIntegerFromAttribute( "NLS" );  if ( NLS == null ) NLS = 0;
 
       return 0;
@@ -3830,6 +3884,7 @@ public class ActCtrlImpl implements ActCtrl
    protected Integer RELCNT_Y;
    protected String  Placeholder;
    protected Blob    LKey;
+   protected String  LangID;
 
 
    // ctor
@@ -4270,6 +4325,22 @@ public class ActCtrlImpl implements ActCtrl
       this.LKey = LKey;
    }
 
+   /**
+    * @return the LangID
+    */
+   public String getLangID( )
+   {
+      return LangID;
+   }
+
+   /**
+    * @param LangID to set 
+    */
+   public void setLangID( String LangID )
+   {
+      this.LangID = LangID;
+   }
+
    public int loadActCtrlEntityStructure( EntityCursor cursor )
    {
       Tag = cursor.getStringFromAttribute( "Tag" );  if ( Tag == null ) Tag = "";
@@ -4299,6 +4370,7 @@ public class ActCtrlImpl implements ActCtrl
       RELCNT_Y = cursor.getIntegerFromAttribute( "RELCNT_Y" );  if ( RELCNT_Y == null ) RELCNT_Y = 0;
       Placeholder = cursor.getStringFromAttribute( "Placeholder" );  if ( Placeholder == null ) Placeholder = "";
       LKey = cursor.getBlobFromAttribute( "LKey" );
+      LangID = cursor.getStringFromAttribute( "LangID" );  if ( LangID == null ) LangID = "";
 
       return 0;
    }
@@ -4502,6 +4574,7 @@ public class OptImpl implements Opt
    protected Integer DIL;
    protected String  D_Text;
    protected Integer NLS;
+   protected String  LangID;
 
 
    // ctor
@@ -4654,6 +4727,22 @@ public class OptImpl implements Opt
       this.NLS = NLS;
    }
 
+   /**
+    * @return the LangID
+    */
+   public String getLangID( )
+   {
+      return LangID;
+   }
+
+   /**
+    * @param LangID to set 
+    */
+   public void setLangID( String LangID )
+   {
+      this.LangID = LangID;
+   }
+
    public int loadOptEntityStructure( EntityCursor cursor )
    {
       Tag = cursor.getStringFromAttribute( "Tag" );  if ( Tag == null ) Tag = "";
@@ -4665,6 +4754,7 @@ public class OptImpl implements Opt
       DIL = cursor.getIntegerFromAttribute( "DIL" );  if ( DIL == null ) DIL = 0;
       D_Text = cursor.getStringFromAttribute( "D_Text" );  if ( D_Text == null ) D_Text = "";
       NLS = cursor.getIntegerFromAttribute( "NLS" );  if ( NLS == null ) NLS = 0;
+      LangID = cursor.getStringFromAttribute( "LangID" );  if ( LangID == null ) LangID = "";
 
       return 0;
    }
@@ -4707,6 +4797,7 @@ public class OptOptImpl implements OptOpt
    protected String  Separator;
    protected Integer DIL;
    protected Integer NLS;
+   protected String  LangID;
    protected String  D_Text;
 
 
@@ -4845,6 +4936,22 @@ public class OptOptImpl implements OptOpt
    }
 
    /**
+    * @return the LangID
+    */
+   public String getLangID( )
+   {
+      return LangID;
+   }
+
+   /**
+    * @param LangID to set 
+    */
+   public void setLangID( String LangID )
+   {
+      this.LangID = LangID;
+   }
+
+   /**
     * @return the D_Text
     */
    public String getD_Text( )
@@ -4870,6 +4977,7 @@ public class OptOptImpl implements OptOpt
       Separator = cursor.getStringFromAttribute( "Separator" );  if ( Separator == null ) Separator = "";
       DIL = cursor.getIntegerFromAttribute( "DIL" );  if ( DIL == null ) DIL = 0;
       NLS = cursor.getIntegerFromAttribute( "NLS" );  if ( NLS == null ) NLS = 0;
+      LangID = cursor.getStringFromAttribute( "LangID" );  if ( LangID == null ) LangID = "";
       D_Text = cursor.getStringFromAttribute( "D_Text" );  if ( D_Text == null ) D_Text = "";
 
       return 0;

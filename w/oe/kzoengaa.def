@@ -1,3 +1,93 @@
+;; CHANGE LOG
+;;
+;; 2003.02.24  DGC
+;;    Added SUM commands.
+;;
+;; 2002.11.20  DGC
+;;    Added GenerateQualFromEntityList().
+;;
+;; 2002.10.04  DGC
+;;    Added iStoreString/ValueInDerivedAttribute().
+;;
+;; 2002.03.29  DGC
+;;   Added SysCreateTempFileName().
+;;
+;; 2002.01.28  HH
+;;    Added SysRoundDecimal.
+;;
+;; 2002.01.15  HH
+;;    Added SetDatabaseUser.
+;;
+;; 2001.12.06  DGC
+;;    Added ActivateOI_FromXML_File.
+;;
+;; 2001.10.11  DGC
+;;    Added GetViewFlags()
+;;
+;; 2001.10.09  DGC
+;;    Added MiHasPersistentChanges( zVIEW lpView )
+;;
+;;2001.09.04  PAS
+;;   added 7 UfZProbeXXXXX functions.
+;;
+;; 2001.08.22  DGC
+;;    Started adding stuff for local memory version of Core.
+;;
+;;2001.08.02  HH
+;;   added SubobjectVersionUpdated.
+;;
+;; 2001.06.23  DGC  10b
+;;    Added SysSetFileTime, SetBlobFromFile and WriteBlobToFile.
+;;
+;; 2001.05.03  HH
+;;    added AppendViewCluster.
+;;
+;; 2001.04.25  HH
+;;    ordinals for SysMalloc & SysFree changed back to original value.
+;;
+;; 2001.04.18  DGC  10b
+;;    Added code for DropViewObject() logic.
+;;
+;; 2001.04.09  US
+;;   Added two new functions SysMalloc() and SysFree()
+;;
+;; 2000.12.15  DGC  all
+;;    Added a debugging operation.
+;;
+;; 2000.05.04  DGC  all
+;;    IncludeSubobjectFromSubobjectEx().
+;;
+;; 2000.05.04  DGC  all
+;;    Added StoreBytesInRecord().
+;;
+;; 2000.02.17  DGC  10b
+;;    Added MutexQueryStatus()
+;;
+;; 2000.02.17  DGC  10b
+;;    Added WriteMultipleOIs_ToXML().
+;;
+;; 1999.12.14  DGC  10b
+;;    Added XML functions.
+;;
+;; 1999.10.08  DGC  10a
+;;    Added SetViewFlags.
+;;
+;; 1999.09.07  DGC  10a
+;;    Removed '#if' stuff
+;;
+;; 1999.09.01  DGC  10a
+;;    Added DropViewCluster(), AddToViewCluster().
+;;
+;; 1999.06.01  DGC  10a
+;;    Added GetAttributeFlags(), GetTracingFlags().
+;;
+;; 1999.04.21  DGC  10a  ApplA
+;;    Removed NetCallTransformation()--replaced by NetCallOperation().
+;;    Removed NetSendBootstrapFile().
+;;
+;; 1999.03.02
+;;    Added SysConvertEnvironmentString() as an exported operation.
+
 
    LIBRARY       KZOENGAA
 

@@ -181,6 +181,7 @@ long lMoveBaseLine, lMoveBaseColumn;
 //zBOOL   g_bIsFileNew = FALSE; // to handle "File New" menu command
 FINDREPLACE g_fr;
 CString g_csFindWhat = "";
+// CString g_strFindWhat = "";
 zBOOL   g_bMatchCase = FALSE;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -356,6 +357,10 @@ zOPER_EXPORT zBOOL OPERATION
 EDT_Redo( zVIEW vSubtask );
 zOPER_EXPORT zBOOL OPERATION
 EDT_CopyText( zVIEW vSubtask );
+zOPER_EXPORT zBOOL OPERATION
+EDT_TabText( zVIEW vSubtask );
+zOPER_EXPORT zBOOL OPERATION
+EDT_UntabText( zVIEW vSubtask );
 zOPER_EXPORT zBOOL OPERATION
 EDT_CutText( zVIEW vSubtask );
 zOPER_EXPORT zBOOL OPERATION
@@ -579,9 +584,9 @@ InsertComment( zVIEW vSubtask, LPSTR szOperName, LPSTR szOperComment )
    {
       csText = sl.GetAt( pos );
       MovEOF( );
-      // KJS 11/11/16 - The last parameter is whether we should reset the position of the cursor, not sure why it's
-      // FALSE because we always set the cursor position to after what we've pasted. So I'm changing to TRUE.
-      EDT_InsertItem( vSubtask, csText, TRUE ); // send string to Editor control
+     // KJS 11/11/16 - The last parameter is whether we should reset the position of the cursor, not sure why it's
+     // FALSE because we always set the cursor position to after what we've pasted. So I'm changing to TRUE.
+     EDT_InsertItem( vSubtask, csText, TRUE ); // send string to Editor control
       sl.GetNext( pos );  // get next list entry
    }
 
@@ -3292,8 +3297,8 @@ fnPasteQualifier( zVIEW  vSubtask,
 
       strcat_s( szMsg, zsizeof( szMsg ), " " );
       csStringToInsert = szMsg;
-      // KJS 11/11/16 - The last parameter is whether we should reset the position of the cursor, not sure why it's
-      // FALSE because we always set the cursor position to after what we've pasted. So I'm changing to TRUE.
+     // KJS 11/11/16 - The last parameter is whether we should reset the position of the cursor, not sure why it's
+     // FALSE because we always set the cursor position to after what we've pasted. So I'm changing to TRUE.
       EDT_InsertItem( vEditorSubtask, csStringToInsert, TRUE );
       SetFocusToCtrl( vEditorSubtask, EDIT_CONTROL_NAME );
    }
@@ -3859,9 +3864,9 @@ OpIns_InsertOperation( zVIEW vSubtask )
             strcat_s( szBuffer, zsizeof( szBuffer ), ";" );
 
          csIndent += szBuffer;
-         // KJS 11/11/16 - The last parameter is whether we should reset the position of the cursor, not sure why it's
-         // FALSE because we always set the cursor position to after what we've pasted. So I'm changing to TRUE.
-         EDT_InsertItem( vSubtask, csIndent, TRUE );
+       // KJS 11/11/16 - The last parameter is whether we should reset the position of the cursor, not sure why it's
+       // FALSE because we always set the cursor position to after what we've pasted. So I'm changing to TRUE.
+       EDT_InsertItem( vSubtask, csIndent, TRUE );
          break;
       }
 
@@ -5607,7 +5612,7 @@ fnSaveWithCheckForParse( zVIEW vSubtask )
    zCHAR  szMsg[ 300 ];
    zVIEW   vEdWrk;
    zVIEW   vSource;
- 
+
    mGetWorkView( &vEdWrk, vSubtask );
    if ( vEdWrk == 0 )
    {
@@ -6171,8 +6176,8 @@ TZEDFRMD_GotoOperation( zVIEW vSubtask )
    while ( fnIsCommentAtIndex( vSubtask, lLine, lCol ) && lLine > -1 )
    {
       lLine++;
-      EDT_FindTextPosition(vSubtask, "Operation", &lLine, &lCol, dwTBEDTDefaultSearchBehavior);
-    //EDT_FindTextPosition(vSubtask, csSearchString, &lLine, &lCol, dwTBEDTDefaultSearchBehavior);
+     EDT_FindTextPosition(vSubtask, "Operation", &lLine, &lCol, dwTBEDTDefaultSearchBehavior);
+     //EDT_FindTextPosition(vSubtask, csSearchString, &lLine, &lCol, dwTBEDTDefaultSearchBehavior);
    }
 
    if ( lLine >= 0 ) // we found something so place the cursor onto it
@@ -6255,6 +6260,32 @@ TZEDFRMD_EditPaste( zVIEW vSubtask )
 
 /////////////////////////////////////////////////////////////////////////////
 //
+//  OPERATION: TZEDFRMD_EditTab
+//
+zOPER_EXPORT zSHORT OPERATION
+TZEDFRMD_EditTab( zVIEW vSubtask )
+{
+   EDT_TabText( vSubtask );
+
+   return( 0 );
+
+}// TZEDFRMD_EditTab
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  OPERATION: TZEDFRMD_EditUntab
+//
+zOPER_EXPORT zSHORT OPERATION
+TZEDFRMD_EditUntab( zVIEW vSubtask )
+{
+   EDT_UntabText( vSubtask );
+
+   return( 0 );
+
+}// TZEDFRMD_EditUntab
+
+/////////////////////////////////////////////////////////////////////////////
+//
 //  OPERATION: TZEDFRMD_EditCopy
 //
 zOPER_EXPORT zSHORT OPERATION
@@ -6329,6 +6360,34 @@ TZEDFRMD_EditRedo( zVIEW vSubtask )
 zOPER_EXPORT zSHORT OPERATION
 TZEDFRMD_EditFind( zVIEW vSubtask )
 {
+   /*
+   zPCHAR   pch = 0;
+   CString  strBuffer;
+   zLONG    lBufferLth = 512;
+   ZDrTBEdt *oEditor =
+      (ZDrTBEdt *)GetActiveX_WrapperInstance(vSubtask, EDIT_CONTROL_NAME);
+
+   if (oEditor)
+   {
+      if (oEditor->CanCopy()) // something is selected
+      {
+         pch = strBuffer.GetBufferSetLength(lBufferLth);
+         zLONG lReturn = oEditor->GetSelectedText(pch, lBufferLth);
+         while (lReturn > lBufferLth)
+         {
+            lBufferLth = lReturn + 1;
+            lReturn = oEditor->GetSelectedText(pch, lBufferLth);
+         }
+      }
+   }
+   else
+   {
+      return(-1);
+   }
+
+   if (pch == 0)
+      pch = g_strFindWhat.GetBufferSetLength(g_strFindWhat.GetLength());
+   */
    return EDT_FindDialog( vSubtask );
 
 } // TZEDFRMD_EditFind
@@ -6506,7 +6565,7 @@ zOPER_EXPORT zSHORT OPERATION
 TZEDFRMD_EditReplace( zVIEW vSubtask )
 {
    return EDT_ReplaceDialog( vSubtask );
- 
+
 } // TZEDFRMD_EditReplace
 
 #if 0

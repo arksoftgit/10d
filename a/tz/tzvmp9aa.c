@@ -923,18 +923,18 @@ zOPER_EXPORT zLONG OPERATION
 BuildWhereStatements( zVIEW  vSubtask,
                       zLONG  lRootOrRestrict )
 {
-   zCHAR  szRootName[ 32 ];
+   zCHAR  szRootName[zZEIDON_NAME_LTH + 1];
    zLONG  lTempID;
    zLONG  lLoop;
-   zCHAR  szViewName[ 33 ];
+   zCHAR  szViewName[zZEIDON_NAME_LTH + 1];
    zLONG  lViewID;
-   zCHAR  szEntityName[ 33 ];
-   zCHAR  szAttributeName[ 33 ];
-   zCHAR  szRViewName[ 33 ];
+   zCHAR  szEntityName[zZEIDON_NAME_LTH + 1];
+   zCHAR  szAttributeName[zZEIDON_NAME_LTH + 1];
+   zCHAR  szRViewName[zZEIDON_NAME_LTH + 1];
    zLONG  lRViewID;
-   zCHAR  szREntityName[ 33 ];
+   zCHAR  szREntityName[zZEIDON_NAME_LTH + 1];
    zLONG  lREntityID;
-   zCHAR  szRAttributeName[ 33 ];
+   zCHAR  szRAttributeName[zZEIDON_NAME_LTH + 1];
    zLONG  lRAttributeID;
    zCHAR  szOperString[ 15 ];
    zLONG  lLth;

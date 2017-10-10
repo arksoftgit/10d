@@ -297,6 +297,12 @@ MergeWebMenus( VIEW vNewW  BASED ON LOD TZWDLGSO,
    VIEW TZWND_List BASED ON LOD  TZWDLGSO
    INTEGER nRC
 
+   // KJS 11/28/16 - This code does not seem to work correctly. First the above registered TZCMLPLO doesn't exist, but if
+   // I change it to "TZDLG_List" then I go into code below that drops views it shouldn't and I get even more errors. I am thinking
+   // that this never works correctly so I am returning.
+   RETURN 0
+
+/*
    // Merge the following Web Menus only if they don't already exist.
    //  ReusableSideMenu
    //  ReusableMainMenu
@@ -402,7 +408,7 @@ MergeWebMenus( VIEW vNewW  BASED ON LOD TZWDLGSO,
    END
 
    RETURN 0
-
+*/
 END
 
 /////////////////////////////////////////////////////////////////////////////

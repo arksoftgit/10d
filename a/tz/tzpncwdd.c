@@ -11,9 +11,7 @@ extern "C"
  
 #include "ZEIDONOP.H"
 
-zOPER_EXPORT zSHORT OPERATION
-zwTZPNCW2D_CopyOperationToFile( zVIEW  vSubtask,
-                                zSHORT nCopyOrDeleteFlag );
+zSHORT zwTZPNCW2D_CopyOperationToFile( zVIEW, zSHORT );
 
 zOPER_EXPORT zSHORT OPERATION
 SEL_CLONE_Init( zVIEW     vSubtask );
